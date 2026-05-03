@@ -40,7 +40,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Global background ── */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0;
@@ -50,7 +49,6 @@ body::before {
   pointer-events: none;
 }
 
-/* ── Scanlines ── */
 body::after {
   content: '';
   position: fixed; inset: 0; z-index: 0;
@@ -64,7 +62,6 @@ body::after {
   pointer-events: none;
 }
 
-/* ── HEADER ── */
 header {
   position: relative; z-index: 10;
   display: flex; align-items: center; justify-content: space-between;
@@ -74,9 +71,7 @@ header {
   backdrop-filter: blur(12px);
 }
 
-.logo-wrap {
-  display: flex; align-items: center; gap: 12px;
-}
+.logo-wrap { display: flex; align-items: center; gap: 12px; }
 .logo-icon {
   width: 36px; height: 36px;
   background: linear-gradient(135deg, var(--twitch), var(--discord));
@@ -92,452 +87,210 @@ header {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
-.header-links {
-  display: flex; align-items: center; gap: 16px;
-}
+.header-links { display: flex; align-items: center; gap: 16px; }
 .header-links a {
   font-size: .82rem; font-family: var(--ff-mono);
-  color: var(--sub);
-  text-decoration: none;
-  transition: color .2s;
+  color: var(--sub); text-decoration: none; transition: color .2s;
 }
 .header-links a:hover { color: var(--text); }
 
 .btn-twitch {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--twitch);
-  color: #fff !important;
-  padding: 8px 18px;
-  border-radius: 8px;
-  font-size: .82rem;
-  font-family: var(--ff-mono) !important;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background .2s, transform .15s;
+  background: var(--twitch); color: #fff !important;
+  padding: 8px 18px; border-radius: 8px;
+  font-size: .82rem; font-family: var(--ff-mono) !important; font-weight: 600;
+  text-decoration: none; transition: background .2s, transform .15s;
 }
 .btn-twitch:hover { background: #7c2ff7; transform: translateY(-1px); }
 .btn-twitch svg { flex-shrink: 0; }
 
-/* ── HERO ── */
 .hero {
   position: relative; z-index: 2;
   max-width: 900px; margin: 0 auto;
-  padding: 80px 32px 60px;
-  text-align: center;
+  padding: 80px 32px 60px; text-align: center;
 }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(145,70,255,.1);
-  border: 1px solid rgba(145,70,255,.25);
-  border-radius: 100px;
-  padding: 5px 14px;
-  font-family: var(--ff-mono);
-  font-size: .72rem;
-  color: var(--twitch2);
-  margin-bottom: 28px;
-  letter-spacing: .06em;
+  background: rgba(145,70,255,.1); border: 1px solid rgba(145,70,255,.25);
+  border-radius: 100px; padding: 5px 14px;
+  font-family: var(--ff-mono); font-size: .72rem;
+  color: var(--twitch2); margin-bottom: 28px; letter-spacing: .06em;
 }
 .hero-badge-dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 8px var(--success);
+  background: var(--success); box-shadow: 0 0 8px var(--success);
   animation: blink 2s ease-in-out infinite;
 }
-@keyframes blink {
-  0%,100% { opacity:1; } 50% { opacity:.4; }
-}
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.4; } }
 
 .hero-title {
   font-family: var(--ff-head);
   font-size: clamp(3.5rem, 9vw, 6.5rem);
-  line-height: .95;
-  letter-spacing: .02em;
-  margin-bottom: 20px;
+  line-height: .95; letter-spacing: .02em; margin-bottom: 20px;
 }
 .hero-title .line1 { color: var(--text); display: block; }
 .hero-title .line2 {
   background: linear-gradient(90deg, var(--twitch), var(--discord));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  display: block;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block;
 }
 
 .hero-sub {
-  font-size: 1.05rem;
-  color: var(--sub);
-  max-width: 520px;
-  margin: 0 auto 40px;
-  line-height: 1.65;
-  font-weight: 300;
+  font-size: 1.05rem; color: var(--sub); max-width: 520px;
+  margin: 0 auto 40px; line-height: 1.65; font-weight: 300;
 }
 
-.hero-cta {
-  display: flex; align-items: center; justify-content: center; gap: 14px;
-  flex-wrap: wrap;
-}
+.hero-cta { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
   background: linear-gradient(135deg, var(--twitch), var(--discord));
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-size: .95rem;
-  font-weight: 600;
-  text-decoration: none;
+  color: #fff; padding: 14px 28px; border-radius: 12px;
+  font-size: .95rem; font-weight: 600; text-decoration: none;
   transition: transform .2s, box-shadow .2s;
   box-shadow: 0 4px 20px rgba(145,70,255,.35);
 }
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(145,70,255,.5);
-}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(145,70,255,.5); }
 
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 10px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--sub);
-  padding: 13px 24px;
-  border-radius: 12px;
-  font-size: .9rem;
-  font-weight: 500;
-  text-decoration: none;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--sub); padding: 13px 24px; border-radius: 12px;
+  font-size: .9rem; font-weight: 500; text-decoration: none;
   transition: border-color .2s, color .2s;
 }
 .btn-secondary:hover { border-color: var(--discord2); color: var(--text); }
 
-/* ── FEATURES ── */
 .features {
-  position: relative; z-index: 2;
-  max-width: 900px; margin: 0 auto;
+  position: relative; z-index: 2; max-width: 900px; margin: 0 auto;
   padding: 20px 32px 80px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;
 }
 
 .feat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  transition: border-color .2s, transform .2s;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px; transition: border-color .2s, transform .2s;
 }
 .feat-card:hover { border-color: rgba(145,70,255,.35); transform: translateY(-3px); }
+.feat-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.feat-title { font-weight: 600; font-size: .95rem; margin-bottom: 6px; }
+.feat-desc { font-size: .82rem; color: var(--sub); line-height: 1.55; }
 
-.feat-icon {
-  font-size: 1.8rem; margin-bottom: 12px;
-}
-.feat-title {
-  font-weight: 600; font-size: .95rem;
-  margin-bottom: 6px;
-}
-.feat-desc {
-  font-size: .82rem; color: var(--sub);
-  line-height: 1.55;
-}
-
-/* ── DIVIDER ── */
 .divider {
-  position: relative; z-index: 2;
-  max-width: 900px; margin: 0 auto;
-  padding: 0 32px;
-  height: 1px;
+  position: relative; z-index: 2; max-width: 900px; margin: 0 auto;
+  padding: 0 32px; height: 1px;
   background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
-/* ── OAUTH SECTION ── */
 #oauth-section {
-  display: none;
-  position: fixed; inset: 0; z-index: 100;
-  background: rgba(0,0,0,.75);
-  backdrop-filter: blur(8px);
-  align-items: center; justify-content: center;
-  padding: 24px;
+  display: none; position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,.75); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 24px;
 }
-#oauth-section.visible {
-  display: flex;
-}
-#oauth-section .oauth-card {
-  width: 100%; max-width: 520px;
-}
+#oauth-section.visible { display: flex; }
+#oauth-section .oauth-card { width: 100%; max-width: 520px; }
 
 .oauth-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden;
   box-shadow: 0 0 0 1px rgba(88,101,242,.06), 0 24px 60px rgba(0,0,0,.5);
   animation: slideUp .5s cubic-bezier(.22,1,.36,1) both;
 }
-@keyframes slideUp {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
-}
+@keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
 .oauth-header {
   display: flex; align-items: center; gap: 10px;
-  padding: 16px 22px;
-  border-bottom: 1px solid var(--border);
+  padding: 16px 22px; border-bottom: 1px solid var(--border);
   background: rgba(88,101,242,.05);
 }
-.oauth-header-title {
-  font-family: var(--ff-mono); font-size: .72rem;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--discord2);
-}
+.oauth-header-title { font-family: var(--ff-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--discord2); }
 .live-dot {
-  margin-left: auto;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 8px var(--success);
+  margin-left: auto; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--success); box-shadow: 0 0 8px var(--success);
   animation: blink 2s ease-in-out infinite;
 }
 
 .oauth-body { padding: 28px 24px; }
-
-/* Loading state */
 #state-loading { text-align:center; }
 .spinner {
   display: inline-block; width: 40px; height: 40px;
-  border: 3px solid var(--border);
-  border-top-color: var(--discord);
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-  margin-bottom: 16px;
+  border: 3px solid var(--border); border-top-color: var(--discord);
+  border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 16px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 .load-title { font-size:1rem; font-weight:600; margin-bottom:4px; }
 .load-sub { font-size:.8rem; color:var(--sub); font-family:var(--ff-mono); }
 
-/* Success state */
 #state-success { display:none; }
-.check-ring {
-  display:flex; justify-content:center; margin-bottom:18px;
-}
+.check-ring { display:flex; justify-content:center; margin-bottom:18px; }
 .check-ring-inner {
   width:52px; height:52px; border-radius:50%;
-  background: rgba(46,204,113,.1);
-  border: 2px solid var(--success);
+  background: rgba(46,204,113,.1); border: 2px solid var(--success);
   display:flex; align-items:center; justify-content:center;
   animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both;
 }
-@keyframes popIn {
-  from { opacity:0; transform:scale(.3); }
-  to   { opacity:1; transform:scale(1); }
-}
+@keyframes popIn { from { opacity:0; transform:scale(.3); } to { opacity:1; transform:scale(1); } }
 .check-ring-inner svg { width:24px; height:24px; }
 .s-title { font-size:1.15rem; font-weight:700; text-align:center; margin-bottom:4px; }
 .s-sub { font-size:.8rem; color:var(--sub); font-family:var(--ff-mono); text-align:center; margin-bottom:20px; }
-
-.token-label {
-  font-size:.6rem; font-weight:700;
-  letter-spacing:.1em; text-transform:uppercase;
-  color:var(--sub); font-family:var(--ff-mono); margin-bottom:5px;
-}
-.token-box {
-  background:var(--bg); border:1px solid var(--border);
-  border-radius:10px; padding:12px 14px;
-  margin-bottom:10px; position:relative;
-}
-.token-val {
-  font-family:var(--ff-mono); font-size:.75rem;
-  color:var(--discord2); word-break:break-all;
-  line-height:1.55; padding-right:52px;
-}
-.copy-btn {
-  position:absolute; top:10px; right:10px;
-  background:rgba(88,101,242,.12);
-  border:1px solid rgba(88,101,242,.25);
-  border-radius:6px; color:var(--discord2);
-  cursor:pointer; padding:4px 8px;
-  font-size:.68rem; font-family:var(--ff-mono);
-  transition:all .15s; white-space:nowrap;
-}
+.token-label { font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sub); font-family:var(--ff-mono); margin-bottom:5px; }
+.token-box { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:10px; position:relative; }
+.token-val { font-family:var(--ff-mono); font-size:.75rem; color:var(--discord2); word-break:break-all; line-height:1.55; padding-right:52px; }
+.copy-btn { position:absolute; top:10px; right:10px; background:rgba(88,101,242,.12); border:1px solid rgba(88,101,242,.25); border-radius:6px; color:var(--discord2); cursor:pointer; padding:4px 8px; font-size:.68rem; font-family:var(--ff-mono); transition:all .15s; white-space:nowrap; }
 .copy-btn:hover { background:rgba(88,101,242,.25); }
 .copy-btn.copied { color:var(--success); border-color:var(--success); }
-
-.chips {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:8px; margin:14px 0;
-}
-.chip {
-  background:var(--bg); border:1px solid var(--border);
-  border-radius:8px; padding:10px 12px;
-}
-.chip-l { font-size:.58rem; font-weight:700; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--muted);
-  font-family:var(--ff-mono); margin-bottom:2px; }
+.chips { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0; }
+.chip { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; }
+.chip-l { font-size:.58rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-family:var(--ff-mono); margin-bottom:2px; }
 .chip-v { font-size:.8rem; font-weight:600; }
-
-.cmd-box {
-  background:var(--bg); border:1px solid var(--border);
-  border-radius:10px; padding:12px 14px; margin-top:4px;
-}
-.cmd-lbl { font-size:.6rem; font-weight:700; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--sub);
-  font-family:var(--ff-mono); margin-bottom:6px; }
+.cmd-box { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-top:4px; }
+.cmd-lbl { font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sub); font-family:var(--ff-mono); margin-bottom:6px; }
 .cmd-text { font-family:var(--ff-mono); font-size:.78rem; line-height:1.5; }
 .cmd-name { color:var(--twitch2); }
 .cmd-arg  { color:var(--discord2); }
 .cmd-val  { color:var(--success); }
-
-/* Error state */
 #state-error { display:none; text-align:center; }
 .err-icon { font-size:2rem; margin-bottom:12px; }
 .err-title { font-size:1rem; font-weight:700; color:#ed4245; margin-bottom:6px; }
 .err-sub { font-size:.8rem; color:var(--sub); font-family:var(--ff-mono); }
-
-/* No params */
 #state-noparams { display:none; text-align:center; }
 .np-icon { font-size:2rem; margin-bottom:12px; }
 .np-title { font-size:.95rem; font-weight:700; margin-bottom:6px; }
 .np-sub { font-size:.78rem; color:var(--sub); font-family:var(--ff-mono); line-height:1.6; }
-
-/* oauth footer */
-.oauth-footer {
-  padding:12px 22px;
-  border-top:1px solid var(--border);
-  display:flex; align-items:center; justify-content:space-between;
-  background:rgba(0,0,0,.15);
-}
+.oauth-footer { padding:12px 22px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,.15); }
 .o-brand { font-size:.68rem; font-family:var(--ff-mono); color:var(--muted); }
 .o-brand span { color:var(--twitch); }
 .o-hint { font-size:.68rem; font-family:var(--ff-mono); color:var(--muted); }
 #countdown { color:var(--discord2); font-weight:700; }
 
-/* ── COMMANDS SECTION ── */
-.cmds-section {
-  position: relative; z-index: 2;
-  padding: 60px 32px;
-}
-.cmds-wrap {
-  max-width: 900px; margin: 0 auto;
-}
+.cmds-section { position: relative; z-index: 2; padding: 60px 32px; }
+.cmds-wrap { max-width: 900px; margin: 0 auto; }
 .cmds-header { text-align: center; margin-bottom: 36px; }
-.cmds-title {
-  font-family: var(--ff-head);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  letter-spacing: .02em; margin-bottom: 10px;
-}
-.cmds-sub {
-  font-size: .9rem; color: var(--sub); max-width: 460px;
-  margin: 0 auto; line-height: 1.6;
-}
-.inline-code {
-  background: rgba(88,101,242,.15);
-  border: 1px solid rgba(88,101,242,.25);
-  color: var(--discord2);
-  border-radius: 4px;
-  padding: 1px 6px;
-  font-family: var(--ff-mono);
-  font-size: .82em;
-}
+.cmds-title { font-family: var(--ff-head); font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: .02em; margin-bottom: 10px; }
+.cmds-sub { font-size: .9rem; color: var(--sub); max-width: 460px; margin: 0 auto; line-height: 1.6; }
+.inline-code { background: rgba(88,101,242,.15); border: 1px solid rgba(88,101,242,.25); color: var(--discord2); border-radius: 4px; padding: 1px 6px; font-family: var(--ff-mono); font-size: .82em; }
 
-/* Tabs */
-.tabs {
-  display: flex; gap: 8px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0;
-}
-.tab-btn {
-  background: transparent;
-  border: none; border-bottom: 2px solid transparent;
-  color: var(--sub);
-  font-family: var(--ff-body); font-size: .9rem; font-weight: 600;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: color .2s, border-color .2s;
-  margin-bottom: -1px;
-}
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+.tab-btn { background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--sub); font-family: var(--ff-body); font-size: .9rem; font-weight: 600; padding: 10px 20px; cursor: pointer; transition: color .2s, border-color .2s; margin-bottom: -1px; }
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { color: var(--twitch2); border-bottom-color: var(--twitch2); }
 
-/* Admin notice */
-.admin-notice {
-  background: rgba(145,70,255,.08);
-  border: 1px solid rgba(145,70,255,.2);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: .84rem; color: var(--sub);
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
+.admin-notice { background: rgba(145,70,255,.08); border: 1px solid rgba(145,70,255,.2); border-radius: 10px; padding: 12px 16px; font-size: .84rem; color: var(--sub); margin-bottom: 20px; line-height: 1.5; }
 .admin-notice strong { color: var(--twitch2); }
 
-/* Command grid */
 .cmd-grid { display: flex; flex-direction: column; gap: 6px; }
-
-.cmd-category {
-  font-size: .72rem; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--muted); font-family: var(--ff-mono);
-  padding: 16px 0 4px;
-}
-
-.cmd-row {
-  display: flex; align-items: flex-start; gap: 14px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 18px;
-  transition: border-color .2s;
-}
+.cmd-category { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-family: var(--ff-mono); padding: 16px 0 4px; }
+.cmd-row { display: flex; align-items: flex-start; gap: 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; transition: border-color .2s; }
 .cmd-row:hover { border-color: rgba(145,70,255,.25); }
-
-.cmd-left {
-  display: flex; flex-wrap: wrap; gap: 5px;
-  min-width: 220px; flex-shrink: 0;
-}
-
-.cmd-pill {
-  background: rgba(88,101,242,.15);
-  border: 1px solid rgba(88,101,242,.25);
-  color: var(--discord2);
-  border-radius: 6px;
-  padding: 3px 10px;
-  font-family: var(--ff-mono); font-size: .8rem; font-weight: 600;
-  white-space: nowrap;
-}
-.cmd-pill.admin {
-  background: rgba(145,70,255,.12);
-  border-color: rgba(145,70,255,.25);
-  color: var(--twitch2);
-}
-.cmd-req-pill {
-  background: rgba(245,200,66,.08);
-  border: 1px solid rgba(245,200,66,.2);
-  color: var(--gold);
-  border-radius: 6px;
-  padding: 3px 8px;
-  font-family: var(--ff-mono); font-size: .72rem;
-  white-space: nowrap;
-}
-.cmd-arg-pill {
-  background: rgba(136,136,170,.08);
-  border: 1px solid rgba(136,136,170,.2);
-  color: var(--sub);
-  border-radius: 6px;
-  padding: 3px 8px;
-  font-family: var(--ff-mono); font-size: .72rem;
-  white-space: nowrap;
-}
-.cmd-desc {
-  font-size: .85rem; color: var(--sub);
-  line-height: 1.55; padding-top: 3px;
-}
-.cmd-link {
-  color: var(--twitch2); text-decoration: none;
-}
+.cmd-left { display: flex; flex-wrap: wrap; gap: 5px; min-width: 220px; flex-shrink: 0; }
+.cmd-pill { background: rgba(88,101,242,.15); border: 1px solid rgba(88,101,242,.25); color: var(--discord2); border-radius: 6px; padding: 3px 10px; font-family: var(--ff-mono); font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.cmd-pill.admin { background: rgba(145,70,255,.12); border-color: rgba(145,70,255,.25); color: var(--twitch2); }
+.cmd-req-pill { background: rgba(245,200,66,.08); border: 1px solid rgba(245,200,66,.2); color: var(--gold); border-radius: 6px; padding: 3px 8px; font-family: var(--ff-mono); font-size: .72rem; white-space: nowrap; }
+.cmd-arg-pill { background: rgba(136,136,170,.08); border: 1px solid rgba(136,136,170,.2); color: var(--sub); border-radius: 6px; padding: 3px 8px; font-family: var(--ff-mono); font-size: .72rem; white-space: nowrap; }
+.cmd-desc { font-size: .85rem; color: var(--sub); line-height: 1.55; padding-top: 3px; }
+.cmd-link { color: var(--twitch2); text-decoration: none; }
 .cmd-link:hover { text-decoration: underline; }
-
-.cmd-legend {
-  margin-top: 20px;
-  font-size: .78rem; color: var(--muted);
-  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-}
+.cmd-legend { margin-top: 20px; font-size: .78rem; color: var(--muted); display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 
 @media (max-width: 600px) {
   .cmds-section { padding: 40px 20px; }
@@ -545,110 +298,31 @@ header {
   .cmd-left { min-width: unset; }
 }
 
-/* ── THANK YOU SECTION ── */
-.thankyou {
-  position: relative; z-index: 2;
-  max-width: 700px; margin: 20px auto 0;
-  padding: 60px 32px 80px;
-  text-align: center;
-}
-
-.ty-label {
-  font-family: var(--ff-mono); font-size: .72rem;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--twitch2); margin-bottom: 16px;
-}
-.ty-title {
-  font-family: var(--ff-head);
-  font-size: clamp(2.5rem, 6vw, 4.2rem);
-  line-height: 1;
-  letter-spacing: .02em;
-  margin-bottom: 20px;
-}
+.thankyou { position: relative; z-index: 2; max-width: 700px; margin: 20px auto 0; padding: 60px 32px 80px; text-align: center; }
+.ty-label { font-family: var(--ff-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--twitch2); margin-bottom: 16px; }
+.ty-title { font-family: var(--ff-head); font-size: clamp(2.5rem, 6vw, 4.2rem); line-height: 1; letter-spacing: .02em; margin-bottom: 20px; }
 .ty-title .gold { color: var(--gold); }
-
-.ty-text {
-  font-size: 1rem; color: var(--sub);
-  line-height: 1.7; max-width: 480px;
-  margin: 0 auto 36px;
-  font-weight: 300;
-}
+.ty-text { font-size: 1rem; color: var(--sub); line-height: 1.7; max-width: 480px; margin: 0 auto 36px; font-weight: 300; }
 .ty-text strong { color: var(--text); font-weight: 600; }
 
-/* Donation card */
-.donate-card {
-  background: linear-gradient(135deg, rgba(245,200,66,.08), rgba(245,200,66,.03));
-  border: 1px solid rgba(245,200,66,.2);
-  border-radius: 20px;
-  padding: 32px 28px;
-  margin-bottom: 32px;
-  position: relative;
-  overflow: hidden;
-}
-.donate-card::before {
-  content: '';
-  position: absolute; top: -40px; right: -40px;
-  width: 150px; height: 150px;
-  background: radial-gradient(circle, rgba(245,200,66,.12), transparent 70%);
-  pointer-events: none;
-}
+.donate-card { background: linear-gradient(135deg, rgba(245,200,66,.08), rgba(245,200,66,.03)); border: 1px solid rgba(245,200,66,.2); border-radius: 20px; padding: 32px 28px; margin-bottom: 32px; position: relative; overflow: hidden; }
+.donate-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(245,200,66,.12), transparent 70%); pointer-events: none; }
 .donate-icon { font-size: 2.4rem; margin-bottom: 10px; }
 .donate-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
 .donate-sub { font-size: .85rem; color: var(--sub); margin-bottom: 20px; line-height: 1.55; }
+.btn-donate { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #f5c842, #f0a500); color: #1a1200; padding: 14px 30px; border-radius: 12px; font-size: .95rem; font-weight: 700; text-decoration: none; transition: transform .2s, box-shadow .2s; box-shadow: 0 4px 20px rgba(245,200,66,.3); font-family: var(--ff-body); }
+.btn-donate:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,200,66,.45); }
 
-.btn-donate {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: linear-gradient(135deg, #f5c842, #f0a500);
-  color: #1a1200;
-  padding: 14px 30px;
-  border-radius: 12px;
-  font-size: .95rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
-  box-shadow: 0 4px 20px rgba(245,200,66,.3);
-  font-family: var(--ff-body);
-}
-.btn-donate:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(245,200,66,.45);
-}
-
-/* Social row */
-.social-row {
-  display: flex; align-items: center; justify-content: center; gap: 16px;
-  flex-wrap: wrap;
-}
-.social-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--sub);
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-size: .84rem; font-weight: 500;
-  text-decoration: none;
-  transition: border-color .2s, color .2s, transform .15s;
-}
+.social-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.social-link { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--border); color: var(--sub); padding: 10px 18px; border-radius: 10px; font-size: .84rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s, transform .15s; }
 .social-link:hover { border-color: var(--twitch); color: var(--text); transform: translateY(-1px); }
 .social-link.discord-link:hover { border-color: var(--discord2); }
 
-/* ── FOOTER ── */
-footer {
-  position: relative; z-index: 2;
-  padding: 24px 48px;
-  border-top: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(8,8,16,.6);
-}
-.footer-text {
-  font-size: .75rem; font-family: var(--ff-mono);
-  color: var(--muted); text-align: center;
-}
+footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: center; background: rgba(8,8,16,.6); }
+.footer-text { font-size: .75rem; font-family: var(--ff-mono); color: var(--muted); text-align: center; }
 .footer-text a { color: var(--sub); text-decoration: none; }
 .footer-text a:hover { color: var(--twitch2); }
 
-/* ── Responsive ── */
 @media (max-width: 600px) {
   header { padding: 16px 20px; }
   .logo-name { font-size: 1.1rem; }
@@ -660,7 +334,6 @@ footer {
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <header>
   <div class="logo-wrap">
     <div class="logo-icon">🐉</div>
@@ -669,14 +342,13 @@ footer {
   <div class="header-links">
     <a href="#commands">Команди</a>
     <a href="https://www.twitch.tv/sun69wukong" target="_blank" rel="noopener">Twitch</a>
-    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11022756878&scope=bot+applications.commands" class="btn-twitch" target="_blank" rel="noopener">
+    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11005979662&scope=bot+applications.commands" class="btn-twitch" target="_blank" rel="noopener">
       <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.134 18.115a19.919 19.919 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Додати на сервер
     </a>
   </div>
 </header>
 
-<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-badge">
     <div class="hero-badge-dot"></div>
@@ -690,7 +362,7 @@ footer {
     Бот для автоматичних анонсів стримів на Twitch. Підключи до свого Discord-сервера і ніхто не пропустить живий ефір!
   </p>
   <div class="hero-cta">
-    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11022756878&scope=bot+applications.commands" class="btn-primary">
+    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11005979662&scope=bot+applications.commands" class="btn-primary">
       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.134 18.115a19.919 19.919 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Додати на сервер
     </a>
@@ -701,7 +373,6 @@ footer {
   </div>
 </section>
 
-<!-- ── FEATURES ── -->
 <section class="features">
   <div class="feat-card">
     <div class="feat-icon">📢</div>
@@ -722,7 +393,6 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ── COMMANDS SECTION ── -->
 <section class="cmds-section" id="commands">
   <div class="cmds-wrap">
     <div class="cmds-header">
@@ -736,133 +406,26 @@ footer {
       <button class="tab-btn" data-tab="admin" onclick="switchTab('admin')">🔐 Адмін</button>
     </div>
 
-    <!-- Public commands -->
     <div class="tab-panel" id="tab-public">
       <div class="cmd-grid">
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/status</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Перевірити чи стрімер зараз онлайн / офлайн. Якщо без username — бере першого зі списку.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/ping</span>
-          </div>
-          <div class="cmd-desc">Затримка бота, статус і кількість серверів.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/uptime</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Скільки часу вже йде поточний стрім.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/stats</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Повна статистика: гра, глядачі, тривалість, теги, мова.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/viewers</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Поточна кількість глядачів стріму.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/game</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Яку гру зараз стрімить стрімер і назва стріму.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/streamers</span>
-          </div>
-          <div class="cmd-desc">Список всіх стрімерів цього сервера та їх статус.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/clips</span>
-            <span class="cmd-arg-pill">[username]</span>
-            <span class="cmd-arg-pill">[count]</span>
-          </div>
-          <div class="cmd-desc">Останні кліпи стрімера. <code class="inline-code">count</code> — кількість (1–5, за замовчуванням 3).</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/top_clips</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Топ 5 кліпів стрімера відсортованих за переглядами.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/profile</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Профіль стрімера: аватар, фоловери, тип каналу, дата реєстрації.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/schedule</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Розклад стрімів на найближчі дні (якщо стрімер його заповнив).</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/search</span>
-            <span class="cmd-req-pill">query</span>
-          </div>
-          <div class="cmd-desc">Пошук живих стрімерів за запитом на Twitch.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/top_streams</span>
-            <span class="cmd-req-pill">game</span>
-          </div>
-          <div class="cmd-desc">Топ 5 стрімів по вказаній грі прямо зараз.</div>
-        </div>
-
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/userinfo</span>
-            <span class="cmd-arg-pill">[member]</span>
-          </div>
-          <div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, статус, буст.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/serverinfo</span>
-          </div>
-          <div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів.</div>
-        </div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/status</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Перевірити чи стрімер зараз онлайн / офлайн. Якщо без username — бере першого зі списку.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/ping</span></div><div class="cmd-desc">Затримка бота, статус і кількість серверів.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/uptime</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Скільки часу вже йде поточний стрім.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/stats</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Повна статистика: гра, глядачі, тривалість, теги, мова.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/viewers</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Поточна кількість глядачів стріму.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/game</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Яку гру зараз стрімить стрімер і назва стріму.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/streamers</span></div><div class="cmd-desc">Список всіх стрімерів цього сервера та їх статус.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/clips</span><span class="cmd-arg-pill">[username]</span><span class="cmd-arg-pill">[count]</span></div><div class="cmd-desc">Останні кліпи стрімера. <code class="inline-code">count</code> — кількість (1–5, за замовчуванням 3).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/top_clips</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Топ 5 кліпів стрімера відсортованих за переглядами.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/profile</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Профіль стрімера: аватар, фоловери, тип каналу, дата реєстрації.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/schedule</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Розклад стрімів на найближчі дні (якщо стрімер його заповнив).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/search</span><span class="cmd-req-pill">query</span></div><div class="cmd-desc">Пошук живих стрімерів за запитом на Twitch.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/top_streams</span><span class="cmd-req-pill">game</span></div><div class="cmd-desc">Топ 5 стрімів по вказаній грі прямо зараз.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/userinfo</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, статус, буст.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/serverinfo</span></div><div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів.</div></div>
       </div>
     </div>
 
-    <!-- Admin commands -->
     <div class="tab-panel" id="tab-admin" style="display:none;">
       <div class="admin-notice">
         🔐 Ці команди доступні тільки учасникам з правом <strong>Адміністратор</strong> на сервері.
@@ -870,355 +433,62 @@ footer {
       <div class="cmd-grid">
 
         <div class="cmd-category">⚙️ Початкове налаштування</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/setup_channel</span>
-            <span class="cmd-req-pill">channel</span>
-          </div>
-          <div class="cmd-desc">Встановити дефолтний канал для анонсів на весь сервер.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/setup_role</span>
-            <span class="cmd-req-pill">role</span>
-          </div>
-          <div class="cmd-desc">Дефолтна роль яка отримує пінг при анонсі стрімера.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/setup_tokens</span>
-            <span class="cmd-req-pill">twitch_token</span>
-            <span class="cmd-arg-pill">[client_id]</span>
-          </div>
-          <div class="cmd-desc">Встановити Twitch токен для цього сервера. Отримай токен на <a href="https://twitchtokengenerator.com" target="_blank" class="cmd-link">twitchtokengenerator.com</a>.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/token_status</span>
-          </div>
-          <div class="cmd-desc">Перевірити чи валідний поточний Twitch токен сервера.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_channel</span><span class="cmd-req-pill">channel</span></div><div class="cmd-desc">Встановити дефолтний канал для анонсів на весь сервер.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_role</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Дефолтна роль яка отримує пінг при анонсі стрімера.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_tokens</span><span class="cmd-req-pill">twitch_token</span><span class="cmd-arg-pill">[client_id]</span></div><div class="cmd-desc">Встановити Twitch токен для цього сервера. Отримай токен на <a href="https://twitchtokengenerator.com" target="_blank" class="cmd-link">twitchtokengenerator.com</a>.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/token_status</span></div><div class="cmd-desc">Перевірити чи валідний поточний Twitch токен сервера.</div></div>
 
         <div class="cmd-category">👥 Управління стрімерами</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/streamer_add</span>
-            <span class="cmd-req-pill">username</span>
-            <span class="cmd-arg-pill">[channel]</span>
-            <span class="cmd-arg-pill">[role]</span>
-            <span class="cmd-arg-pill">[discord_member]</span>
-          </div>
-          <div class="cmd-desc">Додати стрімера до моніторингу. Опціонально вказати канал, роль для пінгу та Discord-акаунт для live ролі.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/streamer_remove</span>
-            <span class="cmd-req-pill">username</span>
-          </div>
-          <div class="cmd-desc">Видалити стрімера зі списку моніторингу.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/streamer_toggle</span>
-            <span class="cmd-req-pill">username</span>
-          </div>
-          <div class="cmd-desc">Тимчасово вимкнути або знову увімкнути моніторинг конкретного стрімера.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_channel</span>
-            <span class="cmd-req-pill">username</span>
-            <span class="cmd-req-pill">channel</span>
-          </div>
-          <div class="cmd-desc">Встановити індивідуальний канал анонсів для конкретного стрімера.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_role</span>
-            <span class="cmd-req-pill">username</span>
-            <span class="cmd-req-pill">role</span>
-          </div>
-          <div class="cmd-desc">Встановити роль для пінгу для конкретного стрімера.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_add</span><span class="cmd-req-pill">username</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[role]</span><span class="cmd-arg-pill">[discord_member]</span></div><div class="cmd-desc">Додати стрімера до моніторингу. Опціонально вказати канал, роль для пінгу та Discord-акаунт для live ролі.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_remove</span><span class="cmd-req-pill">username</span></div><div class="cmd-desc">Видалити стрімера зі списку моніторингу.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_toggle</span><span class="cmd-req-pill">username</span></div><div class="cmd-desc">Тимчасово вимкнути або знову увімкнути моніторинг конкретного стрімера.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_channel</span><span class="cmd-req-pill">username</span><span class="cmd-req-pill">channel</span></div><div class="cmd-desc">Встановити індивідуальний канал анонсів для конкретного стрімера.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_role</span><span class="cmd-req-pill">username</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Встановити роль для пінгу для конкретного стрімера.</div></div>
 
         <div class="cmd-category">🎨 Налаштування вигляду</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_prefix</span>
-            <span class="cmd-arg-pill">[username]</span>
-            <span class="cmd-arg-pill">[online_prefix]</span>
-            <span class="cmd-arg-pill">[offline_prefix]</span>
-          </div>
-          <div class="cmd-desc">Змінити текст над embed. Якщо без username — змінює для всього сервера. Приклад: <code class="inline-code">🔴 Стрімер онлайн!</code></div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_config</span>
-            <span class="cmd-req-pill">key</span>
-            <span class="cmd-req-pill">value</span>
-          </div>
-          <div class="cmd-desc">Розширене налаштування: embed_color, embed_title, embed_show_game та інші параметри.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/offline_toggle</span>
-          </div>
-          <div class="cmd-desc">Увімкнути або вимкнути повідомлення коли стрімер іде офлайн.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_prefix</span><span class="cmd-arg-pill">[username]</span><span class="cmd-arg-pill">[online_prefix]</span><span class="cmd-arg-pill">[offline_prefix]</span></div><div class="cmd-desc">Змінити текст над embed. Якщо без username — змінює для всього сервера. Приклад: <code class="inline-code">🔴 Стрімер онлайн!</code></div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_config</span><span class="cmd-req-pill">key</span><span class="cmd-req-pill">value</span></div><div class="cmd-desc">Розширене налаштування: embed_color, embed_title, embed_show_game та інші параметри.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/offline_toggle</span></div><div class="cmd-desc">Увімкнути або вимкнути повідомлення коли стрімер іде офлайн.</div></div>
 
         <div class="cmd-category">🔧 Утиліти та тест</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/test_embed</span>
-          </div>
-          <div class="cmd-desc">Надіслати тестове embed-повідомлення в канал щоб перевірити вигляд.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/force_check</span>
-          </div>
-          <div class="cmd-desc">Примусово перевірити статус всіх стрімерів прямо зараз.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/announce_now</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Примусово надіслати анонс стрімера в канал (навіть якщо офлайн — використає останній snapshot).</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/clear_state</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Очистити збережений стан стрімера. Без username — очищає всіх. Корисно при багах.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/test_embed</span></div><div class="cmd-desc">Надіслати тестове embed-повідомлення в канал щоб перевірити вигляд.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/force_check</span></div><div class="cmd-desc">Примусово перевірити статус всіх стрімерів прямо зараз.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/announce_now</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Примусово надіслати анонс стрімера в канал (навіть якщо офлайн — використає останній snapshot).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/clear_state</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Очистити збережений стан стрімера. Без username — очищає всіх. Корисно при багах.</div></div>
 
         <div class="cmd-category">🎭 Live Роль та Events</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_live_role</span>
-            <span class="cmd-arg-pill">[role]</span>
-          </div>
-          <div class="cmd-desc">Роль яку бот автоматично дає стрімеру поки він LIVE. Без аргументу — прибирає роль.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_discord_member</span>
-            <span class="cmd-req-pill">username</span>
-            <span class="cmd-arg-pill">[member]</span>
-          </div>
-          <div class="cmd-desc">Прив'язати Discord-акаунт до Twitch стрімера (потрібно для видачі live ролі).</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/live_role_status</span>
-          </div>
-          <div class="cmd-desc">Переглянути всі прив'язки Discord↔Twitch та стан live ролі.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/event_toggle</span>
-          </div>
-          <div class="cmd-desc">Увімкнути або вимкнути автоматичне створення Discord Events при старті стріму.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/create_event</span>
-            <span class="cmd-arg-pill">[username]</span>
-          </div>
-          <div class="cmd-desc">Вручну створити Discord Event для стрімера (навіть якщо він офлайн).</div>
-        </div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_live_role</span><span class="cmd-arg-pill">[role]</span></div><div class="cmd-desc">Роль яку бот автоматично дає стрімеру поки він LIVE. Без аргументу — прибирає роль.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_discord_member</span><span class="cmd-req-pill">username</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Прив'язати Discord-акаунт до Twitch стрімера (потрібно для видачі live ролі).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/live_role_status</span></div><div class="cmd-desc">Переглянути всі прив'язки Discord↔Twitch та стан live ролі.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/event_toggle</span></div><div class="cmd-desc">Увімкнути або вимкнути автоматичне створення Discord Events при старті стріму.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/create_event</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Вручну створити Discord Event для стрімера (навіть якщо він офлайн).</div></div>
 
         <div class="cmd-category">🔨 Модерація учасників</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/ban</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-arg-pill">[reason]</span>
-            <span class="cmd-arg-pill">[delete_days]</span>
-          </div>
-          <div class="cmd-desc">Заблокувати учасника сервера. Опціонально вказати причину та скільки днів повідомлень видалити (0–7).</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/unban</span>
-            <span class="cmd-req-pill">user_id</span>
-            <span class="cmd-arg-pill">[reason]</span>
-          </div>
-          <div class="cmd-desc">Розблокувати учасника за його Discord ID.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/kick</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-arg-pill">[reason]</span>
-          </div>
-          <div class="cmd-desc">Видалити учасника з сервера (без бану — може зайти знову).</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/timeout</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-req-pill">minutes</span>
-            <span class="cmd-arg-pill">[reason]</span>
-          </div>
-          <div class="cmd-desc">Замутити учасника на вказану кількість хвилин (1–40320, тобто до 28 днів).</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/untimeout</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-arg-pill">[reason]</span>
-          </div>
-          <div class="cmd-desc">Достроково зняти мут з учасника.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/bans</span>
-          </div>
-          <div class="cmd-desc">Переглянути список останніх 20 заблокованих учасників сервера.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/ban</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span><span class="cmd-arg-pill">[delete_days]</span></div><div class="cmd-desc">Заблокувати учасника сервера. Опціонально вказати причину та скільки днів повідомлень видалити (0–7).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/unban</span><span class="cmd-req-pill">user_id</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Розблокувати учасника за його Discord ID.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/kick</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Видалити учасника з сервера (без бану — може зайти знову).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/timeout</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">minutes</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Замутити учасника на вказану кількість хвилин (1–40320, тобто до 28 днів).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/untimeout</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Достроково зняти мут з учасника.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/bans</span></div><div class="cmd-desc">Переглянути список останніх 20 заблокованих учасників сервера.</div></div>
 
         <div class="cmd-category">⚠️ Система попереджень</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/warn</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-req-pill">reason</span>
-          </div>
-          <div class="cmd-desc">Видати попередження учаснику. Зберігається в базі, учасник отримує ДМ з причиною.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/warns</span>
-            <span class="cmd-req-pill">member</span>
-          </div>
-          <div class="cmd-desc">Переглянути всі попередження учасника з датами та причинами.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/clearwarns</span>
-            <span class="cmd-req-pill">member</span>
-          </div>
-          <div class="cmd-desc">Очистити всі попередження учасника.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/warn</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">reason</span></div><div class="cmd-desc">Видати попередження учаснику. Зберігається в базі, учасник отримує ДМ з причиною.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/warns</span><span class="cmd-req-pill">member</span></div><div class="cmd-desc">Переглянути всі попередження учасника з датами та причинами.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/clearwarns</span><span class="cmd-req-pill">member</span></div><div class="cmd-desc">Очистити всі попередження учасника.</div></div>
 
         <div class="cmd-category">💬 Керування повідомленнями</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/purge</span>
-            <span class="cmd-req-pill">amount</span>
-            <span class="cmd-arg-pill">[member]</span>
-          </div>
-          <div class="cmd-desc">Масово видалити повідомлення з каналу (1–100). Якщо вказати member — тільки його повідомлення.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/pin</span>
-            <span class="cmd-req-pill">message_id</span>
-          </div>
-          <div class="cmd-desc">Закріпити повідомлення в поточному каналі за його ID.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/say</span>
-            <span class="cmd-req-pill">text</span>
-            <span class="cmd-arg-pill">[channel]</span>
-          </div>
-          <div class="cmd-desc">Надіслати звичайне повідомлення від імені бота в канал.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/embed_say</span>
-            <span class="cmd-req-pill">title</span>
-            <span class="cmd-req-pill">text</span>
-            <span class="cmd-arg-pill">[color]</span>
-            <span class="cmd-arg-pill">[channel]</span>
-          </div>
-          <div class="cmd-desc">Надіслати красивий embed від імені бота. Колір у HEX, наприклад <code class="inline-code">9146FF</code>.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/purge</span><span class="cmd-req-pill">amount</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Масово видалити повідомлення з каналу (1–100). Якщо вказати member — тільки його повідомлення.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/pin</span><span class="cmd-req-pill">message_id</span></div><div class="cmd-desc">Закріпити повідомлення в поточному каналі за його ID.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/say</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати звичайне повідомлення від імені бота в канал.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/embed_say</span><span class="cmd-req-pill">title</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[color]</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати красивий embed від імені бота. Колір у HEX, наприклад <code class="inline-code">9146FF</code>.</div></div>
 
         <div class="cmd-category">👥 Ролі та учасники</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/role_add</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-req-pill">role</span>
-          </div>
-          <div class="cmd-desc">Додати роль учаснику сервера.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/role_remove</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-req-pill">role</span>
-          </div>
-          <div class="cmd-desc">Зняти роль з учасника сервера.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/move</span>
-            <span class="cmd-req-pill">member</span>
-            <span class="cmd-req-pill">channel</span>
-          </div>
-          <div class="cmd-desc">Перемістити учасника в інший голосовий канал.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/role_add</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Додати роль учаснику сервера.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/role_remove</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Зняти роль з учасника сервера.</div></div>
 
         <div class="cmd-category">ℹ️ Інформація</div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/userinfo</span>
-            <span class="cmd-arg-pill">[member]</span>
-          </div>
-          <div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, приєднання, буст тощо.</div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/serverinfo</span>
-          </div>
-          <div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів, верифікація.</div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/userinfo</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, приєднання, буст тощо.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/serverinfo</span></div><div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів, верифікація.</div></div>
 
       </div>
     </div>
@@ -1233,76 +503,32 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ── OAUTH CARD ── -->
 <section id="oauth-section" style="display:none;">
   <div class="oauth-card">
     <div class="oauth-header">
       <svg width="22" height="22" viewBox="0 0 127.14 96.36" fill="#5865F2"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
-      <span class="oauth-header-title">Discord OAuth2 · Redirect</span><button onclick="document.getElementById('oauth-section').classList.remove('visible')" style="margin-left:auto;margin-right:8px;background:none;border:none;color:var(--sub);cursor:pointer;font-size:1.2rem;line-height:1;" title="Закрити">✕</button>
+      <span class="oauth-header-title">Discord OAuth2 · Redirect</span>
+      <button onclick="document.getElementById('oauth-section').classList.remove('visible')" style="margin-left:auto;margin-right:8px;background:none;border:none;color:var(--sub);cursor:pointer;font-size:1.2rem;line-height:1;" title="Закрити">✕</button>
       <div class="live-dot"></div>
     </div>
-
     <div class="oauth-body">
-
-      <!-- Loading -->
       <div id="state-loading">
         <div class="spinner"></div>
         <div class="load-title">Обробка авторизації…</div>
         <div class="load-sub">зчитуємо параметри з URL</div>
       </div>
-
-      <!-- Success -->
       <div id="state-success">
-        <div class="check-ring">
-          <div class="check-ring-inner">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-          </div>
-        </div>
+        <div class="check-ring"><div class="check-ring-inner"><svg viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
         <div class="s-title">Авторизація успішна! 🎉</div>
         <div class="s-sub" id="success-sub">код отримано</div>
-
-        <div id="code-section" style="display:none">
-          <div class="token-label">Authorization Code</div>
-          <div class="token-box">
-            <div class="token-val" id="code-val"></div>
-            <button class="copy-btn" onclick="copyVal('code-val',this)">copy</button>
-          </div>
-        </div>
-
-        <div id="token-section" style="display:none; margin-top:10px;">
-          <div class="token-label">Access Token</div>
-          <div class="token-box">
-            <div class="token-val" id="token-val"></div>
-            <button class="copy-btn" onclick="copyVal('token-val',this)">copy</button>
-          </div>
-        </div>
-
+        <div id="code-section" style="display:none"><div class="token-label">Authorization Code</div><div class="token-box"><div class="token-val" id="code-val"></div><button class="copy-btn" onclick="copyVal('code-val',this)">copy</button></div></div>
+        <div id="token-section" style="display:none; margin-top:10px;"><div class="token-label">Access Token</div><div class="token-box"><div class="token-val" id="token-val"></div><button class="copy-btn" onclick="copyVal('token-val',this)">copy</button></div></div>
         <div class="chips" id="info-chips"></div>
-
-        <div class="cmd-box" id="cmd-box" style="display:none;">
-          <div class="cmd-lbl">Команда для бота</div>
-          <div class="cmd-text" id="cmd-text"></div>
-        </div>
+        <div class="cmd-box" id="cmd-box" style="display:none;"><div class="cmd-lbl">Команда для бота</div><div class="cmd-text" id="cmd-text"></div></div>
       </div>
-
-      <!-- Error -->
-      <div id="state-error">
-        <div class="err-icon">⚠️</div>
-        <div class="err-title" id="error-title">Помилка авторизації</div>
-        <div class="err-sub" id="error-sub"></div>
-      </div>
-
-      <!-- No params -->
-      <div id="state-noparams">
-        <div class="np-icon">🔗</div>
-        <div class="np-title">Redirect сторінка готова</div>
-        <div class="np-sub">Ця сторінка обробляє Discord OAuth2 redirect.<br>Додай її URL у Discord Developer Portal → OAuth2 → Redirects.</div>
-      </div>
-
+      <div id="state-error"><div class="err-icon">⚠️</div><div class="err-title" id="error-title">Помилка авторизації</div><div class="err-sub" id="error-sub"></div></div>
+      <div id="state-noparams"><div class="np-icon">🔗</div><div class="np-title">Redirect сторінка готова</div><div class="np-sub">Ця сторінка обробляє Discord OAuth2 redirect.<br>Додай її URL у Discord Developer Portal → OAuth2 → Redirects.</div></div>
     </div>
-
     <div class="oauth-footer">
       <div class="o-brand">sun69wukong · <span>bot</span></div>
       <div class="o-hint" id="footer-hint">—</div>
@@ -1310,7 +536,6 @@ footer {
   </div>
 </section>
 
-<!-- ── THANK YOU ── -->
 <section class="thankyou">
   <div class="ty-label">❤️ Від серця</div>
   <h2 class="ty-title">ДЯКУЮ<br><span class="gold">ТОБІ</span></h2>
@@ -1319,32 +544,24 @@ footer {
     Ваша підтримка — це мотивація стрімити більше, краще і веселіше.
     Разом ми будуємо крутий Discord-comm'юніті! 🐉🔥
   </p>
-
   <div class="donate-card">
     <div class="donate-icon">☕</div>
     <div class="donate-title">Підтримати стрімера</div>
-    <div class="donate-sub">
-      Якщо тобі подобається контент — можеш підтримати стрімера донатом.
-      Кожна гривня іде на покращення стріму!
-    </div>
-    <a href="https://send.monobank.ua/jar/9Bqrs6GN1V" target="_blank" rel="noopener" class="btn-donate">
-      💳 Задонатити через Monobank
-    </a>
+    <div class="donate-sub">Якщо тобі подобається контент — можеш підтримати стрімера донатом. Кожна гривня іде на покращення стріму!</div>
+    <a href="https://send.monobank.ua/jar/9Bqrs6GN1V" target="_blank" rel="noopener" class="btn-donate">💳 Задонатити через Monobank</a>
   </div>
-
   <div class="social-row">
     <a href="https://www.twitch.tv/sun69wukong" target="_blank" rel="noopener" class="social-link">
       <svg width="16" height="16" fill="#9146FF" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
       Twitch: sun69wukong
     </a>
-    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11022756878&scope=bot+applications.commands" class="social-link discord-link">
+    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11005979662&scope=bot+applications.commands" class="social-link discord-link">
       <svg width="16" height="16" fill="#5865F2" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.134 18.115a19.919 19.919 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Додати бота
     </a>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-text">
     🐉 sun69wukong bot · зроблено з ❤️ для стріму ·
@@ -1362,7 +579,6 @@ function switchTab(tab) {
   });
 }
 
-
 function show(id) {
   ['state-loading','state-success','state-error','state-noparams'].forEach(s => {
     document.getElementById(s).style.display = s === id ? '' : 'none';
@@ -1372,18 +588,15 @@ function show(id) {
 function copyVal(elId, btn) {
   const text = document.getElementById(elId).textContent.trim();
   navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = 'copied!';
-    btn.classList.add('copied');
+    btn.textContent = 'copied!'; btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
   });
 }
 
 function addChip(label, value, color) {
   const grid = document.getElementById('info-chips');
-  const c = document.createElement('div');
-  c.className = 'chip';
-  c.innerHTML = `<div class="chip-l">${label}</div>
-    <div class="chip-v" style="${color ? 'color:'+color : ''}">${value}</div>`;
+  const c = document.createElement('div'); c.className = 'chip';
+  c.innerHTML = `<div class="chip-l">${label}</div><div class="chip-v" style="${color ? 'color:'+color : ''}">${value}</div>`;
   grid.appendChild(c);
 }
 
@@ -1394,11 +607,7 @@ function startCountdown(sec) {
     sec--;
     const c = document.getElementById('countdown');
     if (!c) { clearInterval(iv); return; }
-    if (sec <= 0) {
-      clearInterval(iv);
-      hint.textContent = 'можна закрити вкладку';
-      return;
-    }
+    if (sec <= 0) { clearInterval(iv); hint.textContent = 'можна закрити вкладку'; return; }
     c.textContent = sec;
   }, 1000);
 }
@@ -1406,7 +615,6 @@ function startCountdown(sec) {
 (function () {
   const qp = new URLSearchParams(window.location.search);
   const hp = new URLSearchParams(window.location.hash.replace(/^#/, ''));
-
   const code        = qp.get('code');
   const error       = qp.get('error');
   const errorDesc   = qp.get('error_description');
@@ -1418,25 +626,19 @@ function startCountdown(sec) {
   const scope       = hp.get('scope')        || qp.get('scope');
   const expiresIn   = hp.get('expires_in')   || qp.get('expires_in');
 
-  // Показуємо OAuth блок тільки якщо є параметри від Discord
   if (code || accessToken || error) {
     document.getElementById('oauth-section').classList.add('visible');
   }
 
   if (error) {
     show('state-error');
-    document.getElementById('error-title').textContent =
-      error === 'access_denied' ? 'Доступ відхилено' : `Помилка: ${error}`;
-    document.getElementById('error-sub').textContent =
-      errorDesc ? decodeURIComponent(errorDesc.replace(/\+/g,' ')) : 'Авторизацію скасовано або виникла помилка.';
+    document.getElementById('error-title').textContent = error === 'access_denied' ? 'Доступ відхилено' : `Помилка: ${error}`;
+    document.getElementById('error-sub').textContent = errorDesc ? decodeURIComponent(errorDesc.replace(/\+/g,' ')) : 'Авторизацію скасовано або виникла помилка.';
     document.getElementById('footer-hint').textContent = 'можна закрити вкладку';
     return;
   }
 
-  if (!code && !accessToken) {
-    // Немає параметрів — просто показуємо лендінг, OAuth блок прихований
-    return;
-  }
+  if (!code && !accessToken) return;
 
   show('state-success');
 
@@ -1447,9 +649,7 @@ function startCountdown(sec) {
     const cmdBox = document.getElementById('cmd-box');
     const cmdText = document.getElementById('cmd-text');
     cmdBox.style.display = '';
-    cmdText.innerHTML =
-      `<span class="cmd-name">/setup_tokens</span> ` +
-      `<span class="cmd-arg">twitch_token:</span><span class="cmd-val">${code}</span>`;
+    cmdText.innerHTML = `<span class="cmd-name">/setup_tokens</span> <span class="cmd-arg">twitch_token:</span><span class="cmd-val">${code}</span>`;
   }
 
   if (accessToken) {
@@ -1460,9 +660,7 @@ function startCountdown(sec) {
       const cmdBox = document.getElementById('cmd-box');
       const cmdText = document.getElementById('cmd-text');
       cmdBox.style.display = '';
-      cmdText.innerHTML =
-        `<span class="cmd-name">/setup_tokens</span> ` +
-        `<span class="cmd-arg">twitch_token:</span><span class="cmd-val">${accessToken}</span>`;
+      cmdText.innerHTML = `<span class="cmd-name">/setup_tokens</span> <span class="cmd-arg">twitch_token:</span><span class="cmd-val">${accessToken}</span>`;
     }
   }
 
