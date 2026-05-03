@@ -843,6 +843,22 @@ footer {
           <div class="cmd-desc">Топ 5 стрімів по вказаній грі прямо зараз.</div>
         </div>
 
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill">/userinfo</span>
+            <span class="cmd-arg-pill">[member]</span>
+          </div>
+          <div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, статус, буст.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill">/serverinfo</span>
+          </div>
+          <div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів.</div>
+        </div>
+
       </div>
     </div>
 
@@ -1033,6 +1049,175 @@ footer {
             <span class="cmd-arg-pill">[username]</span>
           </div>
           <div class="cmd-desc">Вручну створити Discord Event для стрімера (навіть якщо він офлайн).</div>
+        </div>
+
+
+        <div class="cmd-category">🔨 Модерація учасників</div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/ban</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-arg-pill">[reason]</span>
+            <span class="cmd-arg-pill">[delete_days]</span>
+          </div>
+          <div class="cmd-desc">Заблокувати учасника сервера. Опціонально вказати причину та скільки днів повідомлень видалити (0–7).</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/unban</span>
+            <span class="cmd-req-pill">user_id</span>
+            <span class="cmd-arg-pill">[reason]</span>
+          </div>
+          <div class="cmd-desc">Розблокувати учасника за його Discord ID.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/kick</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-arg-pill">[reason]</span>
+          </div>
+          <div class="cmd-desc">Видалити учасника з сервера (без бану — може зайти знову).</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/timeout</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-req-pill">minutes</span>
+            <span class="cmd-arg-pill">[reason]</span>
+          </div>
+          <div class="cmd-desc">Замутити учасника на вказану кількість хвилин (1–40320, тобто до 28 днів).</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/untimeout</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-arg-pill">[reason]</span>
+          </div>
+          <div class="cmd-desc">Достроково зняти мут з учасника.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/bans</span>
+          </div>
+          <div class="cmd-desc">Переглянути список останніх 20 заблокованих учасників сервера.</div>
+        </div>
+
+        <div class="cmd-category">⚠️ Система попереджень</div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/warn</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-req-pill">reason</span>
+          </div>
+          <div class="cmd-desc">Видати попередження учаснику. Зберігається в базі, учасник отримує ДМ з причиною.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/warns</span>
+            <span class="cmd-req-pill">member</span>
+          </div>
+          <div class="cmd-desc">Переглянути всі попередження учасника з датами та причинами.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/clearwarns</span>
+            <span class="cmd-req-pill">member</span>
+          </div>
+          <div class="cmd-desc">Очистити всі попередження учасника.</div>
+        </div>
+
+        <div class="cmd-category">💬 Керування повідомленнями</div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/purge</span>
+            <span class="cmd-req-pill">amount</span>
+            <span class="cmd-arg-pill">[member]</span>
+          </div>
+          <div class="cmd-desc">Масово видалити повідомлення з каналу (1–100). Якщо вказати member — тільки його повідомлення.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/pin</span>
+            <span class="cmd-req-pill">message_id</span>
+          </div>
+          <div class="cmd-desc">Закріпити повідомлення в поточному каналі за його ID.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/say</span>
+            <span class="cmd-req-pill">text</span>
+            <span class="cmd-arg-pill">[channel]</span>
+          </div>
+          <div class="cmd-desc">Надіслати звичайне повідомлення від імені бота в канал.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/embed_say</span>
+            <span class="cmd-req-pill">title</span>
+            <span class="cmd-req-pill">text</span>
+            <span class="cmd-arg-pill">[color]</span>
+            <span class="cmd-arg-pill">[channel]</span>
+          </div>
+          <div class="cmd-desc">Надіслати красивий embed від імені бота. Колір у HEX, наприклад <code class="inline-code">9146FF</code>.</div>
+        </div>
+
+        <div class="cmd-category">👥 Ролі та учасники</div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/role_add</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-req-pill">role</span>
+          </div>
+          <div class="cmd-desc">Додати роль учаснику сервера.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/role_remove</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-req-pill">role</span>
+          </div>
+          <div class="cmd-desc">Зняти роль з учасника сервера.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/move</span>
+            <span class="cmd-req-pill">member</span>
+            <span class="cmd-req-pill">channel</span>
+          </div>
+          <div class="cmd-desc">Перемістити учасника в інший голосовий канал.</div>
+        </div>
+
+        <div class="cmd-category">ℹ️ Інформація</div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill">/userinfo</span>
+            <span class="cmd-arg-pill">[member]</span>
+          </div>
+          <div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, приєднання, буст тощо.</div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill">/serverinfo</span>
+          </div>
+          <div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів, верифікація.</div>
         </div>
 
       </div>
