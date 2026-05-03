@@ -283,6 +283,7 @@ header {
 .cmd-row.new-cmd:hover { border-color: rgba(46,204,113,.4); }
 .cmd-row.new-cmd .cmd-pill { position: relative; }
 .new-badge { display: inline-block; background: rgba(46,204,113,.15); border: 1px solid rgba(46,204,113,.3); color: var(--success); border-radius: 4px; padding: 0px 5px; font-family: var(--ff-mono); font-size: .6rem; font-weight: 700; vertical-align: middle; margin-left: 4px; letter-spacing: .05em; }
+.upd-badge { display: inline-block; background: rgba(88,101,242,.15); border: 1px solid rgba(88,101,242,.3); color: var(--discord2); border-radius: 4px; padding: 0px 5px; font-family: var(--ff-mono); font-size: .6rem; font-weight: 700; vertical-align: middle; margin-left: 4px; letter-spacing: .05em; }
 .cmd-left { display: flex; flex-wrap: wrap; gap: 5px; min-width: 220px; flex-shrink: 0; }
 .cmd-pill { background: rgba(88,101,242,.15); border: 1px solid rgba(88,101,242,.25); color: var(--discord2); border-radius: 6px; padding: 3px 10px; font-family: var(--ff-mono); font-size: .8rem; font-weight: 600; white-space: nowrap; }
 .cmd-pill.admin { background: rgba(145,70,255,.12); border-color: rgba(145,70,255,.25); color: var(--twitch2); }
@@ -292,6 +293,10 @@ header {
 .cmd-link { color: var(--twitch2); text-decoration: none; }
 .cmd-link:hover { text-decoration: underline; }
 .cmd-legend { margin-top: 20px; font-size: .78rem; color: var(--muted); display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+
+/* Highlight for updated rows */
+.cmd-row.upd-cmd { border-color: rgba(88,101,242,.22); }
+.cmd-row.upd-cmd:hover { border-color: rgba(88,101,242,.45); }
 
 @media (max-width: 600px) {
   .cmds-section { padding: 40px 20px; }
@@ -476,6 +481,45 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/event_toggle</span></div><div class="cmd-desc">Увімкнути або вимкнути автоматичне створення Discord Events при старті стріму.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/create_event</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Вручну створити Discord Event для стрімера (навіть якщо він офлайн).</div></div>
 
+        <div class="cmd-category">📋 Логування учасників</div>
+
+        <div class="cmd-row upd-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/set_join_log</span>
+            <span class="upd-badge">UPD</span>
+            <span class="cmd-arg-pill">[channel]</span>
+            <span class="cmd-arg-pill">[channel_id]</span>
+          </div>
+          <div class="cmd-desc">
+            Налаштувати або вимкнути лог вступу нових учасників.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ вказати <code class="inline-code">channel</code> — увімкнути, надсилатиме красивий embed з аватаром, ID, віком акаунту та ⚠️ попередженням якщо акаунт молодший 7 днів</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ без аргументів — вимкнути</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ вказати <code class="inline-code">channel_id</code> — вимкнути за ID каналу (якщо канал видалено зі списку)</span>
+          </div>
+        </div>
+
+        <div class="cmd-row upd-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/set_leave_log</span>
+            <span class="upd-badge">UPD</span>
+            <span class="cmd-arg-pill">[channel]</span>
+            <span class="cmd-arg-pill">[channel_id]</span>
+          </div>
+          <div class="cmd-desc">
+            Налаштувати або вимкнути лог виходу учасників.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ вказати <code class="inline-code">channel</code> — увімкнути, надсилатиме embed з аватаром, часом перебування на сервері та ролями</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ без аргументів — вимкнути</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ вказати <code class="inline-code">channel_id</code> — вимкнути за ID (зручно якщо канал вже недоступний)</span>
+          </div>
+        </div>
+
+        <div class="cmd-row">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/member_log_status</span>
+          </div>
+          <div class="cmd-desc">Переглянути поточні налаштування логів вступу та виходу — показує канали та їх ID.</div>
+        </div>
+
         <div class="cmd-category">🔨 Модерація учасників</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/ban</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span><span class="cmd-arg-pill">[delete_days]</span></div><div class="cmd-desc">Заблокувати учасника сервера. Опціонально вказати причину та скільки днів повідомлень видалити (0–7).</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/unban</span><span class="cmd-req-pill">user_id</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Розблокувати учасника за його Discord ID.</div></div>
@@ -522,6 +566,8 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
       <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
       &nbsp;&nbsp;
       <span class="new-badge" style="font-size:.72rem;">NEW</span> — нова команда
+      &nbsp;&nbsp;
+      <span class="upd-badge" style="font-size:.72rem;">UPD</span> — оновлена команда
     </div>
   </div>
 </section>
@@ -581,7 +627,7 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
       Twitch: sun69wukong
     </a>
     <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11005979662&scope=bot+applications.commands" class="social-link discord-link">
-      <svg width="16" height="16" fill="#5865F2" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.134 18.115a19.919 19.919 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      <svg width="16" height="16" fill="#5865F2" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.134 18.115a19.919 19.919 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.246.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Додати бота
     </a>
   </div>
