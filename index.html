@@ -3,644 +3,545 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sun69wukong Bot — Twitch Stream Announcer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Discord · Авторизація</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg:        #0a0a0f;
+    --surface:   #111118;
+    --border:    #1e1e2e;
+    --accent:    #5865F2;
+    --accent2:   #7289da;
+    --twitch:    #9146FF;
+    --success:   #23d18b;
+    --warn:      #f0a500;
+    --error:     #ed4245;
+    --text:      #e8e8f0;
+    --muted:     #5a5a7a;
+    --mono:      'Space Mono', monospace;
+    --sans:      'Syne', sans-serif;
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --purple: #9146FF;
-    --purple-dark: #6B2FD4;
-    --purple-glow: rgba(145,70,255,0.18);
-    --bg: #0D0D12;
-    --bg2: #13131C;
-    --bg3: #1A1A28;
-    --border: rgba(145,70,255,0.2);
-    --text: #F0EEF8;
-    --muted: #8A87A8;
-    --discord: #5865F2;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
+  html, body {
+    height: 100%;
     background: var(--bg);
     color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
+    font-family: var(--sans);
+    overflow: hidden;
   }
 
-  /* GRID BG */
+  /* ── Background grid ── */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image:
-      linear-gradient(rgba(145,70,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(145,70,255,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(88,101,242,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88,101,242,.04) 1px, transparent 1px);
     background-size: 48px 48px;
     pointer-events: none;
     z-index: 0;
   }
 
-  /* GLOW ORB */
-  body::after {
-    content: '';
+  /* ── Glowing orbs ── */
+  .orb {
     position: fixed;
-    top: -20vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(145,70,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(120px);
     pointer-events: none;
     z-index: 0;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: rgba(88,101,242,.18);
+    top: -150px; left: -100px;
+    animation-delay: 0s;
+  }
+  .orb-2 {
+    width: 400px; height: 400px;
+    background: rgba(145,70,255,.12);
+    bottom: -100px; right: -80px;
+    animation-delay: -5s;
+  }
+  .orb-3 {
+    width: 300px; height: 300px;
+    background: rgba(35,209,139,.08);
+    top: 40%; left: 55%;
+    animation-delay: -9s;
+  }
+  @keyframes drift {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(30px, 20px) scale(1.05); }
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
+  /* ── Layout ── */
+  .wrap {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
   }
 
-  /* NAV */
-  nav {
-    padding: 24px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    z-index: 1;
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    color: var(--text);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--purple);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(145,70,255,0.4); }
-    50% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 0 6px rgba(145,70,255,0); }
-  }
-
-  /* HERO */
-  .hero {
-    padding: 80px 0 60px;
-    text-align: center;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(145,70,255,0.1);
+  .card {
+    width: 100%; max-width: 520px;
+    background: rgba(17,17,24,.85);
     border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 13px;
-    color: #C4A8FF;
-    margin-bottom: 32px;
-    animation: fadeDown 0.6s ease both;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(88,101,242,.08),
+                0 32px 80px rgba(0,0,0,.6);
+    animation: slideUp .5s cubic-bezier(.22,1,.36,1) both;
+  }
+  @keyframes slideUp {
+    from { opacity:0; transform: translateY(24px); }
+    to   { opacity:1; transform: translateY(0); }
   }
 
-  .badge-dot {
-    width: 6px;
-    height: 6px;
-    background: #9146FF;
+  /* ── Header bar ── */
+  .card-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(88,101,242,.06);
+  }
+  .discord-logo {
+    width: 28px; height: 28px; flex-shrink: 0;
+  }
+  .header-title {
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent2);
+    font-family: var(--mono);
+  }
+  .header-dot {
+    margin-left: auto;
+    width: 8px; height: 8px;
     border-radius: 50%;
-    animation: pulse 1.5s infinite;
+    background: var(--success);
+    box-shadow: 0 0 8px var(--success);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:.6; transform:scale(.8); }
   }
 
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(40px, 8vw, 72px);
-    line-height: 1.05;
-    letter-spacing: -2px;
-    margin-bottom: 24px;
-    animation: fadeDown 0.6s 0.1s ease both;
-  }
+  /* ── Body ── */
+  .card-body { padding: 32px 28px; }
 
-  h1 span {
-    background: linear-gradient(135deg, #9146FF 0%, #C084FC 50%, #E879F9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-sub {
-    font-size: 18px;
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto 48px;
-    line-height: 1.7;
-    font-weight: 300;
-    animation: fadeDown 0.6s 0.2s ease both;
-  }
-
-  .cta-group {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeDown 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--purple);
-    color: #fff;
-    text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    padding: 14px 28px;
-    border-radius: 12px;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn-primary:hover {
-    background: var(--purple-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(145,70,255,0.35);
-  }
-
-  .btn-primary:active { transform: translateY(0); }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: transparent;
-    color: var(--text);
-    text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    padding: 14px 28px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.12);
-    transition: all 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--border);
-    background: var(--bg3);
-    transform: translateY(-2px);
-  }
-
-  /* DISCORD ICON */
-  .discord-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* PREVIEW CARD */
-  .preview {
-    margin: 60px auto;
-    max-width: 480px;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-
-  .embed-card {
-    background: #2B2D31;
-    border-radius: 8px;
-    border-left: 4px solid #9146FF;
-    padding: 16px;
-    font-size: 14px;
-  }
-
-  .embed-live {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .live-dot {
-    width: 8px;
-    height: 8px;
-    background: #FF4444;
+  /* ── State: loading ── */
+  #state-loading { text-align: center; }
+  .spinner {
+    display: inline-block;
+    width: 44px; height: 44px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
     border-radius: 50%;
-    animation: pulse 1s infinite;
+    animation: spin .8s linear infinite;
+    margin-bottom: 20px;
   }
-
-  .embed-author {
-    font-size: 12px;
-    color: #B5BAC1;
-  }
-
-  .embed-title {
-    font-weight: 600;
-    color: #fff;
-    font-size: 15px;
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-title {
+    font-size: 1.1rem; font-weight: 700;
     margin-bottom: 6px;
   }
-
-  .embed-desc { color: #B5BAC1; font-size: 13px; margin-bottom: 12px; }
-
-  .embed-fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 12px;
+  .loading-sub {
+    font-size: .82rem; color: var(--muted);
+    font-family: var(--mono);
   }
 
-  .embed-field label {
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
-    color: #B5BAC1;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
+  /* ── State: success ── */
+  #state-success { display:none; }
+  .check-wrap {
+    display: flex; justify-content: center;
+    margin-bottom: 22px;
   }
-
-  .embed-field span { font-size: 13px; color: #fff; }
-
-  .embed-thumb {
-    background: linear-gradient(135deg, #1a0a2e, #16213e);
-    border-radius: 4px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(145,70,255,0.4);
-    font-size: 32px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .thumb-text {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-  }
-
-  .embed-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(145,70,255,0.2);
-    color: #C4A8FF;
-    font-size: 13px;
-    padding: 6px 14px;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: default;
-  }
-
-  /* FEATURES */
-  .features {
-    padding: 40px 0 80px;
-  }
-
-  .section-label {
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--purple);
-    font-weight: 500;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 48px;
-    letter-spacing: -0.5px;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
-  }
-
-  .feature-card {
-    background: var(--bg2);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 24px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .feature-card:hover {
-    border-color: var(--border);
-    transform: translateY(-4px);
-  }
-
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(145,70,255,0.12);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    font-size: 18px;
-  }
-
-  .feature-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-
-  .feature-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* STEPS */
-  .steps {
-    padding: 20px 0 80px;
-  }
-
-  .steps-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0;
-    position: relative;
-    margin-top: 48px;
-  }
-
-  .steps-list::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-  }
-
-  .step {
-    text-align: center;
-    padding: 0 16px;
-    position: relative;
-  }
-
-  .step-num {
-    width: 40px;
-    height: 40px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
+  .check-circle {
+    width: 56px; height: 56px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 16px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--purple);
-    position: relative;
-    z-index: 1;
+    background: rgba(35,209,139,.12);
+    border: 2px solid var(--success);
+    display: flex; align-items: center; justify-content: center;
+    animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes popIn {
+    from { opacity:0; transform:scale(.4); }
+    to   { opacity:1; transform:scale(1); }
+  }
+  .check-circle svg { width:26px; height:26px; }
+  .success-title {
+    font-size: 1.25rem; font-weight: 800;
+    text-align: center; margin-bottom: 6px;
+  }
+  .success-sub {
+    text-align: center;
+    font-size: .82rem; color: var(--muted);
+    font-family: var(--mono);
+    margin-bottom: 24px;
   }
 
-  .step-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
+  /* ── Token box ── */
+  .token-label {
+    font-size: .65rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+    font-family: var(--mono);
+  }
+  .token-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .token-value {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--accent2);
+    word-break: break-all;
+    line-height: 1.6;
+    padding-right: 36px;
+  }
+  .copy-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(88,101,242,.15);
+    border: 1px solid rgba(88,101,242,.3);
+    border-radius: 6px;
+    color: var(--accent2);
+    cursor: pointer;
+    padding: 4px 7px;
+    font-size: .7rem;
+    font-family: var(--mono);
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: rgba(88,101,242,.3); }
+  .copy-btn.copied { color: var(--success); border-color: var(--success); }
+
+  /* ── Info rows ── */
+  .info-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 22px;
+  }
+  .info-chip {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .chip-label {
+    font-size: .6rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); font-family: var(--mono);
+    margin-bottom: 3px;
+  }
+  .chip-value {
+    font-size: .82rem; font-weight: 700;
+    font-family: var(--mono);
+    color: var(--text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* ── Bot command box ── */
+  .cmd-box {
+    background: rgba(88,101,242,.06);
+    border: 1px solid rgba(88,101,242,.2);
+    border-radius: 10px;
+    padding: 14px 16px;
     margin-bottom: 8px;
   }
-
-  .step-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
+  .cmd-label {
+    font-size: .65rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent2); font-family: var(--mono);
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
   }
-
-  .step-code {
-    font-family: monospace;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 12px;
-    color: #C4A8FF;
+  .cmd-label::before {
+    content: '';
     display: inline-block;
-    margin-top: 8px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .cmd-text {
+    font-family: var(--mono);
+    font-size: .8rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .cmd-text .cmd-name { color: var(--accent2); }
+  .cmd-text .cmd-arg  { color: var(--twitch); }
+  .cmd-text .cmd-val  { color: var(--success); word-break: break-all; }
+
+  /* ── State: error ── */
+  #state-error { display:none; text-align:center; }
+  .error-icon {
+    font-size: 2.5rem; margin-bottom: 14px;
+    animation: shake .4s ease both;
+  }
+  @keyframes shake {
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-6px)}
+    75%{transform:translateX(6px)}
+  }
+  .error-title {
+    font-size: 1.1rem; font-weight: 800; margin-bottom: 6px;
+    color: var(--error);
+  }
+  .error-sub {
+    font-size: .82rem; color: var(--muted);
+    font-family: var(--mono); line-height: 1.6;
   }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 32px 0;
-    text-align: center;
+  /* ── Footer ── */
+  .card-footer {
+    padding: 14px 24px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(0,0,0,.2);
+  }
+  .footer-brand {
+    font-size: .7rem; font-family: var(--mono);
     color: var(--muted);
-    font-size: 13px;
-    position: relative;
-    z-index: 1;
   }
-
-  footer a { color: var(--purple); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-
-  /* ANIMATIONS */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-16px); }
-    to { opacity: 1; transform: translateY(0); }
+  .footer-brand span { color: var(--twitch); }
+  .close-hint {
+    font-size: .7rem; font-family: var(--mono);
+    color: var(--muted);
   }
+  #countdown { color: var(--accent2); font-weight: 700; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-    margin: 20px 0;
-  }
+  /* ── No params state ── */
+  #state-noparams { display:none; text-align:center; }
+  .noparams-icon { font-size:2.5rem; margin-bottom:14px; }
+  .noparams-title { font-size:1.1rem; font-weight:800; margin-bottom:6px; }
+  .noparams-sub { font-size:.82rem; color:var(--muted); font-family:var(--mono); }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <nav>
-    <a href="#" class="logo">
-      <div class="logo-dot"></div>
-      Sun69wukong Bot
-    </a>
-  </nav>
-</div>
+<!-- Ambient orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
-<div class="container">
-  <section class="hero">
-    <div class="badge">
-      <div class="badge-dot"></div>
-      Twitch Stream Announcer для Discord
-    </div>
+<div class="wrap">
+  <div class="card">
 
-    <h1>Твій стрім —<br><span>моментально</span><br>в Discord</h1>
-
-    <p class="hero-sub">Бот автоматично сповіщає твій Discord коли стрімер виходить онлайн на Twitch. Кожен сервер — окремі налаштування.</p>
-
-    <div class="cta-group">
-      <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=2048&scope=bot%20applications.commands" class="btn-primary">
-        <svg class="discord-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
-        </svg>
-        Додати бота на сервер
-      </a>
-      <a href="https://twitchtokengenerator.com" target="_blank" class="btn-secondary">
-        Отримати Twitch токен →
-      </a>
-    </div>
-  </section>
-
-  <!-- EMBED PREVIEW -->
-  <div class="preview">
-    <div class="embed-card">
-      <div class="embed-live">
-        <div class="live-dot"></div>
-        <span class="embed-author">sun69wukong стрімить на Twitch</span>
-      </div>
-      <div class="embed-title">🎮 sun69wukong — зараз LIVE!</div>
-      <div class="embed-desc">**Грайливий стрім з підписниками**</div>
-      <div class="embed-thumb">
-        🎮
-        <span class="thumb-text">1280 × 720</span>
-      </div>
-      <div class="embed-fields">
-        <div class="embed-field">
-          <label>Гра</label>
-          <span>Minecraft</span>
-        </div>
-        <div class="embed-field">
-          <label>Глядачі</label>
-          <span>1.2k</span>
-        </div>
-        <div class="embed-field">
-          <label>Тривалість</label>
-          <span>2г 14хв</span>
-        </div>
-      </div>
-      <div class="embed-btn">▶ Дивитись стрім</div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <p class="section-label">Можливості</p>
-    <h2 class="section-title">Все що потрібно для сповіщень</h2>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🔴</div>
-        <div class="feature-title">Авто-сповіщення</div>
-        <p class="feature-desc">Бот перевіряє Twitch кожні 60 секунд і одразу сповіщає коли стрімер виходить онлайн.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🏰</div>
-        <div class="feature-title">Ізоляція серверів</div>
-        <p class="feature-desc">Кожен Discord сервер має окремих стрімерів, канали, ролі та Twitch токен.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎨</div>
-        <div class="feature-title">Кастомні embed</div>
-        <p class="feature-desc">Налаштуй колір, заголовок, поля, thumbnail та кнопку для кожного сервера.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔑</div>
-        <div class="feature-title">Власний токен</div>
-        <p class="feature-desc">Встанови свій Twitch токен через <code style="font-size:12px;color:#C4A8FF">/setup_tokens</code> — повна незалежність.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📢</div>
-        <div class="feature-title">Пінг ролі</div>
-        <p class="feature-desc">Автоматично пінгує вказану роль коли стрімер виходить онлайн.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-title">Оновлення в реальному часі</div>
-        <p class="feature-desc">Embed оновлюється якщо змінилась гра або назва стріму.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- STEPS -->
-  <section class="steps">
-    <p class="section-label">Початок роботи</p>
-    <h2 class="section-title">Три кроки до запуску</h2>
-
-    <div class="steps-list">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-title">Додай бота</div>
-        <p class="step-desc">Натисни кнопку вище і вибери свій Discord сервер.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-title">Встанови токен</div>
-        <p class="step-desc">Отримай Twitch токен і введи команду.</p>
-        <div class="step-code">/setup_tokens</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-title">Додай стрімерів</div>
-        <p class="step-desc">Налаштуй канал і додай стрімерів яких хочеш відстежувати.</p>
-        <div class="step-code">/streamer_add</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOTTOM CTA -->
-  <section style="text-align:center; padding: 20px 0 80px;">
-    <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:36px; letter-spacing:-1px; margin-bottom:16px;">Готовий почати?</h2>
-    <p style="color:var(--muted); margin-bottom:32px; font-size:16px;">Безкоштовно. Без реєстрації. Одна кнопка.</p>
-    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=2048&scope=bot%20applications.commands" class="btn-primary" style="font-size:16px; padding:16px 36px;">
-      <svg class="discord-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+    <!-- Header -->
+    <div class="card-header">
+      <!-- Discord logo SVG -->
+      <svg class="discord-logo" viewBox="0 0 127.14 96.36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" fill="#5865F2"/>
       </svg>
-      Додати бота на сервер
-    </a>
-  </section>
-</div>
+      <span class="header-title">Discord OAuth2 · Redirect</span>
+      <div class="header-dot"></div>
+    </div>
 
-<footer>
-  <div class="container">
-    <p>Зроблено для <a href="https://twitch.tv/sun69wukong" target="_blank">sun69wukong</a> · Отримай токен на <a href="https://twitchtokengenerator.com" target="_blank">twitchtokengenerator.com</a></p>
-  </div>
-</footer>
+    <!-- Body -->
+    <div class="card-body">
 
+      <!-- Loading -->
+      <div id="state-loading">
+        <div class="spinner"></div>
+        <div class="loading-title">Обробка авторизації…</div>
+        <div class="loading-sub">зчитуємо параметри з URL</div>
+      </div>
+
+      <!-- Success -->
+      <div id="state-success">
+        <div class="check-wrap">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#23d18b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+        </div>
+        <div class="success-title">Авторизація успішна! 🎉</div>
+        <div class="success-sub" id="success-sub">код отримано</div>
+
+        <!-- Code box -->
+        <div id="code-section" style="display:none">
+          <div class="token-label">Authorization Code</div>
+          <div class="token-box">
+            <div class="token-value" id="code-val"></div>
+            <button class="copy-btn" onclick="copyVal('code-val', this)">copy</button>
+          </div>
+        </div>
+
+        <!-- Token box (якщо є access_token) -->
+        <div id="token-section" style="display:none; margin-top:10px;">
+          <div class="token-label">Access Token</div>
+          <div class="token-box">
+            <div class="token-value" id="token-val"></div>
+            <button class="copy-btn" onclick="copyVal('token-val', this)">copy</button>
+          </div>
+        </div>
+
+        <!-- Info chips -->
+        <div class="info-grid" id="info-grid" style="margin-top:14px;"></div>
+
+        <!-- Bot command -->
+        <div class="cmd-box" id="cmd-box" style="display:none;">
+          <div class="cmd-label">Команда для бота</div>
+          <div class="cmd-text" id="cmd-text"></div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="state-error">
+        <div class="error-icon">⚠️</div>
+        <div class="error-title" id="error-title">Помилка авторизації</div>
+        <div class="error-sub" id="error-sub"></div>
+      </div>
+
+      <!-- No params -->
+      <div id="state-noparams">
+        <div class="noparams-icon">🔗</div>
+        <div class="noparams-title">Redirect Page готова</div>
+        <div class="noparams-sub">
+          Ця сторінка обробляє Discord OAuth2 redirect.<br>
+          Додай її URL у Discord Developer Portal → OAuth2 → Redirects.
+        </div>
+      </div>
+
+    </div><!-- /card-body -->
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <div class="footer-brand">Twitch Stream Announcer · <span>bot</span></div>
+      <div class="close-hint" id="footer-hint">—</div>
+    </div>
+
+  </div><!-- /card -->
+</div><!-- /wrap -->
+
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function show(id) {
+  ['state-loading','state-success','state-error','state-noparams'].forEach(s => {
+    document.getElementById(s).style.display = s === id ? '' : 'none';
+  });
+}
+
+function copyVal(elId, btn) {
+  const text = document.getElementById(elId).textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function addChip(label, value, color) {
+  const grid = document.getElementById('info-grid');
+  const chip = document.createElement('div');
+  chip.className = 'info-chip';
+  chip.innerHTML = `<div class="chip-label">${label}</div>
+    <div class="chip-value" style="${color ? 'color:'+color : ''}">${value}</div>`;
+  grid.appendChild(chip);
+}
+
+function startCountdown(sec) {
+  const el = document.getElementById('countdown');
+  const hint = document.getElementById('footer-hint');
+  if (!el) return;
+  hint.innerHTML = `Закрити через <span id="countdown">${sec}</span>с`;
+  const iv = setInterval(() => {
+    sec--;
+    const c = document.getElementById('countdown');
+    if (!c) { clearInterval(iv); return; }
+    if (sec <= 0) { clearInterval(iv); window.close(); hint.textContent = 'можна закрити вкладку'; return; }
+    c.textContent = sec;
+  }, 1000);
+}
+
+// ── Main logic ────────────────────────────────────────────────────────────────
+(function() {
+  // Парсимо і query string і hash fragment (Discord іноді кладе token у hash)
+  const qp = new URLSearchParams(window.location.search);
+  const hp = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+
+  const code         = qp.get('code');
+  const error        = qp.get('error');
+  const errorDesc    = qp.get('error_description');
+  const state        = qp.get('state');
+  const guildId      = qp.get('guild_id');
+  const permissions  = qp.get('permissions');
+  const accessToken  = hp.get('access_token') || qp.get('access_token');
+  const tokenType    = hp.get('token_type')   || qp.get('token_type');
+  const scope        = hp.get('scope')        || qp.get('scope');
+  const expiresIn    = hp.get('expires_in')   || qp.get('expires_in');
+
+  // ── Error ──
+  if (error) {
+    show('state-error');
+    document.getElementById('error-title').textContent =
+      error === 'access_denied' ? 'Доступ відхилено' : `Помилка: ${error}`;
+    document.getElementById('error-sub').textContent =
+      errorDesc ? decodeURIComponent(errorDesc.replace(/\+/g,' ')) : 'Авторизацію скасовано або виникла помилка.';
+    document.getElementById('footer-hint').textContent = 'можна закрити вкладку';
+    return;
+  }
+
+  // ── No params ──
+  if (!code && !accessToken) {
+    show('state-noparams');
+    document.getElementById('footer-hint').textContent = 'очікую redirect...';
+    return;
+  }
+
+  // ── Success ──
+  show('state-success');
+
+  // Authorization Code
+  if (code) {
+    document.getElementById('code-section').style.display = '';
+    document.getElementById('code-val').textContent = code;
+    document.getElementById('success-sub').textContent = 'authorization code отримано · використай команду нижче';
+
+    // Bot command
+    const cmdBox  = document.getElementById('cmd-box');
+    const cmdText = document.getElementById('cmd-text');
+    cmdBox.style.display = '';
+    cmdText.innerHTML =
+      `<span class="cmd-name">/setup_tokens</span> ` +
+      `<span class="cmd-arg">twitch_token:</span><span class="cmd-val">${code}</span>`;
+  }
+
+  // Access Token (implicit flow / token у hash)
+  if (accessToken) {
+    document.getElementById('token-section').style.display = '';
+    document.getElementById('token-val').textContent = accessToken;
+    if (!code) {
+      document.getElementById('success-sub').textContent = 'access token отримано · скопіюй і встав у бота';
+      const cmdBox  = document.getElementById('cmd-box');
+      const cmdText = document.getElementById('cmd-text');
+      cmdBox.style.display = '';
+      cmdText.innerHTML =
+        `<span class="cmd-name">/setup_tokens</span> ` +
+        `<span class="cmd-arg">twitch_token:</span><span class="cmd-val">${accessToken}</span>`;
+    }
+  }
+
+  // Info chips
+  if (guildId)     addChip('Guild ID',    guildId,    '#7289da');
+  if (permissions) addChip('Permissions', permissions, null);
+  if (scope)       addChip('Scope', scope.replace(/ /g, ' · '), '#23d18b');
+  if (expiresIn)   addChip('Expires in', `${Math.round(expiresIn/3600)}г`, '#f0a500');
+  if (tokenType)   addChip('Token type', tokenType, null);
+  if (state)       addChip('State', state.slice(0,20)+(state.length>20?'…':''), null);
+
+  // Countdown to close
+  startCountdown(30);
+})();
+</script>
 </body>
 </html>
