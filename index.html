@@ -53,11 +53,8 @@ body::after {
   content: '';
   position: fixed; inset: 0; z-index: 0;
   background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,.08) 2px,
-    rgba(0,0,0,.08) 4px
+    0deg, transparent, transparent 2px,
+    rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px
   );
   pointer-events: none;
 }
@@ -282,6 +279,10 @@ header {
 .cmd-category { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-family: var(--ff-mono); padding: 16px 0 4px; }
 .cmd-row { display: flex; align-items: flex-start; gap: 14px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; transition: border-color .2s; }
 .cmd-row:hover { border-color: rgba(145,70,255,.25); }
+.cmd-row.new-cmd { border-color: rgba(46,204,113,.18); }
+.cmd-row.new-cmd:hover { border-color: rgba(46,204,113,.4); }
+.cmd-row.new-cmd .cmd-pill { position: relative; }
+.new-badge { display: inline-block; background: rgba(46,204,113,.15); border: 1px solid rgba(46,204,113,.3); color: var(--success); border-radius: 4px; padding: 0px 5px; font-family: var(--ff-mono); font-size: .6rem; font-weight: 700; vertical-align: middle; margin-left: 4px; letter-spacing: .05em; }
 .cmd-left { display: flex; flex-wrap: wrap; gap: 5px; min-width: 220px; flex-shrink: 0; }
 .cmd-pill { background: rgba(88,101,242,.15); border: 1px solid rgba(88,101,242,.25); color: var(--discord2); border-radius: 6px; padding: 3px 10px; font-family: var(--ff-mono); font-size: .8rem; font-weight: 600; white-space: nowrap; }
 .cmd-pill.admin { background: rgba(145,70,255,.12); border-color: rgba(145,70,255,.25); color: var(--twitch2); }
@@ -382,7 +383,7 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
   <div class="feat-card">
     <div class="feat-icon">⚡</div>
     <div class="feat-title">Слеш-команди</div>
-    <div class="feat-desc">Зручні команди для налаштування каналу анонсів, ролей та повідомлень.</div>
+    <div class="feat-desc">60+ зручних команд для налаштування, модерації та керування сервером.</div>
   </div>
   <div class="feat-card">
     <div class="feat-icon">🎮</div>
@@ -406,26 +407,37 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
       <button class="tab-btn" data-tab="admin" onclick="switchTab('admin')">🔐 Адмін</button>
     </div>
 
+    <!-- ═══ PUBLIC TAB ═══ -->
     <div class="tab-panel" id="tab-public">
       <div class="cmd-grid">
+
+        <div class="cmd-category">📡 Twitch — статус стріму</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/status</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Перевірити чи стрімер зараз онлайн / офлайн. Якщо без username — бере першого зі списку.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/ping</span></div><div class="cmd-desc">Затримка бота, статус і кількість серверів.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/uptime</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Скільки часу вже йде поточний стрім.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/stats</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Повна статистика: гра, глядачі, тривалість, теги, мова.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/viewers</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Поточна кількість глядачів стріму.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/game</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Яку гру зараз стрімить стрімер і назва стріму.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/streamers</span></div><div class="cmd-desc">Список всіх стрімерів цього сервера та їх статус.</div></div>
+
+        <div class="cmd-category">🎬 Twitch — контент</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/clips</span><span class="cmd-arg-pill">[username]</span><span class="cmd-arg-pill">[count]</span></div><div class="cmd-desc">Останні кліпи стрімера. <code class="inline-code">count</code> — кількість (1–5, за замовчуванням 3).</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/top_clips</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Топ 5 кліпів стрімера відсортованих за переглядами.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/profile</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Профіль стрімера: аватар, фоловери, тип каналу, дата реєстрації.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/schedule</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Розклад стрімів на найближчі дні (якщо стрімер його заповнив).</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/search</span><span class="cmd-req-pill">query</span></div><div class="cmd-desc">Пошук живих стрімерів за запитом на Twitch.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/top_streams</span><span class="cmd-req-pill">game</span></div><div class="cmd-desc">Топ 5 стрімів по вказаній грі прямо зараз.</div></div>
+
+        <div class="cmd-category">ℹ️ Інформація про сервер</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/ping</span></div><div class="cmd-desc">Затримка бота, статус і кількість серверів.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/userinfo</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, статус, буст.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/serverinfo</span></div><div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/roleinfo</span><span class="new-badge">NEW</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Інформація про роль: колір, кількість учасників, позиція в ієрархії, ключові права.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/channelinfo</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Інформація про канал: тема, повільний режим, NSFW, кількість закріплених, категорія.</div></div>
+
       </div>
     </div>
 
+    <!-- ═══ ADMIN TAB ═══ -->
     <div class="tab-panel" id="tab-admin" style="display:none;">
       <div class="admin-notice">
         🔐 Ці команди доступні тільки учасникам з правом <strong>Адміністратор</strong> на сервері.
@@ -455,6 +467,7 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/force_check</span></div><div class="cmd-desc">Примусово перевірити статус всіх стрімерів прямо зараз.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/announce_now</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Примусово надіслати анонс стрімера в канал (навіть якщо офлайн — використає останній snapshot).</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/clear_state</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Очистити збережений стан стрімера. Без username — очищає всіх. Корисно при багах.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/audit</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[limit]</span></div><div class="cmd-desc">Журнал аудиту сервера — останні 1–15 дій з позначками часу: бани, кіки, видалення повідомлень, зміни каналів тощо.</div></div>
 
         <div class="cmd-category">🎭 Live Роль та Events</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_live_role</span><span class="cmd-arg-pill">[role]</span></div><div class="cmd-desc">Роль яку бот автоматично дає стрімеру поки він LIVE. Без аргументу — прибирає роль.</div></div>
@@ -476,11 +489,19 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/warns</span><span class="cmd-req-pill">member</span></div><div class="cmd-desc">Переглянути всі попередження учасника з датами та причинами.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/clearwarns</span><span class="cmd-req-pill">member</span></div><div class="cmd-desc">Очистити всі попередження учасника.</div></div>
 
+        <div class="cmd-category">📌 Керування каналами</div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/slowmode</span><span class="new-badge">NEW</span><span class="cmd-req-pill">seconds</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Встановити повільний режим (0 = вимкнути, макс 21600с = 6 год). Показує зручний формат: 5хв, 1г 30хв тощо.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/lock</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Заблокувати канал — забороняє @everyone надсилати повідомлення. Зручно при порушеннях або рейдах.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/unlock</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Розблокувати канал — повертає права @everyone на надсилання повідомлень.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/channel_topic</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[topic]</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Змінити або очистити тему каналу. Без topic — очищає поточну тему.</div></div>
+
         <div class="cmd-category">💬 Керування повідомленнями</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/purge</span><span class="cmd-req-pill">amount</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Масово видалити повідомлення з каналу (1–100). Якщо вказати member — тільки його повідомлення.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/pin</span><span class="cmd-req-pill">message_id</span></div><div class="cmd-desc">Закріпити повідомлення в поточному каналі за його ID.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/say</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати звичайне повідомлення від імені бота в канал.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/embed_say</span><span class="cmd-req-pill">title</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[color]</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати красивий embed від імені бота. Колір у HEX, наприклад <code class="inline-code">9146FF</code>.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/thread</span><span class="new-badge">NEW</span><span class="cmd-req-pill">name</span><span class="cmd-arg-pill">[message_id]</span></div><div class="cmd-desc">Створити публічну гілку в поточному каналі. Якщо вказати message_id — гілка починається від того повідомлення.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/invite</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[max_uses]</span><span class="cmd-arg-pill">[hours]</span></div><div class="cmd-desc">Створити запрошення для каналу. Можна обмежити кількість використань та термін дії в годинах (0 = безстроково).</div></div>
 
         <div class="cmd-category">👥 Ролі та учасники</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/role_add</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Додати роль учаснику сервера.</div></div>
@@ -489,6 +510,8 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-category">ℹ️ Інформація</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/userinfo</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, приєднання, буст тощо.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/serverinfo</span></div><div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів, верифікація.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/roleinfo</span><span class="new-badge">NEW</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Інформація про роль: колір, кількість учасників, позиція в ієрархії, ключові права.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/channelinfo</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Інформація про канал: тема, повільний режим, NSFW, кількість закріплених, категорія.</div></div>
 
       </div>
     </div>
@@ -497,6 +520,8 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
       <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
       &nbsp;&nbsp;
       <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
+      &nbsp;&nbsp;
+      <span class="new-badge" style="font-size:.72rem;">NEW</span> — нова команда
     </div>
   </div>
 </section>
