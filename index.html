@@ -25,6 +25,10 @@
   --gold:     #f5c842;
   --music:    #1DB954;
   --music2:   #1ed760;
+  --voice:    #00b4d8;
+  --voice2:   #38d1f5;
+  --automod:  #ED4245;
+  --automod2: #ff6b6e;
   --ff-head:  'Bebas Neue', sans-serif;
   --ff-body:  'DM Sans', sans-serif;
   --ff-mono:  'JetBrains Mono', monospace;
@@ -274,6 +278,8 @@ header {
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { color: var(--twitch2); border-bottom-color: var(--twitch2); }
 .tab-btn.music-tab.active { color: var(--music2); border-bottom-color: var(--music2); }
+.tab-btn.voice-tab.active { color: var(--voice2); border-bottom-color: var(--voice2); }
+.tab-btn.automod-tab.active { color: var(--automod2); border-bottom-color: var(--automod2); }
 
 .admin-notice { background: rgba(145,70,255,.08); border: 1px solid rgba(145,70,255,.2); border-radius: 10px; padding: 12px 16px; font-size: .84rem; color: var(--sub); margin-bottom: 20px; line-height: 1.5; }
 .admin-notice strong { color: var(--twitch2); }
@@ -301,6 +307,8 @@ header {
 .cmd-row.upd-cmd:hover { border-color: rgba(88,101,242,.45); }
 
 .cmd-pill.music { background: rgba(29,185,84,.12); border-color: rgba(29,185,84,.25); color: var(--music2); }
+.cmd-pill.voice { background: rgba(0,180,216,.12); border-color: rgba(0,180,216,.25); color: var(--voice2); }
+.cmd-pill.automod { background: rgba(237,66,69,.12); border-color: rgba(237,66,69,.25); color: var(--automod2); }
 
 @media (max-width: 600px) {
   .cmds-section { padding: 40px 20px; }
@@ -395,6 +403,16 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
     <div class="feat-desc">Замовляй музику з YouTube прямо у голосовий канал — назва треку або посилання, черга, гучність.</div>
   </div>
   <div class="feat-card">
+    <div class="feat-icon">🔊</div>
+    <div class="feat-title">Тимчасові канали</div>
+    <div class="feat-desc">Автоматичні голосові кімнати — зайшов у тригер-канал і отримай власний голосовий канал.</div>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon">🛡️</div>
+    <div class="feat-title">AutoMod</div>
+    <div class="feat-desc">Захист від небажаного контенту: блок російських слів, заборонені ключові слова, лог порушень.</div>
+  </div>
+  <div class="feat-card">
     <div class="feat-icon">⚡</div>
     <div class="feat-title">Слеш-команди</div>
     <div class="feat-desc">60+ зручних команд для налаштування, модерації та керування сервером.</div>
@@ -455,6 +473,8 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
       <button class="tab-btn active" data-tab="public" onclick="switchTab('public')">🌐 Загальні</button>
       <button class="tab-btn" data-tab="admin" onclick="switchTab('admin')">🔐 Адмін</button>
       <button class="tab-btn music-tab" data-tab="music-cmds" onclick="switchTab('music-cmds')">🎵 Музика</button>
+      <button class="tab-btn voice-tab" data-tab="voice-cmds" onclick="switchTab('voice-cmds')">🔊 TempVoice</button>
+      <button class="tab-btn automod-tab" data-tab="automod-cmds" onclick="switchTab('automod-cmds')">🛡️ AutoMod</button>
     </div>
 
     <!-- ═══ PUBLIC TAB ═══ -->
@@ -483,6 +503,8 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/serverinfo</span></div><div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів.</div></div>
         <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/roleinfo</span><span class="new-badge">NEW</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Інформація про роль: колір, кількість учасників, позиція в ієрархії, ключові права.</div></div>
         <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/channelinfo</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Інформація про канал: тема, повільний режим, NSFW, кількість закріплених, категорія.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/voice_info</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Переглянути активні тимчасові голосові канали — власники, кількість учасників, канал-тригер.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/automod_status</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Переглянути поточний стан автомодератора: статус, ключові слова, виключені ролі та канали.</div></div>
 
       </div>
     </div>
@@ -596,6 +618,70 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/role_add</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Додати роль учаснику сервера.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/role_remove</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Зняти роль з учасника сервера.</div></div>
 
+        <div class="cmd-category">🔊 TempVoice — адмін-налаштування</div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/voice_setup</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-req-pill">creator_channel</span>
+            <span class="cmd-arg-pill">[category]</span>
+          </div>
+          <div class="cmd-desc">
+            Налаштувати тимчасові голосові канали.<br>
+            <span style="color:var(--voice2);font-size:.8rem;">▸ <code class="inline-code">creator_channel</code> — голосовий канал-тригер (наприклад «+ Власний канал»)</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">category</code> — категорія куди створювати тимчасові канали (якщо не вказати — та сама що й тригер)</span><br>
+            Коли учасник заходить у тригер, бот автоматично створює для нього окремий голосовий канал з правами керувати ним.
+          </div>
+        </div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/voice_disable</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Вимкнути систему тимчасових голосових каналів на сервері. Канали що вже існують залишаться.</div></div>
+
+        <div class="cmd-category">🛡️ AutoMod — адмін-налаштування</div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/automod_setup</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-arg-pill">[enabled]</span>
+            <span class="cmd-arg-pill">[block_russian]</span>
+            <span class="cmd-arg-pill">[keywords]</span>
+            <span class="cmd-arg-pill">[log_channel]</span>
+            <span class="cmd-arg-pill">[warn_message]</span>
+          </div>
+          <div class="cmd-desc">
+            Головна команда налаштування автомодерації.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">enabled</code> — увімкнути/вимкнути AutoMod</span><br>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">block_russian</code> — блокувати повідомлення з рос. символами (ё, ъ, ы, э та ін.)</span><br>
+            <span style="color:var(--gold);font-size:.8rem;">▸ <code class="inline-code">keywords</code> — заборонені слова через кому</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">log_channel</code> — канал для логів видалених повідомлень</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">warn_message</code> — текст попередження (<code class="inline-code">{user}</code> = пінг порушника)</span>
+          </div>
+        </div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/automod_keywords</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-req-pill">action</span>
+            <span class="cmd-arg-pill">[words]</span>
+          </div>
+          <div class="cmd-desc">
+            Керування списком заборонених слів. Дії:<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">add слово1,слово2</code> — додати слова</span><br>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove слово</code> — видалити слово зі списку</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">list</code> — переглянути весь список</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">clear</code> — очистити всі заборонені слова</span>
+          </div>
+        </div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill admin">/automod_exempt</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-arg-pill">[exempt_role]</span>
+            <span class="cmd-arg-pill">[exempt_channel]</span>
+            <span class="cmd-arg-pill">[remove_role]</span>
+            <span class="cmd-arg-pill">[remove_channel]</span>
+          </div>
+          <div class="cmd-desc">Налаштувати виключення — ролі або канали де AutoMod не спрацьовує. Корисно для модераторів та службових каналів.</div>
+        </div>
+
         <div class="cmd-category">ℹ️ Інформація</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/userinfo</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, приєднання, буст тощо.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/serverinfo</span></div><div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів, верифікація.</div></div>
@@ -675,6 +761,183 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
       </div>
     </div>
 
+    <!-- ═══ TEMPVOICE TAB ═══ -->
+    <div class="tab-panel" id="tab-voice-cmds" style="display:none;">
+      <div class="admin-notice" style="background:rgba(0,180,216,.06);border-color:rgba(0,180,216,.2);">
+        🔊 Налаштування TempVoice — <strong style="color:var(--voice2);">тільки для адміністраторів</strong>. Після налаштування <strong style="color:var(--voice2);">будь-який учасник</strong> може зайти в тригер-канал і отримати власну кімнату.
+      </div>
+      <div class="cmd-grid">
+
+        <div class="cmd-category">⚙️ Налаштування системи</div>
+        <div class="cmd-row new-cmd" style="background:rgba(0,180,216,.04);border-color:rgba(0,180,216,.2);">
+          <div class="cmd-left" style="min-width:200px;">
+            <span class="cmd-pill voice">/voice_setup</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-req-pill">creator_channel</span>
+            <span class="cmd-arg-pill">[category]</span>
+          </div>
+          <div class="cmd-desc">
+            Головна команда. Активує систему тимчасових голосових каналів.<br>
+            <span style="color:var(--voice2);font-size:.8rem;">
+              ▸ <code class="inline-code">creator_channel</code> — голосовий канал-тригер. Коли хтось заходить сюди — бот створює для нього окремий канал<br>
+              ▸ <code class="inline-code">category</code> — категорія де з'являтимуться канали (якщо не вказати — та сама що й тригер)<br>
+              ▸ Новий канал автоматично називається <code class="inline-code">🔊 Ім'я учасника</code><br>
+              ▸ Власник отримує права: керувати каналом, мутити, переміщати інших<br>
+              ▸ Канал зникає автоматично коли стає порожнім
+            </span>
+          </div>
+        </div>
+
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill voice">/voice_disable</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Вимкнути систему TempVoice. Бот перестає реагувати на канал-тригер. Вже існуючі тимчасові канали залишаться.</div></div>
+
+        <div class="cmd-category">ℹ️ Моніторинг</div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill voice">/voice_info</span>
+            <span class="new-badge">NEW</span>
+          </div>
+          <div class="cmd-desc">
+            Переглянути статус системи і всі активні тимчасові канали.<br>
+            <span style="color:var(--voice2);font-size:.8rem;">▸ Показує канал-тригер та категорію</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ Для кожного активного каналу: власник, кількість учасників</span><br>
+            <span style="color:var(--success);font-size:.8rem;">▸ Доступна всім учасникам сервера</span>
+          </div>
+        </div>
+
+        <div class="cmd-category">🎯 Як це працює — покроково</div>
+        <div class="cmd-row" style="background:rgba(0,180,216,.03);border-color:rgba(0,180,216,.15);flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">1</span>
+            <div class="cmd-desc">Адмін вводить <code class="inline-code">/voice_setup</code> і вказує канал-тригер (наприклад «🎙️ + Власний канал»)</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">2</span>
+            <div class="cmd-desc">Учасник заходить у цей канал — бот миттєво створює <code class="inline-code">🔊 Ім'я учасника</code></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">3</span>
+            <div class="cmd-desc">Учасника автоматично переміщують у його власну кімнату. Він може перейменувати канал, встановити ліміт, мутити інших</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">4</span>
+            <div class="cmd-desc">Коли всі вийшли — канал автоматично видаляється. Жодних «мертвих» каналів не залишається</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cmd-legend">
+        <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
+        &nbsp;&nbsp;
+        <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
+        &nbsp;&nbsp;
+        <span style="color:var(--voice2);font-family:var(--ff-mono);font-size:.72rem;">🔊 блакитний = TempVoice команда</span>
+      </div>
+    </div>
+
+    <!-- ═══ AUTOMOD TAB ═══ -->
+    <div class="tab-panel" id="tab-automod-cmds" style="display:none;">
+      <div class="admin-notice" style="background:rgba(237,66,69,.06);border-color:rgba(237,66,69,.2);">
+        🛡️ Налаштування AutoMod доступні тільки <strong style="color:var(--automod2);">адміністраторам</strong>. Переглянути статус може <strong style="color:var(--automod2);">будь-який учасник</strong> командою <code class="inline-code">/automod_status</code>.
+      </div>
+      <div class="cmd-grid">
+
+        <div class="cmd-category">⚙️ Головні налаштування</div>
+        <div class="cmd-row new-cmd" style="background:rgba(237,66,69,.03);border-color:rgba(237,66,69,.18);">
+          <div class="cmd-left" style="min-width:200px;">
+            <span class="cmd-pill automod">/automod_setup</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-arg-pill">[enabled]</span>
+            <span class="cmd-arg-pill">[block_russian]</span>
+            <span class="cmd-arg-pill">[keywords]</span>
+            <span class="cmd-arg-pill">[log_channel]</span>
+            <span class="cmd-arg-pill">[warn_message]</span>
+          </div>
+          <div class="cmd-desc">
+            Головна команда конфігурації AutoMod. Всі параметри опціональні — вказуй лише те що хочеш змінити.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">enabled: так</code> — активувати автомодерацію</span><br>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">block_russian: так</code> — блокувати повідомлення з символами ё, ъ, ы, э або рос. словами</span><br>
+            <span style="color:var(--gold);font-size:.8rem;">▸ <code class="inline-code">keywords: слово1,слово2</code> — заборонені слова (регістр не важливий)</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">log_channel: #канал</code> — де з'являтимуться embed-логи порушень</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">warn_message</code> — текст попередження, <code class="inline-code">{user}</code> замінюється на пінг порушника</span>
+          </div>
+        </div>
+
+        <div class="cmd-category">🔑 Керування ключовими словами</div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill automod">/automod_keywords</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-req-pill">action</span>
+            <span class="cmd-arg-pill">[words]</span>
+          </div>
+          <div class="cmd-desc">
+            Динамічне керування списком заборонених слів без перезапуску налаштувань.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">add слово1,слово2</code> — додати одне або кілька слів (без дублів)</span><br>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove слово</code> — видалити конкретне слово зі списку</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">list</code> — переглянути весь поточний список (епфемерно)</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">clear</code> — повністю очистити список заборонених слів</span>
+          </div>
+        </div>
+
+        <div class="cmd-category">🔓 Виключення з модерації</div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill automod">/automod_exempt</span>
+            <span class="new-badge">NEW</span>
+            <span class="cmd-arg-pill">[exempt_role]</span>
+            <span class="cmd-arg-pill">[exempt_channel]</span>
+            <span class="cmd-arg-pill">[remove_role]</span>
+            <span class="cmd-arg-pill">[remove_channel]</span>
+          </div>
+          <div class="cmd-desc">
+            Налаштувати ролі та канали які AutoMod ігнорує.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">exempt_role</code> — роль чиї повідомлення не перевіряються (напр. @Модератор, @Стример)</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">exempt_channel</code> — канал де AutoMod повністю вимкнений (напр. #off-topic)</span><br>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove_role / remove_channel</code> — прибрати роль або канал з виключень</span><br>
+            Можна вказати кілька за кілька викликів — вони накопичуються.
+          </div>
+        </div>
+
+        <div class="cmd-category">📊 Моніторинг</div>
+        <div class="cmd-row new-cmd">
+          <div class="cmd-left">
+            <span class="cmd-pill">/automod_status</span>
+            <span class="new-badge">NEW</span>
+          </div>
+          <div class="cmd-desc">
+            Переглянути повний поточний стан AutoMod. Доступна всім учасникам сервера (відповідь епфемерна).<br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ Показує: статус, режим блоку рос. символів, лог канал, список слів, виключені ролі та канали</span>
+          </div>
+        </div>
+
+        <div class="cmd-category">🎯 Що саме перевіряє AutoMod</div>
+        <div class="cmd-row" style="flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="color:var(--automod2);font-size:1.1rem;flex-shrink:0;">🇷🇺</span>
+            <div class="cmd-desc"><strong style="color:var(--text);">Блок російської кирилиці</strong> — виявляє унікальні рос. символи (ё, ъ, ы, э та ін.) або рос. слова (привет, пожалуйста, спасибо та ін.). Українська кирилиця не блокується.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="color:var(--gold);font-size:1.1rem;flex-shrink:0;">🔑</span>
+            <div class="cmd-desc"><strong style="color:var(--text);">Заборонені ключові слова</strong> — перевірка незалежно від регістру, знаходить навіть якщо слово всередині речення.</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="color:var(--success);font-size:1.1rem;flex-shrink:0;">🗑️</span>
+            <div class="cmd-desc"><strong style="color:var(--text);">При порушенні</strong> — повідомлення видаляється, порушнику надсилається попередження у канал (зникає через 8с), у лог-канал надходить embed з деталями.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cmd-legend">
+        <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
+        &nbsp;&nbsp;
+        <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
+        &nbsp;&nbsp;
+        <span style="color:var(--automod2);font-family:var(--ff-mono);font-size:.72rem;">🛡️ червоний = AutoMod команда</span>
+      </div>
+    </div>
+
     <div class="cmd-legend" id="main-legend">
       <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
       &nbsp;&nbsp;
@@ -726,7 +989,7 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
 
 <script>
 function switchTab(tab) {
-  ['public','admin','music-cmds'].forEach(function(t) {
+  ['public','admin','music-cmds','voice-cmds','automod-cmds'].forEach(function(t) {
     var el = document.getElementById('tab-' + t);
     if (el) el.style.display = (t === tab) ? 'block' : 'none';
   });
@@ -735,7 +998,7 @@ function switchTab(tab) {
     if (btn.getAttribute('data-tab') === tab) btn.classList.add('active');
   });
   var legend = document.getElementById('main-legend');
-  if (legend) legend.style.display = (tab === 'music-cmds') ? 'none' : '';
+  if (legend) legend.style.display = (tab === 'music-cmds' || tab === 'voice-cmds' || tab === 'automod-cmds') ? 'none' : '';
 }
 
 function show(id) {
