@@ -664,56 +664,6 @@ function switchTab(id, btn) {
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
 }
-
-function animateValue(el, end, suffix) {
-  if (!el) return;
-  let start = 0;
-  const step = Math.ceil(end / 40);
-  const timer = setInterval(() => {
-    start += step;
-    if (start >= end) { start = end; clearInterval(timer); }
-    el.textContent = start + suffix;
-  }, 30);
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  // Фіксований час старту — не "брехатиме" при кожному перезавантаженні
-  const UPTIME_START = new Date('2025-05-03T12:00:00').getTime();
-
-  function formatUptime(ms) {
-    const s = Math.floor(ms / 1000);
-    const m = Math.floor(s / 60);
-    const h = Math.floor(m / 60);
-    const d = Math.floor(h / 24);
-    if (d > 0) return d + 'д ' + (h % 24) + 'г';
-    if (h > 0) return h + 'г ' + (m % 60) + 'хв';
-    return m + 'хв';
-  }
-
-  function updateUptime() {
-    const up = formatUptime(Date.now() - UPTIME_START);
-    const el1 = document.getElementById('stat-uptime');
-    const el2 = document.getElementById('pill-uptime');
-    if (el1) el1.textContent = up;
-    if (el2) el2.textContent = up;
-  }
-  updateUptime();
-  setInterval(updateUptime, 30000);
-
-  setTimeout(() => {
-    animateValue(document.getElementById('stat-guilds'), 128, '');
-    animateValue(document.getElementById('stat-streamers'), 47, '');
-    document.getElementById('pill-guilds').textContent = '128';
-
-    const ping = 42; // фіксований пінг — без рандому
-    document.getElementById('stat-ping').textContent = ping + 'ms';
-    document.getElementById('pill-ping').textContent = ping + 'ms';
-
-    document.getElementById('status-dot').className = 'status-dot online';
-    document.getElementById('status-text').textContent = 'Онлайн';
-    document.getElementById('last-check').textContent = 'щойно';
-  }, 600);
-});
 </script>
 </body>
 </html>
