@@ -259,6 +259,22 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
       <div class="status-dot online" id="status-dot"></div>
       <span class="status-label">Статус: <span id="status-text">Онлайн</span></span>
     </div>
+    <div class="stats-pills">
+      <div class="stat-pill loaded">
+        <span>Серверів:</span>
+        <span class="stat-pill-val" id="pill-guilds">—</span>
+      </div>
+      <div class="stat-pill loaded">
+        <span>Пінг:</span>
+        <span class="stat-pill-val" id="pill-ping">—</span>
+      </div>
+      <div class="stat-pill loaded">
+        <span>Аптайм:</span>
+        <span class="stat-pill-val" id="pill-uptime">—</span>
+      </div>
+    </div>
+  </div>
+  <div class="status-bar-right">Останній запит: <span id="last-check">щойно</span></div>
 </div>
 
 <section class="hero">
@@ -281,6 +297,31 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
     <a href="#commands" class="btn-secondary">
       <span>📋</span> Переглянути команди
     </a>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card guilds">
+      <div class="stat-card-icon">🏠</div>
+      <div class="stat-card-val" id="stat-guilds">—</div>
+      <div class="stat-card-label">серверів</div>
+    </div>
+    <div class="stat-card streamers">
+      <div class="stat-card-icon">📡</div>
+      <div class="stat-card-val" id="stat-streamers">—</div>
+      <div class="stat-card-label">стрімерів відстежується</div>
+    </div>
+    <div class="stat-card uptime">
+      <div class="stat-card-icon">⏱️</div>
+      <div class="stat-card-val" id="stat-uptime">—</div>
+      <div class="stat-card-label">аптайм</div>
+    </div>
+    <div class="stat-card ping">
+      <div class="stat-card-icon">📶</div>
+      <div class="stat-card-val" id="stat-ping">—</div>
+      <div class="stat-card-label">пінг до Discord</div>
+    </div>
   </div>
 </section>
 
