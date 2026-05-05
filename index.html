@@ -29,209 +29,90 @@
   --voice2:   #38d1f5;
   --automod:  #ED4245;
   --automod2: #ff6b6e;
+  --ai:       #a855f7;
+  --ai2:      #c084fc;
   --ff-head:  'Bebas Neue', sans-serif;
   --ff-body:  'DM Sans', sans-serif;
   --ff-mono:  'JetBrains Mono', monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--ff-body);
-  min-height: 100vh;
-  overflow-x: hidden;
+  background: var(--bg); color: var(--text);
+  font-family: var(--ff-body); min-height: 100vh; overflow-x: hidden;
 }
-
 body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0;
+  content: ''; position: fixed; inset: 0; z-index: 0;
   background:
     radial-gradient(ellipse 70% 50% at 15% 20%, rgba(145,70,255,.12) 0%, transparent 60%),
     radial-gradient(ellipse 60% 40% at 85% 80%, rgba(88,101,242,.10) 0%, transparent 60%);
   pointer-events: none;
 }
-
 body::after {
-  content: '';
-  position: fixed; inset: 0; z-index: 0;
-  background-image: repeating-linear-gradient(
-    0deg, transparent, transparent 2px,
-    rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px
-  );
+  content: ''; position: fixed; inset: 0; z-index: 0;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px);
   pointer-events: none;
 }
 
 header {
   position: relative; z-index: 10;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 48px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8,8,16,.8);
-  backdrop-filter: blur(12px);
+  padding: 20px 48px; border-bottom: 1px solid var(--border);
+  background: rgba(8,8,16,.8); backdrop-filter: blur(12px);
 }
-
 .logo-wrap { display: flex; align-items: center; gap: 12px; }
-.logo-icon {
-  width: 36px; height: 36px;
-  background: linear-gradient(135deg, var(--twitch), var(--discord));
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-}
-.logo-name {
-  font-family: var(--ff-head);
-  font-size: 1.4rem;
-  letter-spacing: .05em;
-  background: linear-gradient(90deg, var(--twitch2), var(--discord2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-
+.logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--twitch), var(--discord)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.logo-name { font-family: var(--ff-head); font-size: 1.4rem; letter-spacing: .05em; background: linear-gradient(90deg, var(--twitch2), var(--discord2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .header-links { display: flex; align-items: center; gap: 16px; }
-.header-links a {
-  font-size: .82rem; font-family: var(--ff-mono);
-  color: var(--sub); text-decoration: none; transition: color .2s;
-}
+.header-links a { font-size: .82rem; font-family: var(--ff-mono); color: var(--sub); text-decoration: none; transition: color .2s; }
 .header-links a:hover { color: var(--text); }
-
-.btn-twitch {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--twitch); color: #fff !important;
-  padding: 8px 18px; border-radius: 8px;
-  font-size: .82rem; font-family: var(--ff-mono) !important; font-weight: 600;
-  text-decoration: none; transition: background .2s, transform .15s;
-}
+.btn-twitch { display: inline-flex; align-items: center; gap: 8px; background: var(--twitch); color: #fff !important; padding: 8px 18px; border-radius: 8px; font-size: .82rem; font-family: var(--ff-mono) !important; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; }
 .btn-twitch:hover { background: #7c2ff7; transform: translateY(-1px); }
 .btn-twitch svg { flex-shrink: 0; }
 
-.hero {
-  position: relative; z-index: 2;
-  max-width: 900px; margin: 0 auto;
-  padding: 80px 32px 60px; text-align: center;
-}
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(145,70,255,.1); border: 1px solid rgba(145,70,255,.25);
-  border-radius: 100px; padding: 5px 14px;
-  font-family: var(--ff-mono); font-size: .72rem;
-  color: var(--twitch2); margin-bottom: 28px; letter-spacing: .06em;
-}
-.hero-badge-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--success); box-shadow: 0 0 8px var(--success);
-  animation: blink 2s ease-in-out infinite;
-}
+.hero { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 80px 32px 60px; text-align: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(145,70,255,.1); border: 1px solid rgba(145,70,255,.25); border-radius: 100px; padding: 5px 14px; font-family: var(--ff-mono); font-size: .72rem; color: var(--twitch2); margin-bottom: 28px; letter-spacing: .06em; }
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); animation: blink 2s ease-in-out infinite; }
 @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.4; } }
-
-.hero-title {
-  font-family: var(--ff-head);
-  font-size: clamp(3.5rem, 9vw, 6.5rem);
-  line-height: .95; letter-spacing: .02em; margin-bottom: 20px;
-}
+.hero-title { font-family: var(--ff-head); font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: .95; letter-spacing: .02em; margin-bottom: 20px; }
 .hero-title .line1 { color: var(--text); display: block; }
-.hero-title .line2 {
-  background: linear-gradient(90deg, var(--twitch), var(--discord));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block;
-}
-
-.hero-sub {
-  font-size: 1.05rem; color: var(--sub); max-width: 520px;
-  margin: 0 auto 40px; line-height: 1.65; font-weight: 300;
-}
-
+.hero-title .line2 { background: linear-gradient(90deg, var(--twitch), var(--discord)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+.hero-sub { font-size: 1.05rem; color: var(--sub); max-width: 520px; margin: 0 auto 40px; line-height: 1.65; font-weight: 300; }
 .hero-cta { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
-
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: linear-gradient(135deg, var(--twitch), var(--discord));
-  color: #fff; padding: 14px 28px; border-radius: 12px;
-  font-size: .95rem; font-weight: 600; text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
-  box-shadow: 0 4px 20px rgba(145,70,255,.35);
-}
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--twitch), var(--discord)); color: #fff; padding: 14px 28px; border-radius: 12px; font-size: .95rem; font-weight: 600; text-decoration: none; transition: transform .2s, box-shadow .2s; box-shadow: 0 4px 20px rgba(145,70,255,.35); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(145,70,255,.5); }
-
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: transparent; border: 1px solid var(--border);
-  color: var(--sub); padding: 13px 24px; border-radius: 12px;
-  font-size: .9rem; font-weight: 500; text-decoration: none;
-  transition: border-color .2s, color .2s;
-}
+.btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--border); color: var(--sub); padding: 13px 24px; border-radius: 12px; font-size: .9rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
 .btn-secondary:hover { border-color: var(--discord2); color: var(--text); }
 
-.features {
-  position: relative; z-index: 2; max-width: 900px; margin: 0 auto;
-  padding: 20px 32px 80px;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;
-}
-
-.feat-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 24px; transition: border-color .2s, transform .2s;
-}
+.features { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 20px 32px 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.feat-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: border-color .2s, transform .2s; }
 .feat-card:hover { border-color: rgba(145,70,255,.35); transform: translateY(-3px); }
+.feat-card.ai-card { border-color: rgba(168,85,247,.25); background: linear-gradient(135deg, rgba(168,85,247,.06), rgba(13,13,31,1)); }
+.feat-card.ai-card:hover { border-color: rgba(168,85,247,.5); transform: translateY(-3px); }
 .feat-icon { font-size: 1.8rem; margin-bottom: 12px; }
 .feat-title { font-weight: 600; font-size: .95rem; margin-bottom: 6px; }
 .feat-desc { font-size: .82rem; color: var(--sub); line-height: 1.55; }
 
-.divider {
-  position: relative; z-index: 2; max-width: 900px; margin: 0 auto;
-  padding: 0 32px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-}
+.divider { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 0 32px; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 
-#oauth-section {
-  display: none; position: fixed; inset: 0; z-index: 100;
-  background: rgba(0,0,0,.75); backdrop-filter: blur(8px);
-  align-items: center; justify-content: center; padding: 24px;
-}
+#oauth-section { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.75); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 24px; }
 #oauth-section.visible { display: flex; }
 #oauth-section .oauth-card { width: 100%; max-width: 520px; }
-
-.oauth-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 20px; overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(88,101,242,.06), 0 24px 60px rgba(0,0,0,.5);
-  animation: slideUp .5s cubic-bezier(.22,1,.36,1) both;
-}
+.oauth-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 0 0 1px rgba(88,101,242,.06), 0 24px 60px rgba(0,0,0,.5); animation: slideUp .5s cubic-bezier(.22,1,.36,1) both; }
 @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-
-.oauth-header {
-  display: flex; align-items: center; gap: 10px;
-  padding: 16px 22px; border-bottom: 1px solid var(--border);
-  background: rgba(88,101,242,.05);
-}
+.oauth-header { display: flex; align-items: center; gap: 10px; padding: 16px 22px; border-bottom: 1px solid var(--border); background: rgba(88,101,242,.05); }
 .oauth-header-title { font-family: var(--ff-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--discord2); }
-.live-dot {
-  margin-left: auto; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--success); box-shadow: 0 0 8px var(--success);
-  animation: blink 2s ease-in-out infinite;
-}
-
+.live-dot { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); animation: blink 2s ease-in-out infinite; }
 .oauth-body { padding: 28px 24px; }
 #state-loading { text-align:center; }
-.spinner {
-  display: inline-block; width: 40px; height: 40px;
-  border: 3px solid var(--border); border-top-color: var(--discord);
-  border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 16px;
-}
+.spinner { display: inline-block; width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--discord); border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 16px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .load-title { font-size:1rem; font-weight:600; margin-bottom:4px; }
 .load-sub { font-size:.8rem; color:var(--sub); font-family:var(--ff-mono); }
-
 #state-success { display:none; }
 .check-ring { display:flex; justify-content:center; margin-bottom:18px; }
-.check-ring-inner {
-  width:52px; height:52px; border-radius:50%;
-  background: rgba(46,204,113,.1); border: 2px solid var(--success);
-  display:flex; align-items:center; justify-content:center;
-  animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both;
-}
+.check-ring-inner { width:52px; height:52px; border-radius:50%; background: rgba(46,204,113,.1); border: 2px solid var(--success); display:flex; align-items:center; justify-content:center; animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both; }
 @keyframes popIn { from { opacity:0; transform:scale(.3); } to { opacity:1; transform:scale(1); } }
 .check-ring-inner svg { width:24px; height:24px; }
 .s-title { font-size:1.15rem; font-weight:700; text-align:center; margin-bottom:4px; }
@@ -266,6 +147,7 @@ header {
 .o-hint { font-size:.68rem; font-family:var(--ff-mono); color:var(--muted); }
 #countdown { color:var(--discord2); font-weight:700; }
 
+/* ── Commands section ── */
 .cmds-section { position: relative; z-index: 2; padding: 60px 32px; }
 .cmds-wrap { max-width: 900px; margin: 0 auto; }
 .cmds-header { text-align: center; margin-bottom: 36px; }
@@ -290,9 +172,9 @@ header {
 .cmd-row:hover { border-color: rgba(145,70,255,.25); }
 .cmd-row.new-cmd { border-color: rgba(46,204,113,.18); }
 .cmd-row.new-cmd:hover { border-color: rgba(46,204,113,.4); }
-.cmd-row.new-cmd .cmd-pill { position: relative; }
 .new-badge { display: inline-block; background: rgba(46,204,113,.15); border: 1px solid rgba(46,204,113,.3); color: var(--success); border-radius: 4px; padding: 0px 5px; font-family: var(--ff-mono); font-size: .6rem; font-weight: 700; vertical-align: middle; margin-left: 4px; letter-spacing: .05em; }
 .upd-badge { display: inline-block; background: rgba(88,101,242,.15); border: 1px solid rgba(88,101,242,.3); color: var(--discord2); border-radius: 4px; padding: 0px 5px; font-family: var(--ff-mono); font-size: .6rem; font-weight: 700; vertical-align: middle; margin-left: 4px; letter-spacing: .05em; }
+.ai-badge { display: inline-block; background: rgba(168,85,247,.15); border: 1px solid rgba(168,85,247,.35); color: var(--ai2); border-radius: 4px; padding: 0px 5px; font-family: var(--ff-mono); font-size: .6rem; font-weight: 700; vertical-align: middle; margin-left: 4px; letter-spacing: .05em; }
 .cmd-left { display: flex; flex-wrap: wrap; gap: 5px; min-width: 220px; flex-shrink: 0; }
 .cmd-pill { background: rgba(88,101,242,.15); border: 1px solid rgba(88,101,242,.25); color: var(--discord2); border-radius: 6px; padding: 3px 10px; font-family: var(--ff-mono); font-size: .8rem; font-weight: 600; white-space: nowrap; }
 .cmd-pill.admin { background: rgba(145,70,255,.12); border-color: rgba(145,70,255,.25); color: var(--twitch2); }
@@ -302,18 +184,93 @@ header {
 .cmd-link { color: var(--twitch2); text-decoration: none; }
 .cmd-link:hover { text-decoration: underline; }
 .cmd-legend { margin-top: 20px; font-size: .78rem; color: var(--muted); display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-
 .cmd-row.upd-cmd { border-color: rgba(88,101,242,.22); }
 .cmd-row.upd-cmd:hover { border-color: rgba(88,101,242,.45); }
-
 .cmd-pill.music { background: rgba(29,185,84,.12); border-color: rgba(29,185,84,.25); color: var(--music2); }
 .cmd-pill.voice { background: rgba(0,180,216,.12); border-color: rgba(0,180,216,.25); color: var(--voice2); }
 .cmd-pill.automod { background: rgba(237,66,69,.12); border-color: rgba(237,66,69,.25); color: var(--automod2); }
 
+/* ── AI Provider Cards ── */
+.provider-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px; margin: 14px 0;
+}
+.provider-card {
+  border-radius: 10px; padding: 14px 16px;
+  border: 1px solid; position: relative; overflow: hidden;
+}
+.provider-card::before {
+  content: ''; position: absolute; top: -30px; right: -30px;
+  width: 80px; height: 80px; border-radius: 50%;
+  background: radial-gradient(circle, var(--glow), transparent 70%);
+  pointer-events: none;
+}
+.provider-card.free {
+  --glow: rgba(46,204,113,.2);
+  background: rgba(46,204,113,.05); border-color: rgba(46,204,113,.2);
+}
+.provider-card.paid {
+  --glow: rgba(88,101,242,.15);
+  background: rgba(88,101,242,.04); border-color: rgba(88,101,242,.18);
+}
+.provider-card.free-tier {
+  --glow: rgba(240,165,0,.2);
+  background: rgba(240,165,0,.04); border-color: rgba(240,165,0,.2);
+}
+.prov-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.prov-name { font-family: var(--ff-mono); font-size: .82rem; font-weight: 600; color: var(--text); }
+.prov-badge { font-family: var(--ff-mono); font-size: .6rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; letter-spacing: .05em; }
+.prov-badge.free { background: rgba(46,204,113,.15); color: var(--success); border: 1px solid rgba(46,204,113,.3); }
+.prov-badge.free-tier { background: rgba(240,165,0,.12); color: var(--gold); border: 1px solid rgba(240,165,0,.25); }
+.prov-badge.paid { background: rgba(88,101,242,.12); color: var(--discord2); border: 1px solid rgba(88,101,242,.25); }
+.prov-model { font-family: var(--ff-mono); font-size: .72rem; color: var(--sub); margin-bottom: 6px; }
+.prov-desc { font-size: .78rem; color: var(--muted); line-height: 1.45; }
+
+/* AI pipeline diagram */
+.ai-pipeline {
+  background: rgba(168,85,247,.04); border: 1px solid rgba(168,85,247,.18);
+  border-radius: 12px; padding: 18px 20px; margin: 14px 0;
+}
+.ai-pipeline-title {
+  font-family: var(--ff-mono); font-size: .65rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ai2);
+  margin-bottom: 14px;
+}
+.pipeline-steps { display: flex; flex-direction: column; gap: 8px; }
+.pipeline-step { display: flex; align-items: flex-start; gap: 12px; }
+.step-num {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-mono); font-size: .68rem; font-weight: 700;
+}
+.step-num.fast { background: rgba(46,204,113,.15); color: var(--success); border: 1px solid rgba(46,204,113,.3); }
+.step-num.ai   { background: rgba(168,85,247,.15); color: var(--ai2);     border: 1px solid rgba(168,85,247,.3); }
+.step-num.skip { background: rgba(68,68,90,.2);    color: var(--muted);   border: 1px solid var(--border); }
+.step-text { font-size: .82rem; color: var(--sub); line-height: 1.5; padding-top: 2px; }
+.step-text strong { color: var(--text); }
+
+/* Env config block */
+.env-block {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px; margin: 12px 0;
+  font-family: var(--ff-mono); font-size: .78rem; line-height: 1.9;
+}
+.env-comment { color: var(--muted); }
+.env-key     { color: var(--ai2); }
+.env-eq      { color: var(--sub); }
+.env-val     { color: var(--success); }
+.env-val-dim { color: var(--discord2); }
+
 @media (max-width: 600px) {
+  header { padding: 16px 20px; }
+  .logo-name { font-size: 1.1rem; }
+  .header-links a:not(.btn-twitch) { display: none; }
+  .hero, .features, .thankyou { padding-left: 20px; padding-right: 20px; }
+  #oauth-section { padding: 0 20px; }
   .cmds-section { padding: 40px 20px; }
   .cmd-row { flex-direction: column; gap: 8px; }
   .cmd-left { min-width: unset; }
+  .provider-grid { grid-template-columns: 1fr 1fr; }
 }
 
 .thankyou { position: relative; z-index: 2; max-width: 700px; margin: 20px auto 0; padding: 60px 32px 80px; text-align: center; }
@@ -322,7 +279,6 @@ header {
 .ty-title .gold { color: var(--gold); }
 .ty-text { font-size: 1rem; color: var(--sub); line-height: 1.7; max-width: 480px; margin: 0 auto 36px; font-weight: 300; }
 .ty-text strong { color: var(--text); font-weight: 600; }
-
 .donate-card { background: linear-gradient(135deg, rgba(245,200,66,.08), rgba(245,200,66,.03)); border: 1px solid rgba(245,200,66,.2); border-radius: 20px; padding: 32px 28px; margin-bottom: 32px; position: relative; overflow: hidden; }
 .donate-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(245,200,66,.12), transparent 70%); pointer-events: none; }
 .donate-icon { font-size: 2.4rem; margin-bottom: 10px; }
@@ -330,7 +286,6 @@ header {
 .donate-sub { font-size: .85rem; color: var(--sub); margin-bottom: 20px; line-height: 1.55; }
 .btn-donate { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #f5c842, #f0a500); color: #1a1200; padding: 14px 30px; border-radius: 12px; font-size: .95rem; font-weight: 700; text-decoration: none; transition: transform .2s, box-shadow .2s; box-shadow: 0 4px 20px rgba(245,200,66,.3); font-family: var(--ff-body); }
 .btn-donate:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,200,66,.45); }
-
 .social-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
 .social-link { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--border); color: var(--sub); padding: 10px 18px; border-radius: 10px; font-size: .84rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s, transform .15px; }
 .social-link:hover { border-color: var(--twitch); color: var(--text); transform: translateY(-1px); }
@@ -340,14 +295,6 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
 .footer-text { font-size: .75rem; font-family: var(--ff-mono); color: var(--muted); text-align: center; }
 .footer-text a { color: var(--sub); text-decoration: none; }
 .footer-text a:hover { color: var(--twitch2); }
-
-@media (max-width: 600px) {
-  header { padding: 16px 20px; }
-  .logo-name { font-size: 1.1rem; }
-  .header-links a:not(.btn-twitch) { display: none; }
-  .hero, .features, .thankyou { padding-left: 20px; padding-right: 20px; }
-  #oauth-section { padding: 0 20px; }
-}
 </style>
 </head>
 <body>
@@ -376,9 +323,7 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
     <span class="line1">DISCORD BOT</span>
     <span class="line2">SUN69WUKONG</span>
   </h1>
-  <p class="hero-sub">
-    Бот для автоматичних анонсів стримів на Twitch. Підключи до свого Discord-сервера і ніхто не пропустить живий ефір!
-  </p>
+  <p class="hero-sub">Бот для автоматичних анонсів стримів на Twitch. Підключи до свого Discord-сервера і ніхто не пропустить живий ефір!</p>
   <div class="hero-cta">
     <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&permissions=11005979662&scope=bot+applications.commands" class="btn-primary">
       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.114 18.1.134 18.115a19.919 19.919 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
@@ -407,10 +352,11 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
     <div class="feat-title">Тимчасові канали</div>
     <div class="feat-desc">Автоматичні голосові кімнати — зайшов у тригер-канал і отримай власний голосовий канал.</div>
   </div>
-  <div class="feat-card">
-    <div class="feat-icon">🛡️</div>
-    <div class="feat-title">AutoMod</div>
-    <div class="feat-desc">Захист від небажаного контенту: блок російських слів, заборонені ключові слова, лог порушень.</div>
+  <!-- ── UPDATED AutoMod feature card ── -->
+  <div class="feat-card ai-card">
+    <div class="feat-icon">🛡️🤖</div>
+    <div class="feat-title">AI AutoMod</div>
+    <div class="feat-desc">AI-розпізнавання мови замість простих фільтрів. Точно відрізняє українську від російської. Підтримує Ollama (безкоштовно!), Gemini, OpenAI, Anthropic.</div>
   </div>
   <div class="feat-card">
     <div class="feat-icon">⚡</div>
@@ -435,11 +381,7 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
       <div class="live-dot"></div>
     </div>
     <div class="oauth-body">
-      <div id="state-loading">
-        <div class="spinner"></div>
-        <div class="load-title">Обробка авторизації…</div>
-        <div class="load-sub">зчитуємо параметри з URL</div>
-      </div>
+      <div id="state-loading"><div class="spinner"></div><div class="load-title">Обробка авторизації…</div><div class="load-sub">зчитуємо параметри з URL</div></div>
       <div id="state-success">
         <div class="check-ring"><div class="check-ring-inner"><svg viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
         <div class="s-title">Авторизація успішна! 🎉</div>
@@ -480,7 +422,6 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
     <!-- ═══ PUBLIC TAB ═══ -->
     <div class="tab-panel" id="tab-public">
       <div class="cmd-grid">
-
         <div class="cmd-category">📡 Twitch — статус стріму</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/status</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Перевірити чи стрімер зараз онлайн / офлайн. Якщо без username — бере першого зі списку.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/uptime</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Скільки часу вже йде поточний стрім.</div></div>
@@ -488,7 +429,6 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/viewers</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Поточна кількість глядачів стріму.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/game</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Яку гру зараз стрімить стрімер і назва стріму.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/streamers</span></div><div class="cmd-desc">Список всіх стрімерів цього сервера та їх статус.</div></div>
-
         <div class="cmd-category">🎬 Twitch — контент</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/clips</span><span class="cmd-arg-pill">[username]</span><span class="cmd-arg-pill">[count]</span></div><div class="cmd-desc">Останні кліпи стрімера. <code class="inline-code">count</code> — кількість (1–5, за замовчуванням 3).</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/top_clips</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Топ 5 кліпів стрімера відсортованих за переглядами.</div></div>
@@ -496,7 +436,6 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/schedule</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Розклад стрімів на найближчі дні (якщо стрімер його заповнив).</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/search</span><span class="cmd-req-pill">query</span></div><div class="cmd-desc">Пошук живих стрімерів за запитом на Twitch.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/top_streams</span><span class="cmd-req-pill">game</span></div><div class="cmd-desc">Топ 5 стрімів по вказаній грі прямо зараз.</div></div>
-
         <div class="cmd-category">ℹ️ Інформація про сервер</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/ping</span></div><div class="cmd-desc">Затримка бота, статус і кількість серверів.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/userinfo</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, статус, буст.</div></div>
@@ -504,344 +443,206 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
         <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/roleinfo</span><span class="new-badge">NEW</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Інформація про роль: колір, кількість учасників, позиція в ієрархії, ключові права.</div></div>
         <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/channelinfo</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Інформація про канал: тема, повільний режим, NSFW, кількість закріплених, категорія.</div></div>
         <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/voice_info</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Переглянути активні тимчасові голосові канали — власники, кількість учасників, канал-тригер.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/automod_status</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Переглянути поточний стан автомодератора: статус, ключові слова, виключені ролі та канали.</div></div>
-
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/automod_status</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Переглянути поточний стан автомодератора: статус, AI-провайдер, ключові слова, виключення.</div></div>
       </div>
     </div>
 
     <!-- ═══ ADMIN TAB ═══ -->
     <div class="tab-panel" id="tab-admin" style="display:none;">
-      <div class="admin-notice">
-        🔐 Ці команди доступні тільки учасникам з правом <strong>Адміністратор</strong> на сервері.
-      </div>
+      <div class="admin-notice">🔐 Ці команди доступні тільки учасникам з правом <strong>Адміністратор</strong> на сервері.</div>
       <div class="cmd-grid">
-
         <div class="cmd-category">⚙️ Початкове налаштування</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_channel</span><span class="cmd-req-pill">channel</span></div><div class="cmd-desc">Встановити дефолтний канал для анонсів на весь сервер.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_role</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Дефолтна роль яка отримує пінг при анонсі стрімера.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_tokens</span><span class="cmd-req-pill">twitch_token</span><span class="cmd-arg-pill">[client_id]</span></div><div class="cmd-desc">Встановити Twitch токен для цього сервера. Отримай токен на <a href="https://twitchtokengenerator.com" target="_blank" class="cmd-link">twitchtokengenerator.com</a>.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_tokens</span><span class="cmd-req-pill">twitch_token</span><span class="cmd-arg-pill">[client_id]</span></div><div class="cmd-desc">Встановити Twitch токен для цього сервера.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/token_status</span></div><div class="cmd-desc">Перевірити чи валідний поточний Twitch токен сервера.</div></div>
-
         <div class="cmd-category">👥 Управління стрімерами</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_add</span><span class="cmd-req-pill">username</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[role]</span><span class="cmd-arg-pill">[discord_member]</span></div><div class="cmd-desc">Додати стрімера до моніторингу. Опціонально вказати канал, роль для пінгу та Discord-акаунт для live ролі.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_add</span><span class="cmd-req-pill">username</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[role]</span><span class="cmd-arg-pill">[discord_member]</span></div><div class="cmd-desc">Додати стрімера до моніторингу.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_remove</span><span class="cmd-req-pill">username</span></div><div class="cmd-desc">Видалити стрімера зі списку моніторингу.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_toggle</span><span class="cmd-req-pill">username</span></div><div class="cmd-desc">Тимчасово вимкнути або знову увімкнути моніторинг конкретного стрімера.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_channel</span><span class="cmd-req-pill">username</span><span class="cmd-req-pill">channel</span></div><div class="cmd-desc">Встановити індивідуальний канал анонсів для конкретного стрімера.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_role</span><span class="cmd-req-pill">username</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Встановити роль для пінгу для конкретного стрімера.</div></div>
-
         <div class="cmd-category">🎨 Налаштування вигляду</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_prefix</span><span class="cmd-arg-pill">[username]</span><span class="cmd-arg-pill">[online_prefix]</span><span class="cmd-arg-pill">[offline_prefix]</span></div><div class="cmd-desc">Змінити текст над embed. Якщо без username — змінює для всього сервера. Приклад: <code class="inline-code">🔴 Стрімер онлайн!</code></div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_config</span><span class="cmd-req-pill">key</span><span class="cmd-req-pill">value</span></div><div class="cmd-desc">Розширене налаштування: embed_color, embed_title, embed_show_game та інші параметри.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_prefix</span><span class="cmd-arg-pill">[username]</span><span class="cmd-arg-pill">[online_prefix]</span><span class="cmd-arg-pill">[offline_prefix]</span></div><div class="cmd-desc">Змінити текст над embed.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_config</span><span class="cmd-req-pill">key</span><span class="cmd-req-pill">value</span></div><div class="cmd-desc">Розширене налаштування: embed_color, embed_title та інші параметри.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/offline_toggle</span></div><div class="cmd-desc">Увімкнути або вимкнути повідомлення коли стрімер іде офлайн.</div></div>
-
         <div class="cmd-category">🔧 Утиліти та тест</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/test_embed</span></div><div class="cmd-desc">Надіслати тестове embed-повідомлення в канал щоб перевірити вигляд.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/force_check</span></div><div class="cmd-desc">Примусово перевірити статус всіх стрімерів прямо зараз.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/announce_now</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Примусово надіслати анонс стрімера в канал (навіть якщо офлайн — використає останній snapshot).</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/clear_state</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Очистити збережений стан стрімера. Без username — очищає всіх. Корисно при багах.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/audit</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[limit]</span></div><div class="cmd-desc">Журнал аудиту сервера — останні 1–15 дій з позначками часу: бани, кіки, видалення повідомлень, зміни каналів тощо.</div></div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/announce_now</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Примусово надіслати анонс стрімера в канал.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/clear_state</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Очистити збережений стан стрімера. Без username — очищає всіх.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/audit</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[limit]</span></div><div class="cmd-desc">Журнал аудиту сервера — останні 1–15 дій з позначками часу.</div></div>
         <div class="cmd-category">🎭 Live Роль та Events</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_live_role</span><span class="cmd-arg-pill">[role]</span></div><div class="cmd-desc">Роль яку бот автоматично дає стрімеру поки він LIVE. Без аргументу — прибирає роль.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_discord_member</span><span class="cmd-req-pill">username</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Прив'язати Discord-акаунт до Twitch стрімера (потрібно для видачі live ролі).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_live_role</span><span class="cmd-arg-pill">[role]</span></div><div class="cmd-desc">Роль яку бот автоматично дає стрімеру поки він LIVE.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_discord_member</span><span class="cmd-req-pill">username</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Прив'язати Discord-акаунт до Twitch стрімера.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/live_role_status</span></div><div class="cmd-desc">Переглянути всі прив'язки Discord↔Twitch та стан live ролі.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/event_toggle</span></div><div class="cmd-desc">Увімкнути або вимкнути автоматичне створення Discord Events при старті стріму.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/create_event</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Вручну створити Discord Event для стрімера (навіть якщо він офлайн).</div></div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/create_event</span><span class="cmd-arg-pill">[username]</span></div><div class="cmd-desc">Вручну створити Discord Event для стрімера.</div></div>
         <div class="cmd-category">📋 Логування учасників</div>
-
-        <div class="cmd-row upd-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_join_log</span>
-            <span class="upd-badge">UPD</span>
-            <span class="cmd-arg-pill">[channel]</span>
-            <span class="cmd-arg-pill">[channel_id]</span>
-          </div>
-          <div class="cmd-desc">
-            Налаштувати або вимкнути лог вступу нових учасників.<br>
-            <span style="color:var(--success);font-size:.8rem;">▸ вказати <code class="inline-code">channel</code> — увімкнути, надсилатиме красивий embed з аватаром, ID, віком акаунту та ⚠️ попередженням якщо акаунт молодший 7 днів</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ без аргументів — вимкнути</span><br>
-            <span style="color:var(--discord2);font-size:.8rem;">▸ вказати <code class="inline-code">channel_id</code> — вимкнути за ID каналу (якщо канал видалено зі списку)</span>
-          </div>
-        </div>
-
-        <div class="cmd-row upd-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/set_leave_log</span>
-            <span class="upd-badge">UPD</span>
-            <span class="cmd-arg-pill">[channel]</span>
-            <span class="cmd-arg-pill">[channel_id]</span>
-          </div>
-          <div class="cmd-desc">
-            Налаштувати або вимкнути лог виходу учасників.<br>
-            <span style="color:var(--success);font-size:.8rem;">▸ вказати <code class="inline-code">channel</code> — увімкнути, надсилатиме embed з аватаром, часом перебування на сервері та ролями</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ без аргументів — вимкнути</span><br>
-            <span style="color:var(--discord2);font-size:.8rem;">▸ вказати <code class="inline-code">channel_id</code> — вимкнути за ID (зручно якщо канал вже недоступний)</span>
-          </div>
-        </div>
-
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/member_log_status</span>
-          </div>
-          <div class="cmd-desc">Переглянути поточні налаштування логів вступу та виходу — показує канали та їх ID.</div>
-        </div>
-
+        <div class="cmd-row upd-cmd"><div class="cmd-left"><span class="cmd-pill admin">/set_join_log</span><span class="upd-badge">UPD</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[channel_id]</span></div><div class="cmd-desc">Налаштувати або вимкнути лог вступу нових учасників.</div></div>
+        <div class="cmd-row upd-cmd"><div class="cmd-left"><span class="cmd-pill admin">/set_leave_log</span><span class="upd-badge">UPD</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[channel_id]</span></div><div class="cmd-desc">Налаштувати або вимкнути лог виходу учасників.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/member_log_status</span></div><div class="cmd-desc">Переглянути поточні налаштування логів вступу та виходу.</div></div>
         <div class="cmd-category">🔨 Модерація учасників</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/ban</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span><span class="cmd-arg-pill">[delete_days]</span></div><div class="cmd-desc">Заблокувати учасника сервера. Опціонально вказати причину та скільки днів повідомлень видалити (0–7).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/ban</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span><span class="cmd-arg-pill">[delete_days]</span></div><div class="cmd-desc">Заблокувати учасника сервера.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/unban</span><span class="cmd-req-pill">user_id</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Розблокувати учасника за його Discord ID.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/kick</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Видалити учасника з сервера (без бану — може зайти знову).</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/timeout</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">minutes</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Замутити учасника на вказану кількість хвилин (1–40320, тобто до 28 днів).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/kick</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Видалити учасника з сервера.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/timeout</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">minutes</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Замутити учасника на вказану кількість хвилин.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/untimeout</span><span class="cmd-req-pill">member</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Достроково зняти мут з учасника.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/bans</span></div><div class="cmd-desc">Переглянути список останніх 20 заблокованих учасників сервера.</div></div>
-
         <div class="cmd-category">⚠️ Система попереджень</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/warn</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">reason</span></div><div class="cmd-desc">Видати попередження учаснику. Зберігається в базі, учасник отримує ДМ з причиною.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/warns</span><span class="cmd-req-pill">member</span></div><div class="cmd-desc">Переглянути всі попередження учасника з датами та причинами.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/warn</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">reason</span></div><div class="cmd-desc">Видати попередження учаснику.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/warns</span><span class="cmd-req-pill">member</span></div><div class="cmd-desc">Переглянути всі попередження учасника.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/clearwarns</span><span class="cmd-req-pill">member</span></div><div class="cmd-desc">Очистити всі попередження учасника.</div></div>
-
         <div class="cmd-category">📌 Керування каналами</div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/slowmode</span><span class="new-badge">NEW</span><span class="cmd-req-pill">seconds</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Встановити повільний режим (0 = вимкнути, макс 21600с = 6 год). Показує зручний формат: 5хв, 1г 30хв тощо.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/lock</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Заблокувати канал — забороняє @everyone надсилати повідомлення. Зручно при порушеннях або рейдах.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/unlock</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Розблокувати канал — повертає права @everyone на надсилання повідомлень.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/channel_topic</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[topic]</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Змінити або очистити тему каналу. Без topic — очищає поточну тему.</div></div>
-
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/slowmode</span><span class="new-badge">NEW</span><span class="cmd-req-pill">seconds</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Встановити повільний режим (0 = вимкнути, макс 21600с).</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/lock</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[reason]</span></div><div class="cmd-desc">Заблокувати канал — забороняє @everyone надсилати повідомлення.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/unlock</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Розблокувати канал.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/channel_topic</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[topic]</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Змінити або очистити тему каналу.</div></div>
         <div class="cmd-category">💬 Керування повідомленнями</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/purge</span><span class="cmd-req-pill">amount</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Масово видалити повідомлення з каналу (1–100). Якщо вказати member — тільки його повідомлення.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/pin</span><span class="cmd-req-pill">message_id</span></div><div class="cmd-desc">Закріпити повідомлення в поточному каналі за його ID.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/say</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати звичайне повідомлення від імені бота в канал.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/embed_say</span><span class="cmd-req-pill">title</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[color]</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати красивий embed від імені бота. Колір у HEX, наприклад <code class="inline-code">9146FF</code>.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/thread</span><span class="new-badge">NEW</span><span class="cmd-req-pill">name</span><span class="cmd-arg-pill">[message_id]</span></div><div class="cmd-desc">Створити публічну гілку в поточному каналі. Якщо вказати message_id — гілка починається від того повідомлення.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/invite</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[max_uses]</span><span class="cmd-arg-pill">[hours]</span></div><div class="cmd-desc">Створити запрошення для каналу. Можна обмежити кількість використань та термін дії в годинах (0 = безстроково).</div></div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/purge</span><span class="cmd-req-pill">amount</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Масово видалити повідомлення з каналу (1–100).</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/pin</span><span class="cmd-req-pill">message_id</span></div><div class="cmd-desc">Закріпити повідомлення в поточному каналі.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/say</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати звичайне повідомлення від імені бота.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/embed_say</span><span class="cmd-req-pill">title</span><span class="cmd-req-pill">text</span><span class="cmd-arg-pill">[color]</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Надіслати красивий embed від імені бота.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/thread</span><span class="new-badge">NEW</span><span class="cmd-req-pill">name</span><span class="cmd-arg-pill">[message_id]</span></div><div class="cmd-desc">Створити публічну гілку в поточному каналі.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/invite</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span><span class="cmd-arg-pill">[max_uses]</span><span class="cmd-arg-pill">[hours]</span></div><div class="cmd-desc">Створити запрошення для каналу.</div></div>
         <div class="cmd-category">👥 Ролі та учасники</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/role_add</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Додати роль учаснику сервера.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/role_remove</span><span class="cmd-req-pill">member</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Зняти роль з учасника сервера.</div></div>
-
-        <div class="cmd-category">🔊 TempVoice — адмін-налаштування</div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/voice_setup</span>
-            <span class="new-badge">NEW</span>
-            <span class="cmd-req-pill">creator_channel</span>
-            <span class="cmd-arg-pill">[category]</span>
-          </div>
-          <div class="cmd-desc">
-            Налаштувати тимчасові голосові канали.<br>
-            <span style="color:var(--voice2);font-size:.8rem;">▸ <code class="inline-code">creator_channel</code> — голосовий канал-тригер (наприклад «+ Власний канал»)</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">category</code> — категорія куди створювати тимчасові канали (якщо не вказати — та сама що й тригер)</span><br>
-            Коли учасник заходить у тригер, бот автоматично створює для нього окремий голосовий канал з правами керувати ним.
-          </div>
-        </div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/voice_disable</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Вимкнути систему тимчасових голосових каналів на сервері. Канали що вже існують залишаться.</div></div>
-
         <div class="cmd-category">🛡️ AutoMod — адмін-налаштування</div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/automod_setup</span>
-            <span class="new-badge">NEW</span>
-            <span class="cmd-arg-pill">[enabled]</span>
-            <span class="cmd-arg-pill">[block_russian]</span>
-            <span class="cmd-arg-pill">[keywords]</span>
-            <span class="cmd-arg-pill">[log_channel]</span>
-            <span class="cmd-arg-pill">[warn_message]</span>
-          </div>
-          <div class="cmd-desc">
-            Головна команда налаштування автомодерації.<br>
-            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">enabled</code> — увімкнути/вимкнути AutoMod</span><br>
-            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">block_russian</code> — блокувати повідомлення з рос. символами (ё, ъ, ы, э та ін.)</span><br>
-            <span style="color:var(--gold);font-size:.8rem;">▸ <code class="inline-code">keywords</code> — заборонені слова через кому</span><br>
-            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">log_channel</code> — канал для логів видалених повідомлень</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">warn_message</code> — текст попередження (<code class="inline-code">{user}</code> = пінг порушника)</span>
-          </div>
-        </div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/automod_keywords</span>
-            <span class="new-badge">NEW</span>
-            <span class="cmd-req-pill">action</span>
-            <span class="cmd-arg-pill">[words]</span>
-          </div>
-          <div class="cmd-desc">
-            Керування списком заборонених слів. Дії:<br>
-            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">add слово1,слово2</code> — додати слова</span><br>
-            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove слово</code> — видалити слово зі списку</span><br>
-            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">list</code> — переглянути весь список</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">clear</code> — очистити всі заборонені слова</span>
-          </div>
-        </div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/automod_exempt</span>
-            <span class="new-badge">NEW</span>
-            <span class="cmd-arg-pill">[exempt_role]</span>
-            <span class="cmd-arg-pill">[exempt_channel]</span>
-            <span class="cmd-arg-pill">[remove_role]</span>
-            <span class="cmd-arg-pill">[remove_channel]</span>
-          </div>
-          <div class="cmd-desc">Налаштувати виключення — ролі або канали де AutoMod не спрацьовує. Корисно для модераторів та службових каналів.</div>
-        </div>
-
-        <div class="cmd-category">ℹ️ Інформація</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/userinfo</span><span class="cmd-arg-pill">[member]</span></div><div class="cmd-desc">Детальна інформація про учасника: ролі, дата реєстрації, приєднання, буст тощо.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/serverinfo</span></div><div class="cmd-desc">Інформація про сервер: учасники, канали, ролі, рівень бустів, верифікація.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/roleinfo</span><span class="new-badge">NEW</span><span class="cmd-req-pill">role</span></div><div class="cmd-desc">Інформація про роль: колір, кількість учасників, позиція в ієрархії, ключові права.</div></div>
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill">/channelinfo</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[channel]</span></div><div class="cmd-desc">Інформація про канал: тема, повільний режим, NSFW, кількість закріплених, категорія.</div></div>
-
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/automod_setup</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[enabled]</span><span class="cmd-arg-pill">[block_russian]</span><span class="cmd-arg-pill">[keywords]</span><span class="cmd-arg-pill">[log_channel]</span></div><div class="cmd-desc">Головна команда налаштування AutoMod. Показує статус AI-провайдера (Ollama/Gemini/OpenAI/Anthropic).</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/automod_keywords</span><span class="new-badge">NEW</span><span class="cmd-req-pill">action</span><span class="cmd-arg-pill">[words]</span></div><div class="cmd-desc">Керування списком заборонених слів: add, remove, list, clear.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/automod_exempt</span><span class="new-badge">NEW</span><span class="cmd-arg-pill">[exempt_role]</span><span class="cmd-arg-pill">[exempt_channel]</span></div><div class="cmd-desc">Ролі або канали де AutoMod не спрацьовує.</div></div>
       </div>
     </div>
 
     <!-- ═══ MUSIC TAB ═══ -->
     <div class="tab-panel" id="tab-music-cmds" style="display:none;">
-      <div class="admin-notice" style="background:rgba(29,185,84,.06);border-color:rgba(29,185,84,.2);">
-        🎵 Музичні команди доступні <strong style="color:var(--music2);">всім учасникам</strong> сервера. Єдина умова — перебувати у голосовому каналі перед використанням <code class="inline-code">/play</code>.
-      </div>
+      <div class="admin-notice" style="background:rgba(29,185,84,.06);border-color:rgba(29,185,84,.2);">🎵 Музичні команди доступні <strong style="color:var(--music2);">всім учасникам</strong> сервера.</div>
       <div class="cmd-grid">
-
         <div class="cmd-category">🚀 Швидкий старт</div>
-        <div class="cmd-row" style="background:rgba(29,185,84,.04);border-color:rgba(29,185,84,.2);">
-          <div class="cmd-left" style="min-width:180px;">
-            <span class="cmd-pill music">/play</span>
-            <span class="cmd-req-pill">query</span>
-          </div>
-          <div class="cmd-desc">
-            Головна команда. Введи назву пісні або YouTube URL — бот знайде і відтворить.<br>
-            <span style="color:var(--music2);font-size:.8rem;">
-              ▸ <code class="inline-code">/play lo-fi hip hop beats</code> — пошук за назвою<br>
-              ▸ <code class="inline-code">/play https://youtube.com/watch?v=…</code> — пряме посилання<br>
-              ▸ Якщо вже щось грає — трек стає в чергу автоматично
-            </span>
-          </div>
-        </div>
-
+        <div class="cmd-row" style="background:rgba(29,185,84,.04);border-color:rgba(29,185,84,.2);"><div class="cmd-left" style="min-width:180px;"><span class="cmd-pill music">/play</span><span class="cmd-req-pill">query</span></div><div class="cmd-desc">Головна команда. Введи назву пісні або YouTube URL. Якщо вже щось грає — трек стає в чергу автоматично.</div></div>
         <div class="cmd-category">⏯️ Керування відтворенням</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/pause</span></div><div class="cmd-desc">Поставити на паузу або продовжити — один раз вводиш і перемикає стан.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/skip</span></div><div class="cmd-desc">Пропустити поточний трек і відтворити наступний з черги.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/stop</span></div><div class="cmd-desc">Повна зупинка: очищає чергу, зупиняє музику та від'єднує бота від голосового каналу.</div></div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/pause</span></div><div class="cmd-desc">Поставити на паузу або продовжити.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/skip</span></div><div class="cmd-desc">Пропустити поточний трек і відтворити наступний.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/stop</span></div><div class="cmd-desc">Повна зупинка: очищає чергу та від'єднує бота.</div></div>
         <div class="cmd-category">📋 Черга</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/queue</span></div><div class="cmd-desc">Переглянути всю чергу: поточний трек, наступні до 10, гучність і режим повтору.</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/nowplaying</span></div><div class="cmd-desc">Повна картка поточного треку — назва, тривалість, thumbnail, хто замовив.</div></div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/remove</span><span class="cmd-req-pill">position</span></div>
-          <div class="cmd-desc">Видалити трек з черги за номером. Спочатку глянь <code class="inline-code">/queue</code> щоб дізнатись номер позиції.</div>
-        </div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/shuffle</span></div><div class="cmd-desc">Перемішати чергу у випадковому порядку. Мінімум 2 треки в черзі.</div></div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/remove</span><span class="cmd-req-pill">position</span></div><div class="cmd-desc">Видалити трек з черги за номером.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/shuffle</span></div><div class="cmd-desc">Перемішати чергу у випадковому порядку.</div></div>
         <div class="cmd-category">🔊 Гучність та повтор</div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/volume</span><span class="cmd-req-pill">percent</span></div>
-          <div class="cmd-desc">
-            Встановити гучність від 1 до 200%. Стандарт — 50%.<br>
-            <span style="color:var(--sub);font-size:.8rem;">Вище 100% — підсилення сигналу (можуть бути спотворення).</span>
-          </div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/loop</span></div>
-          <div class="cmd-desc">
-            Перемикач режимів повтору по колу:<br>
-            <span style="color:var(--success);font-size:.8rem;">🔁 Повтор треку</span> →
-            <span style="color:var(--discord2);font-size:.8rem;">🔁 Повтор усієї черги</span> →
-            <span style="color:var(--sub);font-size:.8rem;">▶️ Без повтору</span>
-          </div>
-        </div>
-
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/volume</span><span class="cmd-req-pill">percent</span></div><div class="cmd-desc">Встановити гучність від 1 до 200%. Стандарт — 50%.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/loop</span></div><div class="cmd-desc">Перемикач режимів: 🔁 Трек → 🔁 Черга → ▶️ Без повтору.</div></div>
         <div class="cmd-category">🎤 З'єднання</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/join</span></div><div class="cmd-desc">Підключити бота до голосового каналу де ти зараз. <code class="inline-code">/play</code> робить це автоматично — команда для ручного підключення.</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/leave</span></div><div class="cmd-desc">Від'єднати бота від голосового каналу та очистити чергу.</div></div>
-
-      </div>
-
-      <div class="cmd-legend">
-        <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
-        &nbsp;&nbsp;
-        <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
-        &nbsp;&nbsp;
-        <span style="color:var(--music2);font-family:var(--ff-mono);font-size:.72rem;">🎵 зелений = музична команда</span>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/join</span></div><div class="cmd-desc">Підключити бота до голосового каналу вручну.</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/leave</span></div><div class="cmd-desc">Від'єднати бота та очистити чергу.</div></div>
       </div>
     </div>
 
     <!-- ═══ TEMPVOICE TAB ═══ -->
     <div class="tab-panel" id="tab-voice-cmds" style="display:none;">
-      <div class="admin-notice" style="background:rgba(0,180,216,.06);border-color:rgba(0,180,216,.2);">
-        🔊 Налаштування TempVoice — <strong style="color:var(--voice2);">тільки для адміністраторів</strong>. Після налаштування <strong style="color:var(--voice2);">будь-який учасник</strong> може зайти в тригер-канал і отримати власну кімнату.
-      </div>
+      <div class="admin-notice" style="background:rgba(0,180,216,.06);border-color:rgba(0,180,216,.2);">🔊 Налаштування TempVoice — <strong style="color:var(--voice2);">тільки для адміністраторів</strong>. Після налаштування <strong style="color:var(--voice2);">будь-який учасник</strong> може зайти в тригер-канал і отримати власну кімнату.</div>
       <div class="cmd-grid">
-
         <div class="cmd-category">⚙️ Налаштування системи</div>
-        <div class="cmd-row new-cmd" style="background:rgba(0,180,216,.04);border-color:rgba(0,180,216,.2);">
-          <div class="cmd-left" style="min-width:200px;">
-            <span class="cmd-pill voice">/voice_setup</span>
-            <span class="new-badge">NEW</span>
-            <span class="cmd-req-pill">creator_channel</span>
-            <span class="cmd-arg-pill">[category]</span>
-          </div>
-          <div class="cmd-desc">
-            Головна команда. Активує систему тимчасових голосових каналів.<br>
-            <span style="color:var(--voice2);font-size:.8rem;">
-              ▸ <code class="inline-code">creator_channel</code> — голосовий канал-тригер. Коли хтось заходить сюди — бот створює для нього окремий канал<br>
-              ▸ <code class="inline-code">category</code> — категорія де з'являтимуться канали (якщо не вказати — та сама що й тригер)<br>
-              ▸ Новий канал автоматично називається <code class="inline-code">🔊 Ім'я учасника</code><br>
-              ▸ Власник отримує права: керувати каналом, мутити, переміщати інших<br>
-              ▸ Канал зникає автоматично коли стає порожнім
-            </span>
-          </div>
-        </div>
-
-        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill voice">/voice_disable</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Вимкнути систему TempVoice. Бот перестає реагувати на канал-тригер. Вже існуючі тимчасові канали залишаться.</div></div>
-
+        <div class="cmd-row new-cmd" style="background:rgba(0,180,216,.04);border-color:rgba(0,180,216,.2);"><div class="cmd-left"><span class="cmd-pill voice">/voice_setup</span><span class="new-badge">NEW</span><span class="cmd-req-pill">creator_channel</span><span class="cmd-arg-pill">[category]</span></div><div class="cmd-desc">Активує систему тимчасових голосових каналів. Коли учасник заходить у тригер — бот миттєво створює для нього окремий канал.</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill voice">/voice_disable</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Вимкнути систему TempVoice. Бот перестає реагувати на канал-тригер.</div></div>
         <div class="cmd-category">ℹ️ Моніторинг</div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill voice">/voice_info</span>
-            <span class="new-badge">NEW</span>
-          </div>
-          <div class="cmd-desc">
-            Переглянути статус системи і всі активні тимчасові канали.<br>
-            <span style="color:var(--voice2);font-size:.8rem;">▸ Показує канал-тригер та категорію</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ Для кожного активного каналу: власник, кількість учасників</span><br>
-            <span style="color:var(--success);font-size:.8rem;">▸ Доступна всім учасникам сервера</span>
-          </div>
-        </div>
-
-        <div class="cmd-category">🎯 Як це працює — покроково</div>
-        <div class="cmd-row" style="background:rgba(0,180,216,.03);border-color:rgba(0,180,216,.15);flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">1</span>
-            <div class="cmd-desc">Адмін вводить <code class="inline-code">/voice_setup</code> і вказує канал-тригер (наприклад «🎙️ + Власний канал»)</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">2</span>
-            <div class="cmd-desc">Учасник заходить у цей канал — бот миттєво створює <code class="inline-code">🔊 Ім'я учасника</code></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">3</span>
-            <div class="cmd-desc">Учасника автоматично переміщують у його власну кімнату. Він може перейменувати канал, встановити ліміт, мутити інших</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.3);color:var(--voice2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">4</span>
-            <div class="cmd-desc">Коли всі вийшли — канал автоматично видаляється. Жодних «мертвих» каналів не залишається</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="cmd-legend">
-        <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
-        &nbsp;&nbsp;
-        <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
-        &nbsp;&nbsp;
-        <span style="color:var(--voice2);font-family:var(--ff-mono);font-size:.72rem;">🔊 блакитний = TempVoice команда</span>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill voice">/voice_info</span><span class="new-badge">NEW</span></div><div class="cmd-desc">Переглянути статус системи і всі активні тимчасові канали: власники, кількість учасників.</div></div>
       </div>
     </div>
 
-    <!-- ═══ AUTOMOD TAB ═══ -->
+    <!-- ═══ AUTOMOD TAB (UPDATED) ═══ -->
     <div class="tab-panel" id="tab-automod-cmds" style="display:none;">
       <div class="admin-notice" style="background:rgba(237,66,69,.06);border-color:rgba(237,66,69,.2);">
         🛡️ Налаштування AutoMod доступні тільки <strong style="color:var(--automod2);">адміністраторам</strong>. Переглянути статус може <strong style="color:var(--automod2);">будь-який учасник</strong> командою <code class="inline-code">/automod_status</code>.
       </div>
-      <div class="cmd-grid">
 
+      <!-- AI провайдери -->
+      <div style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:18px 20px;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="font-size:1.3rem;">🤖</span>
+          <div>
+            <div style="font-weight:700;font-size:.95rem;color:var(--text);">AI-розпізнавання мови <span class="ai-badge">AI POWERED</span></div>
+            <div style="font-size:.8rem;color:var(--sub);margin-top:2px;">Замість простого списку слів — справжня нейромережа відрізняє українську від російської</div>
+          </div>
+        </div>
+
+        <div class="provider-grid">
+          <div class="provider-card free">
+            <div class="prov-head">
+              <span class="prov-name">Ollama</span>
+              <span class="prov-badge free">БЕЗКОШТОВНО</span>
+            </div>
+            <div class="prov-model">llama3.2 · llama3.1 · mistral…</div>
+            <div class="prov-desc">Локально на твоєму сервері. Без ключів, без лімітів, повна приватність.</div>
+          </div>
+          <div class="provider-card free-tier">
+            <div class="prov-head">
+              <span class="prov-name">Gemini</span>
+              <span class="prov-badge free-tier">FREE TIER</span>
+            </div>
+            <div class="prov-model">gemini-1.5-flash · gemini-2.0-flash…</div>
+            <div class="prov-desc">Google AI Studio — безкоштовний ключ, 60 запитів/хв. Ідеально для старту.</div>
+          </div>
+          <div class="provider-card paid">
+            <div class="prov-head">
+              <span class="prov-name">OpenAI</span>
+              <span class="prov-badge paid">ПЛАТНИЙ</span>
+            </div>
+            <div class="prov-model">gpt-4o-mini · gpt-4o…</div>
+            <div class="prov-desc">Висока точність, низька ціна за gpt-4o-mini.</div>
+          </div>
+          <div class="provider-card paid">
+            <div class="prov-head">
+              <span class="prov-name">Anthropic</span>
+              <span class="prov-badge paid">ПЛАТНИЙ</span>
+            </div>
+            <div class="prov-model">claude-haiku · claude-sonnet…</div>
+            <div class="prov-desc">Claude Haiku — найшвидша модель для модерації.</div>
+          </div>
+        </div>
+
+        <!-- Pipeline -->
+        <div class="ai-pipeline">
+          <div class="ai-pipeline-title">⚡ Як AI перевіряє кожне повідомлення</div>
+          <div class="pipeline-steps">
+            <div class="pipeline-step">
+              <span class="step-num fast">1</span>
+              <div class="step-text"><strong>Швидкий pre-filter</strong> — унікальні рос. символи <code class="inline-code">ё ъ ы э</code>? Миттєво блокуємо без API-виклику.</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num skip">2</span>
+              <div class="step-text"><strong>Немає кирилиці?</strong> — пропускаємо (latin, emoji, числа — не рос.).</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num skip">3</span>
+              <div class="step-text"><strong>Дуже короткий текст?</strong> — менше 6 символів: не витрачаємо токени на AI.</div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num ai">4</span>
+              <div class="step-text"><strong>AI-аналіз</strong> — текст надсилається до провайдера з чітким промптом. Модель відрізняє «Привіт» (укр.) від «Привет» (рос.), болгарську від сербської тощо. Таймаут 5с + кеш 500 записів.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- .env config -->
+        <div style="margin-top:12px;">
+          <div style="font-family:var(--ff-mono);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);margin-bottom:6px;">Налаштування в .env</div>
+          <div class="env-block">
+            <span class="env-comment"># Вибір провайдера (ollama | gemini | openai | anthropic)</span><br>
+            <span class="env-key">AUTOMOD_AI_PROVIDER</span><span class="env-eq">=</span><span class="env-val">ollama</span><br>
+            <span class="env-key">AUTOMOD_AI_MODEL</span><span class="env-eq">=</span><span class="env-val">llama3.2</span><br>
+            <span class="env-comment"># Тільки для Ollama (URL сервера)</span><br>
+            <span class="env-key">AUTOMOD_AI_BASE_URL</span><span class="env-eq">=</span><span class="env-val-dim">http://localhost:11434</span><br>
+            <span class="env-comment"># API ключі (лише для хмарних провайдерів)</span><br>
+            <span class="env-key">GEMINI_API_KEY</span><span class="env-eq">=</span><span class="env-val-dim">AIza...</span><br>
+            <span class="env-key">OPENAI_API_KEY</span><span class="env-eq">=</span><span class="env-val-dim">sk-...</span><br>
+            <span class="env-key">ANTHROPIC_API_KEY</span><span class="env-eq">=</span><span class="env-val-dim">sk-ant-...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmd-grid">
         <div class="cmd-category">⚙️ Головні налаштування</div>
         <div class="cmd-row new-cmd" style="background:rgba(237,66,69,.03);border-color:rgba(237,66,69,.18);">
           <div class="cmd-left" style="min-width:200px;">
@@ -854,12 +655,11 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
             <span class="cmd-arg-pill">[warn_message]</span>
           </div>
           <div class="cmd-desc">
-            Головна команда конфігурації AutoMod. Всі параметри опціональні — вказуй лише те що хочеш змінити.<br>
+            Головна команда конфігурації AutoMod. У відповіді бот показує активний AI-провайдер і модель.<br>
             <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">enabled: так</code> — активувати автомодерацію</span><br>
-            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">block_russian: так</code> — блокувати повідомлення з символами ё, ъ, ы, э або рос. словами</span><br>
-            <span style="color:var(--gold);font-size:.8rem;">▸ <code class="inline-code">keywords: слово1,слово2</code> — заборонені слова (регістр не важливий)</span><br>
-            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">log_channel: #канал</code> — де з'являтимуться embed-логи порушень</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">warn_message</code> — текст попередження, <code class="inline-code">{user}</code> замінюється на пінг порушника</span>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">block_russian: так</code> — AI-детектор російської мови (з вибором провайдера в .env)</span><br>
+            <span style="color:var(--gold);font-size:.8rem;">▸ <code class="inline-code">keywords: слово1,слово2</code> — додаткові заборонені слова</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">log_channel</code> — канал для embed-логів порушень</span>
           </div>
         </div>
 
@@ -872,11 +672,11 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
             <span class="cmd-arg-pill">[words]</span>
           </div>
           <div class="cmd-desc">
-            Динамічне керування списком заборонених слів без перезапуску налаштувань.<br>
-            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">add слово1,слово2</code> — додати одне або кілька слів (без дублів)</span><br>
-            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove слово</code> — видалити конкретне слово зі списку</span><br>
-            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">list</code> — переглянути весь поточний список (епфемерно)</span><br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">clear</code> — повністю очистити список заборонених слів</span>
+            Динамічне керування списком заборонених слів.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">add слово1,слово2</code> — додати</span><br>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove слово</code> — видалити</span><br>
+            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">list</code> — переглянути (ephemeral)</span><br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ <code class="inline-code">clear</code> — очистити все</span>
           </div>
         </div>
 
@@ -891,11 +691,9 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
             <span class="cmd-arg-pill">[remove_channel]</span>
           </div>
           <div class="cmd-desc">
-            Налаштувати ролі та канали які AutoMod ігнорує.<br>
-            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">exempt_role</code> — роль чиї повідомлення не перевіряються (напр. @Модератор, @Стример)</span><br>
-            <span style="color:var(--discord2);font-size:.8rem;">▸ <code class="inline-code">exempt_channel</code> — канал де AutoMod повністю вимкнений (напр. #off-topic)</span><br>
-            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove_role / remove_channel</code> — прибрати роль або канал з виключень</span><br>
-            Можна вказати кілька за кілька викликів — вони накопичуються.
+            Налаштувати ролі та канали які AutoMod ігнорує. Корисно для @Модератор, #off-topic тощо.<br>
+            <span style="color:var(--success);font-size:.8rem;">▸ <code class="inline-code">exempt_role / exempt_channel</code> — додати виключення</span><br>
+            <span style="color:var(--automod2);font-size:.8rem;">▸ <code class="inline-code">remove_role / remove_channel</code> — прибрати виключення</span>
           </div>
         </div>
 
@@ -906,48 +704,54 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
             <span class="new-badge">NEW</span>
           </div>
           <div class="cmd-desc">
-            Переглянути повний поточний стан AutoMod. Доступна всім учасникам сервера (відповідь епфемерна).<br>
-            <span style="color:var(--sub);font-size:.8rem;">▸ Показує: статус, режим блоку рос. символів, лог канал, список слів, виключені ролі та канали</span>
+            Переглянути повний поточний стан AutoMod. Доступна всім учасникам (відповідь ephemeral).<br>
+            <span style="color:var(--sub);font-size:.8rem;">▸ Показує: статус, активний AI-провайдер + модель, лог канал, список слів, виключення</span>
           </div>
         </div>
 
         <div class="cmd-category">🎯 Що саме перевіряє AutoMod</div>
-        <div class="cmd-row" style="flex-direction:column;gap:10px;">
+        <div class="cmd-row" style="flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="color:var(--ai2);font-size:1.1rem;flex-shrink:0;">🤖</span>
+            <div class="cmd-desc"><strong style="color:var(--text);">AI-детектор мови</strong> — надсилає текст до вибраного провайдера (Ollama/Gemini/OpenAI/Anthropic). Модель розуміє контекст: «Привіт» (укр.) ≠ «Привет» (рос.), ігнорує латиницю, emojis, числа. При помилці API — пропускає без блокування (conservative fallback).</div>
+          </div>
           <div style="display:flex;align-items:flex-start;gap:12px;">
             <span style="color:var(--automod2);font-size:1.1rem;flex-shrink:0;">🇷🇺</span>
-            <div class="cmd-desc"><strong style="color:var(--text);">Блок російської кирилиці</strong> — виявляє унікальні рос. символи (ё, ъ, ы, э та ін.) або рос. слова (привет, пожалуйста, спасибо та ін.). Українська кирилиця не блокується.</div>
+            <div class="cmd-desc"><strong style="color:var(--text);">Швидкий pre-filter</strong> — унікальні символи <code class="inline-code">ё ъ ы э</code> спрацьовують миттєво без API. Економія токенів і затримки нуль.</div>
           </div>
           <div style="display:flex;align-items:flex-start;gap:12px;">
             <span style="color:var(--gold);font-size:1.1rem;flex-shrink:0;">🔑</span>
-            <div class="cmd-desc"><strong style="color:var(--text);">Заборонені ключові слова</strong> — перевірка незалежно від регістру, знаходить навіть якщо слово всередині речення.</div>
+            <div class="cmd-desc"><strong style="color:var(--text);">Заборонені слова</strong> — незалежно від регістру, знаходить навіть всередині речення. Перевіряється до AI-детектора.</div>
           </div>
           <div style="display:flex;align-items:flex-start;gap:12px;">
             <span style="color:var(--success);font-size:1.1rem;flex-shrink:0;">🗑️</span>
-            <div class="cmd-desc"><strong style="color:var(--text);">При порушенні</strong> — повідомлення видаляється, порушнику надсилається попередження у канал (зникає через 8с), у лог-канал надходить embed з деталями.</div>
+            <div class="cmd-desc"><strong style="color:var(--text);">При порушенні</strong> — повідомлення видаляється, порушнику надсилається попередження у канал (зникає за 8с), у лог-канал надходить embed з причиною та назвою AI-провайдера.</div>
           </div>
         </div>
 
       </div>
 
       <div class="cmd-legend">
-        <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
-        &nbsp;&nbsp;
-        <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
-        &nbsp;&nbsp;
-        <span style="color:var(--automod2);font-family:var(--ff-mono);font-size:.72rem;">🛡️ червоний = AutoMod команда</span>
+        <span class="cmd-req-pill">обов'язковий</span>
+        &nbsp;
+        <span class="cmd-arg-pill">[опціональний]</span>
+        &nbsp;
+        <span style="color:var(--automod2);font-family:var(--ff-mono);font-size:.72rem;">🛡️ червоний = AutoMod</span>
+        &nbsp;
+        <span class="ai-badge" style="font-size:.68rem;">AI POWERED</span> — використовує LLM
       </div>
     </div>
 
     <div class="cmd-legend" id="main-legend">
-      <span class="cmd-req-pill">обов'язковий</span> — потрібно вказати
+      <span class="cmd-req-pill">обов'язковий</span>
       &nbsp;&nbsp;
-      <span class="cmd-arg-pill">[опціональний]</span> — можна пропустити
+      <span class="cmd-arg-pill">[опціональний]</span>
       &nbsp;&nbsp;
       <span class="new-badge" style="font-size:.72rem;">NEW</span> — нова команда
       &nbsp;&nbsp;
       <span class="upd-badge" style="font-size:.72rem;">UPD</span> — оновлена команда
       &nbsp;&nbsp;
-      <span style="color:var(--music2);font-family:var(--ff-mono);font-size:.72rem;">🎵 зелений = музична команда</span>
+      <span class="ai-badge" style="font-size:.72rem;">AI POWERED</span> — з підтримкою AI
     </div>
   </div>
 </section>
@@ -957,11 +761,7 @@ footer { position: relative; z-index: 2; padding: 24px 48px; border-top: 1px sol
 <section class="thankyou">
   <div class="ty-label">❤️ Від серця</div>
   <h2 class="ty-title">ДЯКУЮ<br><span class="gold">ТОБІ</span></h2>
-  <p class="ty-text">
-    Величезна подяка кожному, хто підтримує стрім <strong>sun69wukong</strong>!
-    Ваша підтримка — це мотивація стрімити більше, краще і веселіше.
-    Разом ми будуємо крутий Discord-comm'юніті! 🐉🔥
-  </p>
+  <p class="ty-text">Величезна подяка кожному, хто підтримує стрім <strong>sun69wukong</strong>! Ваша підтримка — це мотивація стрімити більше, краще і веселіше. Разом ми будуємо крутий Discord-comm'юніті! 🐉🔥</p>
   <div class="donate-card">
     <div class="donate-icon">☕</div>
     <div class="donate-title">Підтримати стрімера</div>
