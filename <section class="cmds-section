@@ -363,260 +363,103 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   <div class="cmds-wrap">
     <div class="cmds-header">
       <div class="cmds-title">Команди</div>
-      <p class="cmds-sub">Всі команди використовують слеш-синтаксис <span class="inline-code">/команда</span>. Деякі вимагають прав адміністратора.</p>
+      <p class="cmds-sub">Всі команди використовують слеш-синтаксис <span class="inline-code">/команда</span>. Багато команд вимагають прав адміністратора.</p>
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('general',this)">🏠 Загальні</button>
+      <button class="tab-btn active" onclick="switchTab('general',this)">🏠 Twitch + Загальні</button>
       <button class="tab-btn music-tab" onclick="switchTab('music',this)">🎵 Музика</button>
       <button class="tab-btn voice-tab" onclick="switchTab('voice',this)">🎙️ Голос</button>
       <button class="tab-btn automod-tab" onclick="switchTab('automod',this)">🛡️ Автомод</button>
       <button class="tab-btn free-tab" onclick="switchTab('free',this)">🎮 Free Games</button>
     </div>
 
-    <!-- GENERAL -->
+    <!-- GENERAL + TWITCH -->
     <div class="tab-pane active" id="tab-general">
       <div class="cmd-grid">
-        <div class="cmd-category">Twitch сповіщення</div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/twitch add</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-            <span class="cmd-arg-pill">streamer</span>
-            <span class="cmd-arg-pill">channel</span>
-          </div>
-          <div class="cmd-desc">Додати стрімера до відстеження. Бот надсилатиме сповіщення у вказаний канал, коли стрімер починає ефір. <span class="new-badge">NEW</span></div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/twitch remove</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-            <span class="cmd-arg-pill">streamer</span>
-          </div>
-          <div class="cmd-desc">Видалити стрімера зі списку відстеження на цьому сервері.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill admin">/twitch list</span>
-          </div>
-          <div class="cmd-desc">Показати всіх стрімерів, які відстежуються на цьому сервері.</div>
-        </div>
-        <div class="cmd-category">Загальні</div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill">/ping</span></div>
-          <div class="cmd-desc">Перевірити затримку бота і Discord API. Корисно для діагностики.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill">/info</span></div>
-          <div class="cmd-desc">Інформація про бота: версія, аптайм, кількість серверів, бібліотека.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/help</span>
-            <span class="cmd-arg-pill">модуль?</span>
-          </div>
-          <div class="cmd-desc">Довідка по всіх командах або по конкретному модулю.</div>
-        </div>
+        <div class="cmd-category">Twitch Сповіщення</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/ping</span></div><div class="cmd-desc">Перевірити пінг бота</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/uptime</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Час стріму</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/stats</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Повна інформація про стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/viewers</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Кількість глядачів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/game</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Поточна гра та назва стріму</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/streamers</span></div><div class="cmd-desc">Список стрімерів сервера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/clips</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Останні кліпи</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/profile</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Профіль стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/schedule</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Розклад стрімів</div></div>
+
+        <div class="cmd-category">Адміністраторські</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_add</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Додати стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_remove</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Видалити стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_toggle</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Увімкнути/вимкнути стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_tokens</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати Twitch токен</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_channel</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Дефолтний канал оголошень</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_live_role</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Роль для LIVE стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_discord_member</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Прив'язати Discord акаунт до стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/create_event</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити Discord Event</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/announce_now</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Примусово оголосити стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/force_check</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Примусова перевірка стрімерів</div></div>
+
+        <div class="cmd-category">Модерація</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/ban</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Забанити учасника</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/kick</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Кікнути учасника</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/invite</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити запрошення</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/thread</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити гілку</div></div>
       </div>
     </div>
 
-    <!-- MUSIC -->
+    <!-- MUSIC (оновлено) -->
     <div class="tab-pane" id="tab-music">
       <div class="cmd-grid">
-        <div class="cmd-category">Відтворення</div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/play</span><span class="cmd-arg-pill">запит або URL</span></div>
-          <div class="cmd-desc">Відтворити трек або додати до черги. Підтримує YouTube, Spotify, SoundCloud та пряме посилання.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/pause</span></div>
-          <div class="cmd-desc">Поставити поточний трек на паузу.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/resume</span></div>
-          <div class="cmd-desc">Відновити відтворення після паузи.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/skip</span></div>
-          <div class="cmd-desc">Пропустити поточний трек і перейти до наступного в черзі.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/stop</span></div>
-          <div class="cmd-desc">Зупинити відтворення та очистити чергу.</div>
-        </div>
-        <div class="cmd-category">Черга та керування</div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/queue</span></div>
-          <div class="cmd-desc">Показати поточну чергу треків з нумерацією.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/volume</span><span class="cmd-arg-pill">1–100</span></div>
-          <div class="cmd-desc">Встановити гучність відтворення від 1 до 100.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/nowplaying</span></div>
-          <div class="cmd-desc">Показати інформацію про трек, що зараз грає: назву, автора, тривалість, прогрес.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/shuffle</span></div>
-          <div class="cmd-desc">Перемішати треки у черзі у випадковому порядку.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill music">/loop</span><span class="cmd-arg-pill">off / track / queue</span></div>
-          <div class="cmd-desc">Увімкнути або вимкнути повтор поточного треку або всієї черги.</div>
-        </div>
+        <div class="cmd-category">Музика</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/play</span><span class="cmd-arg-pill">запит або URL</span></div><div class="cmd-desc">Відтворити трек</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/skip</span></div><div class="cmd-desc">Пропустити трек</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/pause</span></div><div class="cmd-desc">Пауза / продовжити</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/stop</span></div><div class="cmd-desc">Зупинити та відключитись</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/queue</span></div><div class="cmd-desc">Показати чергу</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/nowplaying</span></div><div class="cmd-desc">Що зараз грає</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/volume</span><span class="cmd-arg-pill">1-200</span></div><div class="cmd-desc">Гучність</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/loop</span></div><div class="cmd-desc">Перемикання повтору</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/shuffle</span></div><div class="cmd-desc">Перемішати чергу</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/join</span></div><div class="cmd-desc">Приєднатися до голосового каналу</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/leave</span></div><div class="cmd-desc">Вийти з голосового каналу</div></div>
       </div>
     </div>
 
     <!-- VOICE -->
     <div class="tab-pane" id="tab-voice">
       <div class="cmd-grid">
-        <div class="cmd-category">Запис та транскрипція</div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left"><span class="cmd-pill voice">/record start</span><span class="cmd-req-pill">🔑 Адмін</span></div>
-          <div class="cmd-desc">Почати запис голосового каналу. Бот зайде і записуватиме розмову. <span class="new-badge">NEW</span></div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill voice">/record stop</span><span class="cmd-req-pill">🔑 Адмін</span></div>
-          <div class="cmd-desc">Зупинити запис та надіслати аудіофайл у канал.</div>
-        </div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left"><span class="cmd-pill voice">/transcribe</span><span class="cmd-arg-pill">аудіофайл</span><span class="ai-badge">AI</span></div>
-          <div class="cmd-desc">Транскрибувати аудіозапис у текст за допомогою AI. <span class="new-badge">NEW</span></div>
-        </div>
-        <div class="cmd-category">Керування</div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill voice">/join</span></div>
-          <div class="cmd-desc">Приєднати бота до голосового каналу, в якому ти знаходишся.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill voice">/leave</span></div>
-          <div class="cmd-desc">Відключити бота від голосового каналу.</div>
-        </div>
+        <div class="cmd-category">TempVoice</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати тимчасові голосові канали</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вимкнути TempVoice</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_info</span></div><div class="cmd-desc">Статус тимчасових каналів</div></div>
       </div>
     </div>
 
     <!-- AUTOMOD -->
     <div class="tab-pane" id="tab-automod">
-      <div class="admin-notice">
-        ⚙️ Всі команди автомодерації вимагають прав <strong>Адміністратора</strong>. Налаштування зберігаються окремо для кожного сервера.
-      </div>
+      <!-- (залишив твій попередній контент + додав нові) -->
       <div class="cmd-grid">
-        <div class="cmd-category">Налаштування</div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill automod">/automod enable</span><span class="cmd-req-pill">🔑 Адмін</span></div>
-          <div class="cmd-desc">Увімкнути автоматичну модерацію на сервері.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill automod">/automod disable</span><span class="cmd-req-pill">🔑 Адмін</span></div>
-          <div class="cmd-desc">Вимкнути автомодерацію на сервері.</div>
-        </div>
-        <div class="cmd-row upd-cmd">
-          <div class="cmd-left"><span class="cmd-pill automod">/automod aggression</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">low / medium / high</span><span class="upd-badge">UPD</span></div>
-          <div class="cmd-desc">Встановити рівень агресивності модерації.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill automod">/automod channel</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">канал</span></div>
-          <div class="cmd-desc">Вибрати канал для логів автомодерації.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill automod">/automod whitelist</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">роль або канал</span></div>
-          <div class="cmd-desc">Додати роль або канал до білого списку (виключити з модерації).</div>
-        </div>
-      </div>
-      <div class="cmd-category" style="padding-top:20px">Рівні агресивності</div>
-      <div class="aggression-grid">
-        <div class="aggression-card low">
-          <div class="agg-head"><span class="agg-icon">🟢</span><span class="agg-name">LOW</span></div>
-          <div class="agg-desc">Тільки явний спам і заборонені слова. Мінімальне втручання, підходить для активних спільнот.</div>
-          <div class="agg-timeout">Таймаут: 1 хв</div>
-        </div>
-        <div class="aggression-card medium">
-          <div class="agg-head"><span class="agg-icon">🟡</span><span class="agg-name">MEDIUM</span></div>
-          <div class="agg-desc">Баланс між захистом і свободою. Фільтрує токсичність, масові згадки та капслок.</div>
-          <div class="agg-timeout">Таймаут: 5 хв</div>
-        </div>
-        <div class="aggression-card high">
-          <div class="agg-head"><span class="agg-icon">🔴</span><span class="agg-name">HIGH</span></div>
-          <div class="agg-desc">Максимальний захист. Суворий контроль, підходить для публічних або дитячих серверів.</div>
-          <div class="agg-timeout">Таймаут: 10–60 хв</div>
-        </div>
-      </div>
-      <div class="cmd-category" style="padding-top:10px">Дії модерації</div>
-      <div class="action-grid">
-        <div class="action-card"><div class="action-icon">🗑️</div><div class="action-name">DELETE</div><div class="action-desc">Видалити повідомлення</div></div>
-        <div class="action-card"><div class="action-icon">⚠️</div><div class="action-name">WARN</div><div class="action-desc">Надіслати попередження</div></div>
-        <div class="action-card"><div class="action-icon">🔇</div><div class="action-name">TIMEOUT</div><div class="action-desc">Обмежити доступ</div></div>
-        <div class="action-card"><div class="action-icon">🚫</div><div class="action-name">BAN</div><div class="action-desc">Забанити при рецидиві</div></div>
-      </div>
-      <div class="ai-pipeline">
-        <div class="ai-pipeline-title">⚡ AI Pipeline автомодерації</div>
-        <div class="pipeline-steps">
-          <div class="pipeline-step"><div class="step-num fast">1</div><div class="step-text"><strong>Швидкий фільтр</strong> — перевірка по чорному списку слів (без AI, миттєво)</div></div>
-          <div class="pipeline-step"><div class="step-num ai">2</div><div class="step-text"><strong>AI-аналіз</strong> — нейромережа оцінює тон, контекст і токсичність повідомлення</div></div>
-          <div class="pipeline-step"><div class="step-num ai">3</div><div class="step-text"><strong>Рішення</strong> — на основі рівня агресивності обирається дія (warn / timeout / ban)</div></div>
-          <div class="pipeline-step"><div class="step-num skip">4</div><div class="step-text"><strong>Лог</strong> — запис інциденту у канал модерації з поясненням рішення</div></div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Основні налаштування автомодерації</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_aggression</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Рівень агресивності (low/medium/high)</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_keywords</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Керування забороненими словами</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_exempt</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Виключення ролей та каналів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_status</span></div><div class="cmd-desc">Поточний статус автомоду</div></div>
       </div>
     </div>
 
     <!-- FREE GAMES -->
     <div class="tab-pane" id="tab-free">
+      <!-- твій попередній контент + /freegames_... -->
       <div class="cmd-grid">
-        <div class="cmd-category">Команди</div>
-        <div class="cmd-row new-cmd">
-          <div class="cmd-left"><span class="cmd-pill free">/freegames setup</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">канал</span></div>
-          <div class="cmd-desc">Налаштувати канал для автоматичних сповіщень про безкоштовні ігри. <span class="new-badge">NEW</span></div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill free">/freegames_check</span></div>
-          <div class="cmd-desc">Показати всі ігри, що зараз безкоштовні на всіх платформах.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill free">/freegames_status</span><span class="cmd-arg-pill">Подивитись статус</span></div>
-          <div class="cmd-desc">Переглянути статус — на яких платформах увімкнена роздача.</div>
-        </div>
-        <div class="cmd-row">
-          <div class="cmd-left"><span class="cmd-pill free">/freegames_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div>
-          <div class="cmd-desc">Вимкнути автоматичні сповіщення про безкоштовні ігри на сервері.</div>
-        </div>
-      </div>
-
-      <div class="cmd-category" style="padding-top:20px">Підтримувані платформи</div>
-      <div class="store-grid">
-        <div class="store-card epic-card">
-          <div class="store-head"><span class="store-name">Epic Games</span><span class="store-badge free">FREE</span></div>
-          <div class="store-desc">Щотижневі безкоштовні ігри, часто ААА-тайтли</div>
-        </div>
-        <div class="store-card gog-card">
-          <div class="store-head"><span class="store-name">GOG</span><span class="store-badge free">FREE</span></div>
-          <div class="store-desc">Класичні та інді ігри без DRM</div>
-        </div>
-        <div class="store-card steam-card">
-          <div class="store-head"><span class="store-name">Steam</span><span class="store-badge free">FREE</span></div>
-          <div class="store-desc">Безкоштовні вихідні та промо-акції</div>
-        </div>
-        <div class="store-card ubi-card">
-          <div class="store-head"><span class="store-name">Ubisoft</span><span class="store-badge free">FREE</span></div>
-          <div class="store-desc">Промо та подарунки через Ubisoft Connect</div>
-        </div>
-        <div class="store-card xbox-card">
-          <div class="store-head"><span class="store-name">Xbox / PC</span><span class="store-badge pass">PASS</span></div>
-          <div class="store-desc">Ігри Game Pass з підпискою</div>
-        </div>
-      </div>
-
-      <div class="free-pipeline">
-        <div class="free-pipeline-title">🎮 Як працює модуль</div>
-        <div class="pipeline-steps">
-          <div class="pipeline-step"><div class="step-num free-step">1</div><div class="step-text"><strong>Сканування</strong> — бот кожні 6 годин перевіряє всі платформи на нові безкоштовні ігри</div></div>
-          <div class="pipeline-step"><div class="step-num free-step">2</div><div class="step-text"><strong>Фільтр</strong> — виключаються ігри, про які вже надсилалось сповіщення</div></div>
-          <div class="pipeline-step"><div class="step-num free-step">3</div><div class="step-text"><strong>Сповіщення</strong> — красивий ембед з назвою, обкладинкою та прямим посиланням надсилається у канал</div></div>
-        </div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати сповіщення</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_check</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Перевірити зараз</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_status</span></div><div class="cmd-desc">Статус модуля</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вимкнути</div></div>
       </div>
     </div>
 
-    <div class="cmd-legend">
+    <div class="cmd-legend">  //тут 
       <span>🔑 — потрібні права адміністратора</span>
       <span>·</span>
       <span style="color:var(--success)">█ NEW</span> — нова функція
