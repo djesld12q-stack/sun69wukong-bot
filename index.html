@@ -58,16 +58,48 @@ header{position:relative;z-index:10;display:flex;align-items:center;justify-cont
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(145,70,255,.5)}
 .btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid var(--border);color:var(--sub);padding:13px 24px;border-radius:12px;font-size:.9rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
 .btn-secondary:hover{border-color:var(--discord2);color:var(--text)}
+
+/* ── STATS GRID FIX ── */
 .stats-section{position:relative;z-index:2;max-width:900px;margin:0 auto 20px;padding:0 32px}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;transition:border-color .25s,transform .2s;position:relative;overflow:hidden}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr); /* завжди 4 рівних колонки */
+  gap:12px;
+  align-items:stretch;
+}
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px 20px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  transition:border-color .25s,transform .2s;
+  position:relative;
+  overflow:hidden;
+  min-height:110px; /* однакова висота */
+}
 .stat-card::before{content:'';position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,var(--glow,rgba(145,70,255,.15)),transparent 70%);pointer-events:none}
 .stat-card:hover{border-color:rgba(145,70,255,.3);transform:translateY(-2px)}
 .stat-card.guilds{--glow:rgba(88,101,242,.2)}.stat-card.streamers{--glow:rgba(145,70,255,.2)}.stat-card.uptime{--glow:rgba(46,204,113,.15)}.stat-card.ping{--glow:rgba(0,180,216,.15)}
-.stat-card-icon{font-size:1.3rem}
-.stat-card-val{font-family:var(--ff-head);font-size:2rem;letter-spacing:.02em;color:var(--twitch2);line-height:1;min-height:2rem}
-.stat-card-val.loading{color:var(--muted);font-family:var(--ff-mono);font-size:.85rem;padding-top:6px}
-.stat-card-label{font-size:.75rem;color:var(--sub);font-family:var(--ff-mono)}
+.stat-card-icon{font-size:1.2rem;margin-bottom:10px;line-height:1}
+.stat-card-val{
+  font-family:var(--ff-head);
+  font-size:2rem;
+  letter-spacing:.02em;
+  color:var(--twitch2);
+  line-height:1;
+  min-height:2rem;
+  flex:1; /* займає весь простір між іконкою та лейблом */
+  display:flex;
+  align-items:flex-end;
+  padding-bottom:6px;
+}
+.stat-card-val.loading{color:var(--muted);font-family:var(--ff-mono);font-size:.85rem}
+.stat-card-label{font-size:.72rem;color:var(--sub);font-family:var(--ff-mono);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ── решта стилів без змін ── */
 .features{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:20px 32px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .2s,transform .2s}
 .feat-card:hover{border-color:rgba(145,70,255,.35);transform:translateY(-3px)}
@@ -189,6 +221,10 @@ header{position:relative;z-index:10;display:flex;align-items:center;justify-cont
 footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:rgba(8,8,16,.6)}
 .footer-text{font-size:.75rem;font-family:var(--ff-mono);color:var(--muted);text-align:center}
 .footer-text a{color:var(--sub);text-decoration:none}.footer-text a:hover{color:var(--twitch2)}
+
+@media(max-width:700px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:600px){
   header{padding:16px 20px}.logo-name{font-size:1.1rem}
   .header-links a:not(.btn-twitch){display:none}
@@ -198,12 +234,12 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   .provider-grid{grid-template-columns:1fr 1fr}.aggression-grid{grid-template-columns:1fr}
   .action-grid{grid-template-columns:1fr 1fr}.store-grid{grid-template-columns:1fr 1fr}
   .status-bar{padding:8px 20px;flex-wrap:wrap;height:auto;gap:8px}.status-bar-right{display:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
 <header>
   <div class="logo-wrap">
     <div class="logo-icon">🐒</div>
@@ -217,7 +253,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   </div>
 </header>
 
-<!-- ═══════════════════════════ STATUS BAR ═══════════════════════════ -->
 <div class="status-bar">
   <div class="status-bar-left">
     <div class="status-indicator">
@@ -242,7 +277,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   <div class="status-bar-right">Останній запит: <span id="last-check">щойно</span></div>
 </div>
 
-<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
 <section class="hero">
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
@@ -266,7 +300,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   </div>
 </section>
 
-<!-- ═══════════════════════════ STATS ═══════════════════════════ -->
 <section class="stats-section">
   <div class="stats-grid">
     <div class="stat-card guilds">
@@ -292,7 +325,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   </div>
 </section>
 
-<!-- ═══════════════════════════ FEATURES ═══════════════════════════ -->
 <section class="features" id="features">
   <div class="feat-card">
     <div class="feat-icon">🎵</div>
@@ -328,7 +360,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════ COMMANDS ═══════════════════════════ -->
 <section class="cmds-section" id="commands">
   <div class="cmds-wrap">
     <div class="cmds-header">
@@ -344,11 +375,10 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
       <button class="tab-btn free-tab" onclick="switchTab('free',this)">🎮 Free Games</button>
     </div>
 
-    <!-- ── GENERAL ── -->
+    <!-- GENERAL -->
     <div class="tab-pane active" id="tab-general">
       <div class="cmd-grid">
         <div class="cmd-category">Twitch сповіщення</div>
-
         <div class="cmd-row new-cmd">
           <div class="cmd-left">
             <span class="cmd-pill admin">/twitch add</span>
@@ -358,7 +388,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
           </div>
           <div class="cmd-desc">Додати стрімера до відстеження. Бот надсилатиме сповіщення у вказаний канал, коли стрімер починає ефір. <span class="new-badge">NEW</span></div>
         </div>
-
         <div class="cmd-row">
           <div class="cmd-left">
             <span class="cmd-pill admin">/twitch remove</span>
@@ -367,30 +396,21 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
           </div>
           <div class="cmd-desc">Видалити стрімера зі списку відстеження на цьому сервері.</div>
         </div>
-
         <div class="cmd-row">
           <div class="cmd-left">
             <span class="cmd-pill admin">/twitch list</span>
           </div>
           <div class="cmd-desc">Показати всіх стрімерів, які відстежуються на цьому сервері.</div>
         </div>
-
         <div class="cmd-category">Загальні</div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/ping</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill">/ping</span></div>
           <div class="cmd-desc">Перевірити затримку бота і Discord API. Корисно для діагностики.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill">/info</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill">/info</span></div>
           <div class="cmd-desc">Інформація про бота: версія, аптайм, кількість серверів, бібліотека.</div>
         </div>
-
         <div class="cmd-row">
           <div class="cmd-left">
             <span class="cmd-pill">/help</span>
@@ -401,190 +421,110 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
       </div>
     </div>
 
-    <!-- ── MUSIC ── -->
+    <!-- MUSIC -->
     <div class="tab-pane" id="tab-music">
       <div class="cmd-grid">
         <div class="cmd-category">Відтворення</div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/play</span>
-            <span class="cmd-arg-pill">запит або URL</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/play</span><span class="cmd-arg-pill">запит або URL</span></div>
           <div class="cmd-desc">Відтворити трек або додати до черги. Підтримує YouTube, Spotify, SoundCloud та пряме посилання.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/pause</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/pause</span></div>
           <div class="cmd-desc">Поставити поточний трек на паузу.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/resume</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/resume</span></div>
           <div class="cmd-desc">Відновити відтворення після паузи.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/skip</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/skip</span></div>
           <div class="cmd-desc">Пропустити поточний трек і перейти до наступного в черзі.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/stop</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/stop</span></div>
           <div class="cmd-desc">Зупинити відтворення та очистити чергу.</div>
         </div>
-
         <div class="cmd-category">Черга та керування</div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/queue</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/queue</span></div>
           <div class="cmd-desc">Показати поточну чергу треків з нумерацією.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/volume</span>
-            <span class="cmd-arg-pill">1–100</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/volume</span><span class="cmd-arg-pill">1–100</span></div>
           <div class="cmd-desc">Встановити гучність відтворення від 1 до 100.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/nowplaying</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/nowplaying</span></div>
           <div class="cmd-desc">Показати інформацію про трек, що зараз грає: назву, автора, тривалість, прогрес.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/shuffle</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/shuffle</span></div>
           <div class="cmd-desc">Перемішати треки у черзі у випадковому порядку.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill music">/loop</span>
-            <span class="cmd-arg-pill">off / track / queue</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill music">/loop</span><span class="cmd-arg-pill">off / track / queue</span></div>
           <div class="cmd-desc">Увімкнути або вимкнути повтор поточного треку або всієї черги.</div>
         </div>
       </div>
     </div>
 
-    <!-- ── VOICE ── -->
+    <!-- VOICE -->
     <div class="tab-pane" id="tab-voice">
       <div class="cmd-grid">
         <div class="cmd-category">Запис та транскрипція</div>
-
         <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill voice">/record start</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill voice">/record start</span><span class="cmd-req-pill">🔑 Адмін</span></div>
           <div class="cmd-desc">Почати запис голосового каналу. Бот зайде і записуватиме розмову. <span class="new-badge">NEW</span></div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill voice">/record stop</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill voice">/record stop</span><span class="cmd-req-pill">🔑 Адмін</span></div>
           <div class="cmd-desc">Зупинити запис та надіслати аудіофайл у канал.</div>
         </div>
-
         <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill voice">/transcribe</span>
-            <span class="cmd-arg-pill">аудіофайл</span>
-            <span class="ai-badge">AI</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill voice">/transcribe</span><span class="cmd-arg-pill">аудіофайл</span><span class="ai-badge">AI</span></div>
           <div class="cmd-desc">Транскрибувати аудіозапис у текст за допомогою AI. <span class="new-badge">NEW</span></div>
         </div>
-
         <div class="cmd-category">Керування</div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill voice">/join</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill voice">/join</span></div>
           <div class="cmd-desc">Приєднати бота до голосового каналу, в якому ти знаходишся.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill voice">/leave</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill voice">/leave</span></div>
           <div class="cmd-desc">Відключити бота від голосового каналу.</div>
         </div>
       </div>
     </div>
 
-    <!-- ── AUTOMOD ── -->
+    <!-- AUTOMOD -->
     <div class="tab-pane" id="tab-automod">
       <div class="admin-notice">
         ⚙️ Всі команди автомодерації вимагають прав <strong>Адміністратора</strong>. Налаштування зберігаються окремо для кожного сервера.
       </div>
-
       <div class="cmd-grid">
         <div class="cmd-category">Налаштування</div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill automod">/automod enable</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill automod">/automod enable</span><span class="cmd-req-pill">🔑 Адмін</span></div>
           <div class="cmd-desc">Увімкнути автоматичну модерацію на сервері.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill automod">/automod disable</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill automod">/automod disable</span><span class="cmd-req-pill">🔑 Адмін</span></div>
           <div class="cmd-desc">Вимкнути автомодерацію на сервері.</div>
         </div>
-
         <div class="cmd-row upd-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill automod">/automod aggression</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-            <span class="cmd-arg-pill">low / medium / high</span>
-            <span class="upd-badge">UPD</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill automod">/automod aggression</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">low / medium / high</span><span class="upd-badge">UPD</span></div>
           <div class="cmd-desc">Встановити рівень агресивності модерації.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill automod">/automod channel</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-            <span class="cmd-arg-pill">канал</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill automod">/automod channel</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">канал</span></div>
           <div class="cmd-desc">Вибрати канал для логів автомодерації.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill automod">/automod whitelist</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-            <span class="cmd-arg-pill">роль або канал</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill automod">/automod whitelist</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">роль або канал</span></div>
           <div class="cmd-desc">Додати роль або канал до білого списку (виключити з модерації).</div>
         </div>
       </div>
-
       <div class="cmd-category" style="padding-top:20px">Рівні агресивності</div>
       <div class="aggression-grid">
         <div class="aggression-card low">
@@ -603,7 +543,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
           <div class="agg-timeout">Таймаут: 10–60 хв</div>
         </div>
       </div>
-
       <div class="cmd-category" style="padding-top:10px">Дії модерації</div>
       <div class="action-grid">
         <div class="action-card"><div class="action-icon">🗑️</div><div class="action-name">DELETE</div><div class="action-desc">Видалити повідомлення</div></div>
@@ -611,7 +550,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
         <div class="action-card"><div class="action-icon">🔇</div><div class="action-name">TIMEOUT</div><div class="action-desc">Обмежити доступ</div></div>
         <div class="action-card"><div class="action-icon">🚫</div><div class="action-name">BAN</div><div class="action-desc">Забанити при рецидиві</div></div>
       </div>
-
       <div class="ai-pipeline">
         <div class="ai-pipeline-title">⚡ AI Pipeline автомодерації</div>
         <div class="pipeline-steps">
@@ -623,54 +561,25 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
       </div>
     </div>
 
-    <!-- ── FREE GAMES ── -->
+    <!-- FREE GAMES -->
     <div class="tab-pane" id="tab-free">
       <div class="cmd-grid">
         <div class="cmd-category">Команди</div>
-
         <div class="cmd-row new-cmd">
-          <div class="cmd-left">
-            <span class="cmd-pill free">/freegames setup</span>
-            <span class="cmd-req-pill">🔑 Адмін</span>
-            <span class="cmd-arg-pill">канал</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill free">/freegames setup</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">канал</span></div>
           <div class="cmd-desc">Налаштувати канал для автоматичних сповіщень про безкоштовні ігри. <span class="new-badge">NEW</span></div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill free">/freegames_check</span>
-          </div>
+          <div class="cmd-left"><span class="cmd-pill free">/freegames_check</span></div>
           <div class="cmd-desc">Показати всі ігри, що зараз безкоштовні на всіх платформах.</div>
         </div>
-
         <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill free">/freegames_status</span>
-            <span class="cmd-req-pill"></span>
-            <span class="cmd-arg-pill">Подивитись статус</span>
-          </div>
-          <div class="cmd-desc">Переглянути статус наа яких включенна роздача.</div>
+          <div class="cmd-left"><span class="cmd-pill free">/freegames_status</span><span class="cmd-arg-pill">Подивитись статус</span></div>
+          <div class="cmd-desc">Переглянути статус — на яких платформах увімкнена роздача.</div>
         </div>
-      </div>
-
-       <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill free">/freegames_disable</span>
-            <span class="cmd-req-pill"></span>
-            <span class="cmd-arg-pill">Вимкнути роздачі</span>
-          </div>
-          <div class="cmd-desc">вимикає роздаачі по іграх.</div>
-        </div>
-      </div>
- 
-    <div class="cmd-row">
-          <div class="cmd-left">
-            <span class="cmd-pill free">/freegames_disable</span>
-            <span class="cmd-req-pill"></span>
-            <span class="cmd-arg-pill">Вимкнути роздачі</span>
-          </div>
-          <div class="cmd-desc">вимикає роздаачі по іграх.</div>
+        <div class="cmd-row">
+          <div class="cmd-left"><span class="cmd-pill free">/freegames_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div>
+          <div class="cmd-desc">Вимкнути автоматичні сповіщення про безкоштовні ігри на сервері.</div>
         </div>
       </div>
 
@@ -722,35 +631,25 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════ THANK YOU ═══════════════════════════ -->
 <section class="thankyou" id="thankyou">
   <div class="ty-label">Підтримка проєкту</div>
   <h2 class="ty-title">Дякуємо за <span class="gold">довіру</span></h2>
   <p class="ty-text">
     Бот повністю безкоштовний і розробляється у вільний час. Якщо він тобі подобається і ти хочеш підтримати розвиток — це дуже допоможе. <strong>Кожна копійка йде на сервери та нові функції.</strong>
   </p>
-
   <div class="donate-card">
     <div class="donate-icon">☕</div>
     <div class="donate-title">Купи розробнику каву</div>
     <div class="donate-sub">Підтримай проєкт донатом — і бот продовжуватиме рости та ставати кращим для всієї спільноти.</div>
     <a href="#" class="btn-donate">💛 Підтримати проєкт</a>
   </div>
-
   <div class="social-row">
-    <a href="https://discord.gg/" class="social-link discord-link">
-      <span>💬</span> Discord сервер
-    </a>
-    <a href="https://twitch.tv/" class="social-link">
-      <span>📺</span> Twitch канал
-    </a>
-    <a href="https://github.com/" class="social-link">
-      <span>🐙</span> GitHub
-    </a>
+    <a href="https://discord.gg/" class="social-link discord-link"><span>💬</span> Discord сервер</a>
+    <a href="https://twitch.tv/" class="social-link"><span>📺</span> Twitch канал</a>
+    <a href="https://github.com/" class="social-link"><span>🐙</span> GitHub</a>
   </div>
 </section>
 
-<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
 <footer>
   <p class="footer-text">
     © 2025 <a href="#">sun69wukong Bot</a> · Зроблено з ❤️ для Discord-спільноти ·
@@ -758,9 +657,7 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   </p>
 </footer>
 
-<!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
 <script>
-// Tab switching
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -768,7 +665,6 @@ function switchTab(id, btn) {
   btn.classList.add('active');
 }
 
-// Fake stats animation on load
 function animateValue(el, end, suffix) {
   if (!el) return;
   let start = 0;
@@ -781,8 +677,8 @@ function animateValue(el, end, suffix) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Simulate uptime
-  const uptimeStart = Date.now() - 1000 * 60 * 60 * 47; // 47 hours ago
+  // Фіксований час старту — не "брехатиме" при кожному перезавантаженні
+  const UPTIME_START = new Date('2025-05-03T12:00:00').getTime();
 
   function formatUptime(ms) {
     const s = Math.floor(ms / 1000);
@@ -795,7 +691,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateUptime() {
-    const up = formatUptime(Date.now() - uptimeStart);
+    const up = formatUptime(Date.now() - UPTIME_START);
     const el1 = document.getElementById('stat-uptime');
     const el2 = document.getElementById('pill-uptime');
     if (el1) el1.textContent = up;
@@ -804,24 +700,20 @@ window.addEventListener('DOMContentLoaded', () => {
   updateUptime();
   setInterval(updateUptime, 30000);
 
-  // Animate stats
   setTimeout(() => {
     animateValue(document.getElementById('stat-guilds'), 128, '');
     animateValue(document.getElementById('stat-streamers'), 47, '');
     document.getElementById('pill-guilds').textContent = '128';
 
-    // Ping
-    const ping = Math.floor(Math.random() * 30) + 35;
+    const ping = 42; // фіксований пінг — без рандому
     document.getElementById('stat-ping').textContent = ping + 'ms';
     document.getElementById('pill-ping').textContent = ping + 'ms';
 
-    // Status
     document.getElementById('status-dot').className = 'status-dot online';
     document.getElementById('status-text').textContent = 'Онлайн';
     document.getElementById('last-check').textContent = 'щойно';
   }, 600);
 });
 </script>
-
 </body>
 </html>
