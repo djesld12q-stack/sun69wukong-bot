@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>sun69wukong Bot · Discord</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#080810;--surface:#0f0f1a;--card:#13131f;--border:#1f1f35;
@@ -56,48 +56,16 @@ header{position:relative;z-index:10;display:flex;align-items:center;justify-cont
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(145,70,255,.5)}
 .btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid var(--border);color:var(--sub);padding:13px 24px;border-radius:12px;font-size:.9rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
 .btn-secondary:hover{border-color:var(--discord2);color:var(--text)}
-
-/* ── STATS GRID FIX ── */
 .stats-section{position:relative;z-index:2;max-width:900px;margin:0 auto 20px;padding:0 32px}
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr); /* завжди 4 рівних колонки */
-  gap:12px;
-  align-items:stretch;
-}
-.stat-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:20px 20px 18px;
-  display:flex;
-  flex-direction:column;
-  gap:0;
-  transition:border-color .25s,transform .2s;
-  position:relative;
-  overflow:hidden;
-  min-height:110px; /* однакова висота */
-}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:stretch}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:0;transition:border-color .25s,transform .2s;position:relative;overflow:hidden;min-height:110px}
 .stat-card::before{content:'';position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,var(--glow,rgba(145,70,255,.15)),transparent 70%);pointer-events:none}
 .stat-card:hover{border-color:rgba(145,70,255,.3);transform:translateY(-2px)}
 .stat-card.guilds{--glow:rgba(88,101,242,.2)}.stat-card.streamers{--glow:rgba(145,70,255,.2)}.stat-card.uptime{--glow:rgba(46,204,113,.15)}.stat-card.ping{--glow:rgba(0,180,216,.15)}
 .stat-card-icon{font-size:1.2rem;margin-bottom:10px;line-height:1}
-.stat-card-val{
-  font-family:var(--ff-head);
-  font-size:2rem;
-  letter-spacing:.02em;
-  color:var(--twitch2);
-  line-height:1;
-  min-height:2rem;
-  flex:1; /* займає весь простір між іконкою та лейблом */
-  display:flex;
-  align-items:flex-end;
-  padding-bottom:6px;
-}
+.stat-card-val{font-family:var(--ff-head);font-size:2rem;letter-spacing:.02em;color:var(--twitch2);line-height:1;min-height:2rem;flex:1;display:flex;align-items:flex-end;padding-bottom:6px}
 .stat-card-val.loading{color:var(--muted);font-family:var(--ff-mono);font-size:.85rem}
 .stat-card-label{font-size:.72rem;color:var(--sub);font-family:var(--ff-mono);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* ── решта стилів без змін ── */
 .features{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:20px 32px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .2s,transform .2s}
 .feat-card:hover{border-color:rgba(145,70,255,.35);transform:translateY(-3px)}
@@ -123,6 +91,7 @@ header{position:relative;z-index:10;display:flex;align-items:center;justify-cont
 .tab-btn.voice-tab.active{color:var(--voice2);border-bottom-color:var(--voice2)}
 .tab-btn.automod-tab.active{color:var(--automod2);border-bottom-color:var(--automod2)}
 .tab-btn.free-tab.active{color:var(--free2);border-bottom-color:var(--free2)}
+.tab-btn.general-tab.active{color:var(--twitch2);border-bottom-color:var(--twitch2)}
 .tab-pane{display:none}.tab-pane.active{display:block}
 .admin-notice{background:rgba(145,70,255,.08);border:1px solid rgba(145,70,255,.2);border-radius:10px;padding:12px 16px;font-size:.84rem;color:var(--sub);margin-bottom:20px;line-height:1.5}
 .admin-notice strong{color:var(--twitch2)}
@@ -142,65 +111,11 @@ header{position:relative;z-index:10;display:flex;align-items:center;justify-cont
 .cmd-pill.voice{background:rgba(0,180,216,.12);border-color:rgba(0,180,216,.25);color:var(--voice2)}
 .cmd-pill.automod{background:rgba(237,66,69,.12);border-color:rgba(237,66,69,.25);color:var(--automod2)}
 .cmd-pill.free{background:rgba(87,242,135,.1);border-color:rgba(87,242,135,.25);color:var(--free2)}
+.cmd-pill.info{background:rgba(0,180,216,.08);border-color:rgba(0,180,216,.2);color:var(--voice2)}
 .cmd-req-pill{background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.2);color:var(--gold);border-radius:6px;padding:3px 8px;font-family:var(--ff-mono);font-size:.72rem;white-space:nowrap}
 .cmd-arg-pill{background:rgba(136,136,170,.08);border:1px solid rgba(136,136,170,.2);color:var(--sub);border-radius:6px;padding:3px 8px;font-family:var(--ff-mono);font-size:.72rem;white-space:nowrap}
 .cmd-desc{font-size:.85rem;color:var(--sub);line-height:1.55;padding-top:3px}
 .cmd-legend{margin-top:20px;font-size:.78rem;color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:8px}
-.provider-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:14px 0}
-.provider-card{border-radius:10px;padding:14px 16px;border:1px solid;position:relative;overflow:hidden}
-.provider-card::before{content:'';position:absolute;top:-30px;right:-30px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 70%);pointer-events:none}
-.provider-card.free{--glow:rgba(46,204,113,.2);background:rgba(46,204,113,.05);border-color:rgba(46,204,113,.2)}
-.provider-card.paid{--glow:rgba(88,101,242,.15);background:rgba(88,101,242,.04);border-color:rgba(88,101,242,.18)}
-.provider-card.free-tier{--glow:rgba(240,165,0,.2);background:rgba(240,165,0,.04);border-color:rgba(240,165,0,.2)}
-.prov-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.prov-name{font-family:var(--ff-mono);font-size:.82rem;font-weight:600;color:var(--text)}
-.prov-badge{font-family:var(--ff-mono);font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.05em}
-.prov-badge.free{background:rgba(46,204,113,.15);color:var(--success);border:1px solid rgba(46,204,113,.3)}
-.prov-badge.free-tier{background:rgba(240,165,0,.12);color:var(--gold);border:1px solid rgba(240,165,0,.25)}
-.prov-badge.paid{background:rgba(88,101,242,.12);color:var(--discord2);border:1px solid rgba(88,101,242,.25)}
-.prov-model{font-family:var(--ff-mono);font-size:.72rem;color:var(--sub);margin-bottom:6px}
-.prov-desc{font-size:.78rem;color:var(--muted);line-height:1.45}
-.aggression-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
-.aggression-card{border-radius:10px;padding:14px 16px;border:1px solid}
-.aggression-card.low{background:rgba(46,204,113,.05);border-color:rgba(46,204,113,.2)}
-.aggression-card.medium{background:rgba(240,165,0,.05);border-color:rgba(240,165,0,.2)}
-.aggression-card.high{background:rgba(237,66,69,.05);border-color:rgba(237,66,69,.2)}
-.agg-head{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-.agg-icon{font-size:1rem}.agg-name{font-family:var(--ff-mono);font-size:.8rem;font-weight:700}
-.aggression-card.low .agg-name{color:var(--success)}.aggression-card.medium .agg-name{color:var(--gold)}.aggression-card.high .agg-name{color:var(--automod2)}
-.agg-desc{font-size:.75rem;color:var(--sub);line-height:1.45;margin-bottom:8px}
-.agg-timeout{font-family:var(--ff-mono);font-size:.68rem;color:var(--muted)}
-.action-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
-.action-card{border-radius:8px;padding:10px 12px;border:1px solid var(--border);background:var(--card);text-align:center}
-.action-icon{font-size:1.2rem;margin-bottom:4px}
-.action-name{font-family:var(--ff-mono);font-size:.7rem;color:var(--text);font-weight:600}
-.action-desc{font-size:.65rem;color:var(--muted);margin-top:2px}
-.ai-pipeline{background:rgba(168,85,247,.04);border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:18px 20px;margin:14px 0}
-.ai-pipeline-title{font-family:var(--ff-mono);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ai2);margin-bottom:14px}
-.pipeline-steps{display:flex;flex-direction:column;gap:8px}
-.pipeline-step{display:flex;align-items:flex-start;gap:12px}
-.step-num{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:.68rem;font-weight:700}
-.step-num.fast{background:rgba(46,204,113,.15);color:var(--success);border:1px solid rgba(46,204,113,.3)}
-.step-num.ai{background:rgba(168,85,247,.15);color:var(--ai2);border:1px solid rgba(168,85,247,.3)}
-.step-num.skip{background:rgba(68,68,90,.2);color:var(--muted);border:1px solid var(--border)}
-.step-num.free-step{background:rgba(87,242,135,.15);color:var(--free2);border:1px solid rgba(87,242,135,.3)}
-.step-text{font-size:.82rem;color:var(--sub);line-height:1.5;padding-top:2px}.step-text strong{color:var(--text)}
-.store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0}
-.store-card{border-radius:10px;padding:14px 16px;border:1px solid;position:relative;overflow:hidden}
-.store-card::before{content:'';position:absolute;top:-30px;right:-30px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 70%);pointer-events:none}
-.store-card.epic-card{--glow:rgba(200,160,255,.2);background:rgba(200,160,255,.05);border-color:rgba(200,160,255,.2)}
-.store-card.gog-card{--glow:rgba(240,165,0,.2);background:rgba(240,165,0,.04);border-color:rgba(240,165,0,.2)}
-.store-card.steam-card{--glow:rgba(102,192,244,.2);background:rgba(102,192,244,.04);border-color:rgba(102,192,244,.2)}
-.store-card.ubi-card{--glow:rgba(0,91,172,.25);background:rgba(0,91,172,.05);border-color:rgba(0,91,172,.2)}
-.store-card.xbox-card{--glow:rgba(16,124,16,.25);background:rgba(16,124,16,.05);border-color:rgba(16,124,16,.2)}
-.store-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.store-name{font-family:var(--ff-mono);font-size:.82rem;font-weight:700;color:var(--text)}
-.store-badge{font-family:var(--ff-mono);font-size:.58rem;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.04em}
-.store-badge.free{background:rgba(87,242,135,.12);color:var(--free2);border:1px solid rgba(87,242,135,.3)}
-.store-badge.pass{background:rgba(16,124,16,.15);color:#4ade80;border:1px solid rgba(16,124,16,.3)}
-.store-desc{font-size:.75rem;color:var(--muted);line-height:1.45}
-.free-pipeline{background:rgba(87,242,135,.04);border:1px solid rgba(87,242,135,.18);border-radius:12px;padding:18px 20px;margin:14px 0}
-.free-pipeline-title{font-family:var(--ff-mono);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--free2);margin-bottom:14px}
 .thankyou{position:relative;z-index:2;max-width:700px;margin:20px auto 0;padding:60px 32px 80px;text-align:center}
 .ty-label{font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--twitch2);margin-bottom:16px}
 .ty-title{font-family:var(--ff-head);font-size:clamp(2.5rem,6vw,4.2rem);line-height:1;letter-spacing:.02em;margin-bottom:20px}
@@ -220,17 +135,13 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
 .footer-text{font-size:.75rem;font-family:var(--ff-mono);color:var(--muted);text-align:center}
 .footer-text a{color:var(--sub);text-decoration:none}.footer-text a:hover{color:var(--twitch2)}
 
-@media(max-width:700px){
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-}
+@media(max-width:700px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){
   header{padding:16px 20px}.logo-name{font-size:1.1rem}
   .header-links a:not(.btn-twitch){display:none}
   .hero,.features,.thankyou,.stats-section{padding-left:20px;padding-right:20px}
   .cmds-section{padding:40px 20px}
   .cmd-row{flex-direction:column;gap:8px}.cmd-left{min-width:unset}
-  .provider-grid{grid-template-columns:1fr 1fr}.aggression-grid{grid-template-columns:1fr}
-  .action-grid{grid-template-columns:1fr 1fr}.store-grid{grid-template-columns:1fr 1fr}
   .status-bar{padding:8px 20px;flex-wrap:wrap;height:auto;gap:8px}.status-bar-right{display:none}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
 }
@@ -240,7 +151,7 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
 
 <header>
   <div class="logo-wrap">
-    <div class="logo-icon"></div>
+    <div class="logo-icon">🌊</div>
     <span class="logo-name">SUN69WUKONG</span>
   </div>
   <div class="header-links">
@@ -249,8 +160,6 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
     <a href="#thankyou">Підтримати</a>
   </div>
 </header>
-
-
 
 <section class="hero">
   <div class="hero-badge">
@@ -266,7 +175,7 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
     все в одному боті для твого сервера.
   </p>
   <div class="hero-cta">
-    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&amp;scope=bot+applications.commands&amp;permissions=8" class="btn-primary">
+    <a href="https://discord.com/oauth2/authorize?client_id=1415258816542670971&scope=bot+applications.commands&permissions=8" class="btn-primary">
       <span>🚀</span> Додати на сервер
     </a>
     <a href="#commands" class="btn-secondary">
@@ -276,12 +185,7 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
 </section>
 
 <section class="stats-section">
-  <div class="stats-grid">
-    
-    
-    
-    
-  </div>
+  <div class="stats-grid"></div>
 </section>
 
 <section class="features" id="features">
@@ -303,7 +207,7 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
   <div class="feat-card">
     <div class="feat-icon">🎙️</div>
     <div class="feat-title">Голосові функції</div>
-    <div class="feat-desc">Запис голосових каналів, транскрипція розмов та зручне керування голосовими сесіями.</div>
+    <div class="feat-desc">Тимчасові голосові канали, автоматичне створення та видалення кімнат за потребою.</div>
   </div>
   <div class="feat-card free-card">
     <div class="feat-icon">🎮</div>
@@ -327,99 +231,121 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('general',this)">🏠 Twitch + Загальні</button>
+      <button class="tab-btn general-tab active" onclick="switchTab('general',this)">🏠 Twitch + Загальні</button>
       <button class="tab-btn music-tab" onclick="switchTab('music',this)">🎵 Музика</button>
       <button class="tab-btn voice-tab" onclick="switchTab('voice',this)">🎙️ Голос</button>
       <button class="tab-btn automod-tab" onclick="switchTab('automod',this)">🛡️ Автомод</button>
       <button class="tab-btn free-tab" onclick="switchTab('free',this)">🎮 Free Games</button>
     </div>
 
-    <!-- GENERAL + TWITCH -->
+    <!-- ═══ TAB: GENERAL + TWITCH ═══ -->
     <div class="tab-pane active" id="tab-general">
       <div class="cmd-grid">
-        <div class="cmd-category">Twitch Сповіщення</div>
+
+        <div class="cmd-category">📡 Twitch — інформація</div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/ping</span></div><div class="cmd-desc">Перевірити пінг бота</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/uptime</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Час стріму</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/uptime</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Час поточного стріму</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/stats</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Повна інформація про стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/viewers</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Кількість глядачів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/viewers</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Кількість глядачів зараз</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/game</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Поточна гра та назва стріму</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/streamers</span></div><div class="cmd-desc">Список стрімерів сервера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/clips</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Останні кліпи</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/profile</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Профіль стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/schedule</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Розклад стрімів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/streamers</span></div><div class="cmd-desc">Список всіх стрімерів цього сервера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/streamer_list</span></div><div class="cmd-desc">Детальний список стрімерів з їхніми статусами</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/clips</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Останні кліпи стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/profile</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Профіль стрімера: аватар, опис, фолловери</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/schedule</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Розклад запланованих стрімів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/token_status</span></div><div class="cmd-desc">Перевірити статус поточного Twitch токену</div></div>
 
-        <div class="cmd-category">Адміністраторські</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_add</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Додати стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_remove</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Видалити стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_toggle</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Увімкнути/вимкнути стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_tokens</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати Twitch токен</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_channel</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Дефолтний канал оголошень</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_live_role</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Роль для LIVE стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_discord_member</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Прив'язати Discord акаунт до стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/create_event</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити Discord Event</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/announce_now</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Примусово оголосити стрімера</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/force_check</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Примусова перевірка стрімерів</div></div>
+        <div class="cmd-category">🔧 Twitch — адміністрування</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_add</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Додати стрімера для відстеження на сервері</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_remove</span><span class="cmd-req-pill">🔑 Адмін</span><span class="cmd-arg-pill">username</span></div><div class="cmd-desc">Видалити стрімера зі списку</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/streamer_toggle</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Увімкнути або вимкнути конкретного стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_tokens</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Встановити Twitch Access Token для сервера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/setup_channel</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вказати канал для автоматичних анонсів стрімів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_live_role</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Роль яку отримує стрімер поки він LIVE</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/set_discord_member</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Прив'язати Discord-акаунт до Twitch стрімера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/create_event</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вручну створити Discord Scheduled Event</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/announce_now</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Примусово відправити анонс стрімера зараз</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/force_check</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Негайно перевірити всіх стрімерів</div></div>
 
-        <div class="cmd-category">Модерація</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/ban</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Забанити учасника</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/kick</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Кікнути учасника</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/invite</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити запрошення</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/thread</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити гілку</div></div>
+        <div class="cmd-category">🎨 Налаштування embed-оголошень</div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/embed_settings</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати колір, поля та кнопки embed-повідомлення <span class="new-badge">NEW</span></div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/embed_preview</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Попередній перегляд embed до публікації <span class="new-badge">NEW</span></div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/offline_settings</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати вигляд оффлайн-повідомлення <span class="new-badge">NEW</span></div></div>
+
+        <div class="cmd-category">🔴 Live Role & Discord Events</div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/liverole_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Роль яку бот автоматично видає стрімеру під час ефіру <span class="new-badge">NEW</span></div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/liverole_remove</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Прибрати налаштування Live Role <span class="new-badge">NEW</span></div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill info">Discord Event</span></div><div class="cmd-desc">Автоматично створюється при старті стріму і видаляється після завершення</div></div>
+
+        <div class="cmd-category">👥 Логування учасників</div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill admin">/memberlog_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати канали для повідомлень про вхід і вихід учасників <span class="new-badge">NEW</span></div></div>
+
+        <div class="cmd-category">🛠️ Загальні / Модерація</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill">/щовмієш</span></div><div class="cmd-desc">Показати повну довідку про можливості бота (видно тільки тобі)</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/ban</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Забанити учасника сервера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/kick</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Кікнути учасника з сервера</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/invite</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити запрошення на сервер</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill admin">/thread</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Створити гілку в каналі</div></div>
       </div>
     </div>
 
-    <!-- MUSIC (оновлено) -->
+    <!-- ═══ TAB: MUSIC ═══ -->
     <div class="tab-pane" id="tab-music">
       <div class="cmd-grid">
-        <div class="cmd-category">Музика</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/play</span><span class="cmd-arg-pill">запит або URL</span></div><div class="cmd-desc">Відтворити трек</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/skip</span></div><div class="cmd-desc">Пропустити трек</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/pause</span></div><div class="cmd-desc">Пауза / продовжити</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/stop</span></div><div class="cmd-desc">Зупинити та відключитись</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/queue</span></div><div class="cmd-desc">Показати чергу</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/nowplaying</span></div><div class="cmd-desc">Що зараз грає</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/volume</span><span class="cmd-arg-pill">1-200</span></div><div class="cmd-desc">Гучність</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/loop</span></div><div class="cmd-desc">Перемикання повтору</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/shuffle</span></div><div class="cmd-desc">Перемішати чергу</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/join</span></div><div class="cmd-desc">Приєднатися до голосового каналу</div></div>
+        <div class="cmd-category">🎵 Відтворення</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/play</span><span class="cmd-arg-pill">запит або URL</span></div><div class="cmd-desc">Відтворити трек з YouTube або за прямим посиланням</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/skip</span></div><div class="cmd-desc">Пропустити поточний трек</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/pause</span></div><div class="cmd-desc">Пауза або продовжити відтворення</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/stop</span></div><div class="cmd-desc">Зупинити музику та відключити бота з каналу</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/nowplaying</span></div><div class="cmd-desc">Показати що зараз грає</div></div>
+        <div class="cmd-category">📋 Черга</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/queue</span></div><div class="cmd-desc">Показати поточну чергу треків</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/shuffle</span></div><div class="cmd-desc">Перемішати чергу у випадковому порядку</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/loop</span></div><div class="cmd-desc">Перемикач повтору треку або всієї черги</div></div>
+        <div class="cmd-category">🔊 Керування</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/volume</span><span class="cmd-arg-pill">1-200</span></div><div class="cmd-desc">Встановити гучність відтворення</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/join</span></div><div class="cmd-desc">Приєднати бота до твого голосового каналу</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill music">/leave</span></div><div class="cmd-desc">Вийти з голосового каналу</div></div>
       </div>
     </div>
 
-    <!-- VOICE -->
+    <!-- ═══ TAB: VOICE ═══ -->
     <div class="tab-pane" id="tab-voice">
       <div class="cmd-grid">
-        <div class="cmd-category">TempVoice</div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати тимчасові голосові канали</div></div>
+        <div class="cmd-category">🎙️ Тимчасові голосові канали</div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill voice">/tempvoice_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати канал-тригер — при вході бот автоматично створює кімнату <span class="new-badge">NEW</span></div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill voice">/tempvoice_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вимкнути систему тимчасових каналів <span class="new-badge">NEW</span></div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Альтернативна команда налаштування TempVoice</div></div>
         <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вимкнути TempVoice</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_info</span></div><div class="cmd-desc">Статус тимчасових каналів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill voice">/voice_info</span></div><div class="cmd-desc">Статус тимчасових каналів на сервері</div></div>
       </div>
     </div>
 
-    <!-- AUTOMOD -->
+    <!-- ═══ TAB: AUTOMOD ═══ -->
     <div class="tab-pane" id="tab-automod">
-      <!-- (залишив твій попередній контент + додав нові) -->
       <div class="cmd-grid">
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Основні налаштування автомодерації</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_aggression</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Рівень агресивності (low/medium/high)</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_keywords</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Керування забороненими словами</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_exempt</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Виключення ролей та каналів</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_status</span></div><div class="cmd-desc">Поточний статус автомоду</div></div>
+        <div class="cmd-category">🛡️ Налаштування AutoMod</div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill automod">/automod_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Основне налаштування: канал логів, дія, заборонені слова <span class="new-badge">NEW</span></div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_aggression</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Рівень агресивності: low / medium / high</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_keywords</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Керування списком заборонених слів</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_exempt</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Виключити ролі або канали з модерації</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill automod">/automod_status</span></div><div class="cmd-desc">Переглянути поточні налаштування автомодерації</div></div>
+        <div class="cmd-row new-cmd"><div class="cmd-left"><span class="cmd-pill automod">/automod_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Повністю вимкнути автомодерацію <span class="new-badge">NEW</span></div></div>
       </div>
     </div>
 
-    <!-- FREE GAMES -->
+    <!-- ═══ TAB: FREE GAMES ═══ -->
     <div class="tab-pane" id="tab-free">
-      <!-- твій попередній контент + /freegames_... -->
       <div class="cmd-grid">
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати сповіщення</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_check</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Перевірити зараз</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_status</span></div><div class="cmd-desc">Статус модуля</div></div>
-        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вимкнути</div></div>
+        <div class="cmd-category">🎮 Безкоштовні ігри</div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_setup</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Налаштувати канал та джерела (Epic, GOG, Steam, Ubisoft, Xbox Game Pass)</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_check</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Одразу перевірити і опублікувати поточні роздачі</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_status</span></div><div class="cmd-desc">Переглянути статус модуля та налаштовані джерела</div></div>
+        <div class="cmd-row"><div class="cmd-left"><span class="cmd-pill free">/freegames_disable</span><span class="cmd-req-pill">🔑 Адмін</span></div><div class="cmd-desc">Вимкнути сповіщення про безкоштовні ігри</div></div>
       </div>
     </div>
 
-    <div class="cmd-legend">  //тут 
+    <div class="cmd-legend">
       <span>🔑 — потрібні права адміністратора</span>
       <span>·</span>
       <span style="color:var(--success)">█ NEW</span> — нова функція
@@ -449,17 +375,77 @@ footer{position:relative;z-index:2;padding:24px 48px;border-top:1px solid var(--
     <a href="https://discord.gg/khMuEvHsxG" class="social-link discord-link"><span>💬</span> Discord сервер</a>
     <a href="https://www.twitch.tv/sun69wukong" class="social-link"><span>📺</span> Twitch канал</a>
     <a href="https://www.twitch.tv/demonicniy_gamer" class="social-link"><span>📺</span> Twitch канал</a>
-    <a href="https://www.youtube.com/@Demonichniy-gamer" class="social-link"><span>📺</span> Ютуб демоничного </a>
-    <a href="https://www.youtube.com/@sun69wukongTTV" class="social-link"><span>📺</span> Ютуб санвуконга </a>
+    <a href="https://www.youtube.com/@Demonichniy-gamer" class="social-link"><span>📺</span> Ютуб демоничного</a>
+    <a href="https://www.youtube.com/@sun69wukongTTV" class="social-link"><span>📺</span> Ютуб санвуконга</a>
   </div>
 </section>
+
+<!-- ═══ LEGAL SECTIONS ═══ -->
+<div class="legal-sections-row">
+<section class="legal-section" id="privacy">
+  <div class="legal-wrap">
+    <button class="legal-toggle" onclick="toggleLegal('privacy-body', this)">
+      <span class="legal-toggle-title">🔒 Конфіденційність</span>
+      <span class="legal-toggle-icon">▼</span>
+    </button>
+    <div class="legal-body" id="privacy-body">
+      <div class="legal-content-mini">
+        <span class="lm">✅ <b>Зберігається:</b> ID серверів, каналів, ролей · нікнеми стрімерів · налаштування.</span>
+        <span class="lm-sep">·</span>
+        <span class="lm">❌ <b>НЕ збирається:</b> повідомлення · особисті дані · паролі. Twitch-токен доступний лише вашому серверу.</span>
+        <span class="lm-sep">·</span>
+        <span class="lm">🗑️ <b>Видалення / контакт:</b> <a href="https://discord.gg/khMuEvHsxG" style="color:var(--discord2)">Discord підтримки</a>. Також діють політики Twitch та Discord.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="legal-section" id="terms">
+  <div class="legal-wrap">
+    <button class="legal-toggle" onclick="toggleLegal('terms-body', this)">
+      <span class="legal-toggle-title">📄 Умови використання</span>
+      <span class="legal-toggle-icon">▼</span>
+    </button>
+    <div class="legal-body" id="terms-body">
+      <div class="legal-content-mini">
+        <span class="lm">✅ <b>Дозволено:</b> законне використання на Discord-серверах.</span>
+        <span class="lm-sep">·</span>
+        <span class="lm">🚫 <b>Заборонено:</b> спам, обхід модерації, шкідливий контент.</span>
+        <span class="lm-sep">·</span>
+        <span class="lm">⚠️ <b>Відповідальність:</b> бот надається «як є», без гарантій безперебійної роботи.</span>
+        <span class="lm-sep">·</span>
+        <span class="lm">💬 <b>Контакт:</b> <a href="https://discord.gg/khMuEvHsxG" style="color:var(--discord2)">Discord підтримки</a>.</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
 
 <footer>
   <p class="footer-text">
     © 2025 <a href="#">sun69wukong Bot</a> · Зроблено з ❤️ для Discord-спільноти ·
-    <a href="#">Конфіденційність</a> · <a href="#">Умови використання</a>
+    <a href="#privacy" onclick="openLegal('privacy-body', 'privacy')">Конфіденційність</a> ·
+    <a href="#terms" onclick="openLegal('terms-body', 'terms')">Умови використання</a>
   </p>
 </footer>
+
+<style>
+.legal-sections-row{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 32px 16px;display:flex;gap:16px;align-items:flex-start}
+.legal-section{flex:1;min-width:0}
+.legal-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:8px;background:var(--card)}
+.legal-toggle{width:100%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:7px 16px;color:var(--sub);font-family:var(--ff-mono);font-size:.68rem;font-weight:600;transition:background .2s,color .2s}
+.legal-toggle:hover{background:rgba(145,70,255,.04);color:var(--text)}
+.legal-toggle-title{display:flex;align-items:center;gap:6px}
+.legal-toggle-icon{font-size:.6rem;color:var(--muted);transition:transform .3s;flex-shrink:0}
+.legal-toggle.open .legal-toggle-icon{transform:rotate(180deg)}
+.legal-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.legal-body.open{max-height:600px}
+.legal-content-mini{padding:10px 20px 12px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 0}
+.lm{font-size:.75rem;color:var(--muted);line-height:1.6}
+.lm b{color:var(--sub)}
+.lm-sep{font-size:.75rem;color:var(--border);padding:0 8px}
+@media(max-width:600px){.legal-section{padding:0 20px 2px}.legal-content-mini{flex-direction:column;gap:4px}.lm-sep{display:none}}
+</style>
 
 <script>
 function switchTab(id, btn) {
@@ -468,7 +454,23 @@ function switchTab(id, btn) {
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
 }
+
+function toggleLegal(bodyId, btn) {
+  const body = document.getElementById(bodyId);
+  const toggle = btn;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+}
+
+function openLegal(bodyId, sectionId) {
+  const body = document.getElementById(bodyId);
+  const toggle = body.previousElementSibling;
+  body.classList.add('open');
+  toggle.classList.add('open');
+  setTimeout(() => {
+    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
 </script>
-
-
 </body></html>
